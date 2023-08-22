@@ -26,12 +26,21 @@ jobs:
           cache: "npm"
 
       - run: npm ci
+      - run: npm run build
+      
+      # Start Next.js Server in Background
+      - name: Start Next.js server
+        run: npm start &
+        env:
+          CI: true
+
+      # Wait for server to start
+      - name: Wait for Next.js server to start
+        run: sleep 15
 
       # Install Playwright Browsers
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-
-      - run: npm run build --if-present
 
       # Run Playwright Tests
       - name: Run Playwright tests
