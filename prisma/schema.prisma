@@ -1,31 +1,142 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 datasource db {
   provider     = "mysql"
   url          = env("DATABASE_URL")
-  relationMode = "foreignKeys"
+  relationMode = "prisma"
 }
 
 generator client {
-  provider     = "prisma-client-js"
+  provider = "prisma-client-js"
+}
+
+model User {
+  id             Int       @id @default(autoincrement())
+  username       String
+  email          String
+  password       String
+  profilePicture String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  deletedAt      DateTime?
+  posts          Post[]
+  comments       Comment[]
+  likes          Like[]
+  followers      Follow[]  @relation("Follower")
+  followings     Follow[]  @relation("Following")
 }
 
 model Post {
-  id       Int       @id @default(autoincrement())
-  title    String
-  content  String
-  likes    Int       @default(0)
-  comments Comment[]
+  id        Int       @id @default(autoincrement())
+  userId    Int
+  title     String
+  content   String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  user      User      @relation(fields: [userId], references: [id])
+  comments  Comment[]
+  likes     Like[]
+
+  @@index([userId])
 }
 
 model Comment {
-  id      Int    @id @default(autoincrement())
-  comment String
-  postId  Int
-  post    Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  id        Int       @id @default(autoincrement())
+  userId    Int
+  postId    Int
+  content   String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  user      User      @relation(fields: [userId], references: [id])
+  post      Post      @relation(fields: [postId], references: [id])
+
+  @@index([userId])
+  @@index([postId])
 }
 
-//   post    Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
-//   @@index([postId])
+model Like {
+  id        Int       @id @default(autoincrement())
+  userId    Int
+  postId    Int
+  createdAt DateTime  @default(now())
+  deletedAt DateTime?
+  user      User      @relation(fields: [userId], references: [id])
+  post      Post      @relation(fields: [postId], references: [id])
 
+  @@index([userId])
+  @@index([postId])
+}
+
+model Follow {
+  id             Int       @id @default(autoincrement())
+  followerUserId Int
+  followedUserId Int
+  createdAt      DateTime  @default(now())
+  deletedAt      DateTime?
+  follower       User      @relation("Follower", fields: [followerUserId], references: [id])
+  followed       User      @relation("Following", fields: [followedUserId], references: [id])
+
+  @@index([followerUserId])
+  @@index([followedUserId])
+}
+
+// SQL equivalent
+//
+//-- User Table
+// CREATE TABLE User (
+//     id INT PRIMARY KEY AUTO_INCREMENT,
+//     username VARCHAR(255) NOT NULL,
+//     email VARCHAR(255) NOT NULL,
+//     password VARCHAR(255) NOT NULL,
+//     profilePicture VARCHAR(255),
+//     createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+//     updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+//     deletedAt DATETIME
+// );
+
+// -- Post Table
+// CREATE TABLE Post (
+//     id INT PRIMARY KEY AUTO_INCREMENT,
+//     userId INT,
+//     title VARCHAR(255) NOT NULL,
+//     content TEXT,
+//     createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+//     updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+//     deletedAt DATETIME,
+//     FOREIGN KEY (userId) REFERENCES User(id)
+// );
+
+// -- Comment Table
+// CREATE TABLE Comment (
+//     id INT PRIMARY KEY AUTO_INCREMENT,
+//     userId INT,
+//     postId INT,
+//     content TEXT,
+//     createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+//     updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+//     deletedAt DATETIME,
+//     FOREIGN KEY (userId) REFERENCES User(id),
+//     FOREIGN KEY (postId) REFERENCES Post(id)
+// );
+
+// -- Like Table
+// CREATE TABLE Like (
+//     id INT PRIMARY KEY AUTO_INCREMENT,
+//     userId INT,
+//     postId INT,
+//     createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+//     deletedAt DATETIME,
+//     FOREIGN KEY (userId) REFERENCES User(id),
+//     FOREIGN KEY (postId) REFERENCES Post(id)
+// );
+
+// -- Follow Table
+// CREATE TABLE Follow (
+//     id INT PRIMARY KEY AUTO_INCREMENT,
+//     followerUserId INT,
+//     followedUserId INT,
+//     createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+//     deletedAt DATETIME,
+//     FOREIGN KEY (followerUserId) REFERENCES User(id),
+//     FOREIGN KEY (followedUserId) REFERENCES User(id)
+// );
