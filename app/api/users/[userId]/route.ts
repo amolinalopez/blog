@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
+import { handleErrors } from "../../utils/errorHandler";
 
 const prisma = new PrismaClient();
 
@@ -22,11 +23,7 @@ export async function GET(
 
     return new NextResponse(JSON.stringify(user));
   } catch (error) {
-    if (error instanceof Error) {
-      return new NextResponse(`Error: ${error.message}`, { status: 500 });
-    } else {
-      return new NextResponse("An unknown error occurred.", { status: 500 });
-    }
+    return handleErrors(error);
   }
 }
 
@@ -48,13 +45,7 @@ export async function PUT(
 
     return new NextResponse(JSON.stringify(updatedUser), { status: 200 });
   } catch (error) {
-    if (error instanceof Error) {
-      return new NextResponse(`Error message: ${error.message}`, {
-        status: 500,
-      });
-    } else {
-      return new NextResponse("An unknown error occurred.", { status: 500 });
-    }
+    return handleErrors(error);
   }
 }
 
@@ -74,12 +65,6 @@ export async function DELETE(
 
     return new NextResponse("User deleted successfully", { status: 200 });
   } catch (error) {
-    if (error instanceof Error) {
-      return new NextResponse(`Error message: ${error.message}`, {
-        status: 500,
-      });
-    } else {
-      return new NextResponse("An unknown error occurred.", { status: 500 });
-    }
+    return handleErrors(error);
   }
 }
