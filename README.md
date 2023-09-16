@@ -4,7 +4,8 @@
 
 ### Purpose
 
-"Burned Ones" is a social media designed specifically for minorities. It's a space where users can:
+"Burned Ones" is a social media designed specifically for minorities. 
+It's a space where users can:
 
 - Share valuable resources. Know a friendly doctor or an understanding therapist? Share them here.
 - Tell their stories. Every story is anonymous, with pseudonyms automatically assigned, allowing people to freely express without fear.
