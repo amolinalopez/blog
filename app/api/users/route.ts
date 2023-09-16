@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { handleErrors } from "../utils/errorHandler";
+import { validateUserData } from "../utils/ValidateUserData";
 
 const prisma = new PrismaClient();
 
@@ -8,6 +9,12 @@ const prisma = new PrismaClient();
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
     const userData = await request.json();
+
+    const validationError = validateUserData(userData);
+    if (validationError) {
+      return new NextResponse(validationError, { status: 400 });
+    }
+
     const newUser = await prisma.user.create({
       data: userData,
     });

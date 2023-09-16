@@ -1,17 +1,5 @@
 import { test, expect } from "@playwright/test";
-
-const mockUsers = [
-  {
-    username: "Citrouille",
-    email: "citrouille@halloween.com",
-    password: "pereNoel123",
-  },
-  {
-    username: "Pomme",
-    email: "pomme@damour.com",
-    password: "feteforaine123",
-  },
-];
+import { mockUsers } from "./mockData";
 
 let createdUserIds: number[] = [];
 
@@ -56,6 +44,14 @@ test("should create a new user", async ({ request }) => {
       `Successfully created new user: ${JSON.stringify(responseData)}`
     );
     createdUserIds.push(responseData.id);
+
+    const fetchUserResponse = await request.get(
+      `/api/users/${responseData.id}`
+    );
+    expect(fetchUserResponse.ok()).toBeTruthy();
+    expect(await fetchUserResponse.json()).toEqual(
+      expect.objectContaining({ id: responseData.id })
+    );
   } else {
     console.log(
       `Failed to create new user. Response: ${JSON.stringify(responseData)}`
@@ -66,35 +62,36 @@ test("should create a new user", async ({ request }) => {
 });
 
 test("should fetch a user by its ID", async ({ request }) => {
+  console.log(`Current post IDs: ${createdUserIds}`);
   const userId = createdUserIds[0];
   console.log(`Attempting to fetch user with ID: ${userId}`);
 
   const user = await request.get(`/api/users/${userId}`);
 
+  let userData;
+  try {
+    userData = await user.json();
+  } catch (error) {
+    console.log(`Failed to fetch user with ID: ${userId}`);
+  }
+
   if (user.ok()) {
     console.log(
       `Successfully fetched user with ID: ${userId}. Data: ${JSON.stringify(
-        await user.json()
+        userData
       )}`
     );
   } else {
     console.log(
       `Failed to fetch user with ID: ${userId}. Response: ${JSON.stringify(
-        await user.json()
+        userData
       )}`
     );
   }
 
   expect(user.ok()).toBeTruthy();
-  expect(await user.json()).toEqual(expect.objectContaining({ id: userId }));
+  expect(userData).toEqual(expect.objectContaining({ id: userId }));
 });
-
-// test("should fetch a user by its ID", async ({ request }) => {
-//   const userId = createdUserIds[0];
-//   const user = await request.get(`/api/users/${userId}`);
-//   expect(user.ok()).toBeTruthy();
-//   expect(await user.json()).toEqual(expect.objectContaining({ id: userId }));
-// });
 
 test("should update a user by its ID", async ({ request }) => {
   const userId = createdUserIds[0];
@@ -124,20 +121,6 @@ test("should update a user by its ID", async ({ request }) => {
   expect(await response.json()).toEqual(expect.objectContaining(updatedData));
 });
 
-// test("should update a user by its ID", async ({ request }) => {
-//     const userId = createdUserIds[0];
-//     const updatedData = {
-//       username: "Stephanie",
-//       email: "dandan@rottenmango.com",
-//       password: "myHusbandisPanda",
-//     };
-//     const response = await request.put(`/api/users/${userId}`, {
-//       data: updatedData,
-//     });
-//     expect(response.ok()).toBeTruthy();
-//     expect(await response.json()).toEqual(expect.objectContaining(updatedData));
-//   });
-
 test("should delete a user by its ID", async ({ request }) => {
   const userId = createdUserIds.pop();
   console.log(`Attempting to delete user with ID: ${userId}`);
@@ -156,9 +139,3 @@ test("should delete a user by its ID", async ({ request }) => {
 
   expect(response.ok()).toBeTruthy();
 });
-
-// test("should delete a user by its ID", async ({ request }) => {
-//     const userId = createdUserIds.pop();
-//     const response = await request.delete(`/api/users/${userId}`);
-//     expect(response.ok()).toBeTruthy();
-//   });
