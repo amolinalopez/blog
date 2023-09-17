@@ -2,9 +2,9 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Social Media App",
+  title: "Burned Ones",
   description: "For all the burned witches out there",
-  applicationName : "Burned Ones",
+  applicationName: "Burned Ones",
 };
 
 export default function RootLayout({
