@@ -1,20 +1,27 @@
-export function validateUserData(data: any): string | null {
-  if (!data.username || typeof data.username !== "string") {
+import { UserData } from "../../../types/userTypes";
+
+export function validateUserData(data: UserData): string | null {
+  if (!isValidString(data.username)) {
     return "Username is required and should be a string.";
   }
-  if (
-    !data.email ||
-    typeof data.email !== "string" ||
-    !data.email.includes("@")
-  ) {
-    return "Email is required, should be a string and valid.";
+  if (!isValidEmail(data.email)) {
+    return "Email is required and should be a valid format.";
   }
-  if (
-    !data.password ||
-    typeof data.password !== "string" ||
-    data.password.length < 8
-  ) {
+  if (!isValidPassword(data.password)) {
     return "Password is required, should be a string and at least 8 characters long.";
   }
   return null;
+}
+
+function isValidString(value?: string): boolean {
+  return typeof value === "string" && value.trim().length > 0;
+}
+
+function isValidEmail(email?: string): boolean {
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  return isValidString(email) && emailRegex.test(email!);
+}
+
+function isValidPassword(password?: string): boolean {
+  return isValidString(password) && password!.length >= 8;
 }
