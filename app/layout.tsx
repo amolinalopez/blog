@@ -1,5 +1,11 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { Amarante } from "@next/font/google";
+import localFont from "@next/font/local";
+
+const lucioleRegular = localFont({ src: "../fonts/Luciole-Regular.ttf" });
+const lucioleBold = localFont({ src: "../fonts/Luciole-Bold.ttf" });
+const amarante = Amarante({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
   title: "Burned Ones",
@@ -14,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={lucioleRegular.className}>{children}</body>
     </html>
   );
 }
