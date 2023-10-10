@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { handleErrors } from "../utils/errorHandler";
 import { validateUserData } from "../utils/ValidateUserData";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const prisma = new PrismaClient();
 
@@ -10,18 +11,15 @@ const prisma = new PrismaClient();
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
     const userData = await request.json();
-
     const validationError = validateUserData(userData);
     if (validationError) {
       return new NextResponse(validationError, { status: 400 });
     }
     const { username, email, password } = userData;
 
-    //hash le passzxord
     const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(userData.password, saltRounds);
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    //bam create user
     const newUser = await prisma.user.create({
       data: {
         username,
@@ -29,7 +27,18 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         password: hashedPassword,
       },
     });
-    return new NextResponse(JSON.stringify(newUser), { status: 201 });
+
+    if (!process.env.JWT_SECRET) {
+      throw new Error("JWT_SECRET is not defined");
+    }
+
+    const token = jwt.sign({ id: newUser.id }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    return new NextResponse(JSON.stringify({ user: newUser, token }), {
+      status: 201,
+    });
   } catch (error) {
     return handleErrors(error);
   }
