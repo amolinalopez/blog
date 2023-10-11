@@ -3,7 +3,13 @@
 import { useState } from "react";
 import Image from "next/image";
 import bo_logo_icon from "../../../public/Logo_BO_Icon.svg";
+import corner_orange from "../../../public/Corner_Orange.svg";
+import corner_orange_clair from "../../../public/corner_orange_clair.svg";
+import plante from "../../../public/plante.svg";
 import Link from "next/link";
+import { amarante } from "../../../utils/fonts";
+import styles from "../../styles/signup.module.css";
+import Button from "../../../components/btn";
 
 const SignupPage: React.FC = () => {
   const [username, setUsername] = useState("");
@@ -37,18 +43,57 @@ const SignupPage: React.FC = () => {
     }
   };
   return (
-    <div>
+    <div className={styles.signup}>
       <Image
-        src={bo_logo_icon}
-        width={122}
-        height={160}
-        alt="Picture of the author"
+        src={corner_orange}
+        width={250}
+        height={220}
+        alt="corner orange"
         priority
+        className={styles.topLeft}
       />
-      <h1>Sign up here</h1>
-      <p>
-        Welcome to this sharing platorm. Burned Ones. To access the platform
-        please fill in the following informations :
+
+      <Image
+        src={corner_orange_clair}
+        width={250}
+        height={220}
+        alt="corner orange clair"
+        priority
+        className={styles.bottomRight}
+      />
+
+      <Image
+        src={plante}
+        width={196}
+        height={172}
+        alt="plante"
+        priority
+        className={styles.topRight}
+      />
+
+      <Image
+        src={plante}
+        width={196}
+        height={172}
+        alt="plante"
+        priority
+        className={styles.bottomLeft}
+      />
+
+      <div className={styles.centerLogo}>
+        <Image
+          src={bo_logo_icon}
+          width={122}
+          height={160}
+          alt="icon logo of burned ones"
+          priority
+        />
+      </div>
+
+      <h1 className={amarante.className}>Sign up</h1>
+      <p id={styles.welcome}>
+        Welcome to the Burned Ones experience sharing platform. To complete your
+        registration, please fill out the fields below.
       </p>
 
       <form
@@ -87,7 +132,7 @@ const SignupPage: React.FC = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <button type="submit">Sign Up</button>
+        <Button text="Sign Up" />
       </form>
       <p>
         Already have an account? click <Link href="/auth/login">here</Link> to
