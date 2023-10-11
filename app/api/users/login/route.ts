@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { cookies } from "next/headers";
 
 const prisma = new PrismaClient();
 
@@ -24,9 +25,13 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       });
     }
 
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET!, {
-      expiresIn: "1h",
-    });
+    const token = jwt.sign(
+      { id: user.id, username: user.username },
+      process.env.JWT_SECRET!,
+      { expiresIn: "1h" }
+    );
+
+    cookies().set("jwtToken", token, { httpOnly: true, secure: true });
 
     return new NextResponse(JSON.stringify({ token }), { status: 200 });
   } catch (error) {

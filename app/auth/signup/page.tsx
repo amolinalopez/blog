@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import bo_logo_icon from "../../../public/Logo_BO_Icon.svg";
+import Link from "next/link";
 
 const SignupPage: React.FC = () => {
   const [username, setUsername] = useState("");
@@ -88,6 +89,10 @@ const SignupPage: React.FC = () => {
         </div>
         <button type="submit">Sign Up</button>
       </form>
+      <p>
+        Already have an account? click <Link href="/auth/login">here</Link> to
+        log in
+      </p>
     </div>
   );
 };

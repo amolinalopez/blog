@@ -1,10 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const LoginPage: React.FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   const handleLogin = async () => {
     try {
@@ -14,7 +17,6 @@ const LoginPage: React.FC = () => {
       };
 
       const response = await fetch("/api/users/login", {
-        // Assuming your login API endpoint is /api/users/login
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -25,6 +27,8 @@ const LoginPage: React.FC = () => {
       if (response.status === 200) {
         const data = await response.json();
         console.log("Login successful! Token received: ", data.token);
+        localStorage.setItem("token", data.token);
+        router.push("/grimoire");
       } else {
         const data = await response.json();
         console.error("Login failed:", data);
@@ -63,6 +67,9 @@ const LoginPage: React.FC = () => {
         </div>
         <button type="submit">Login</button>
       </form>
+      <p>
+        New here ? click <Link href="/auth/signup">here</Link> to sign up
+      </p>
     </div>
   );
 };
