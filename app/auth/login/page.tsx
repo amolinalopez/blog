@@ -4,20 +4,19 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import bo_logo from "../../../public/Logo_BO.svg";
-import corner_orange from "../../../public/Corner_Orange.svg";
-import corner_orange_clair from "../../../public/corner_orange_clair.svg";
-import plante from "../../../public/plante.svg";
 import styles from "../../styles/signup.module.css";
 import { amarante } from "../../../utils/fonts";
 import eye_open from "../../../public/eye_open.svg";
 import eye_close from "../../../public/eye_close.svg";
 import Button from "../../../components/btn";
+import AuthLayout from "../layout";
 
 const LoginPage: React.FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+  const [loginError, setLoginError] = useState<string | null>(null);
 
   const handleLogin = async () => {
     try {
@@ -38,13 +37,15 @@ const LoginPage: React.FC = () => {
         const data = await response.json();
         console.log("Login successful! Token received: ", data.token);
         localStorage.setItem("token", data.token);
-        router.push("/grimoire");
+        router.push("/auth/success");
       } else {
         const data = await response.json();
         console.error("Login failed:", data);
+        setLoginError("Wrong username or password");
       }
     } catch (error) {
       console.error("Login failed:", error);
+      setLoginError("Something went wrong");
     }
   };
 
@@ -53,43 +54,7 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div>
-      <Image
-        src={corner_orange}
-        width={250}
-        height={220}
-        alt="corner orange"
-        priority
-        className={styles.topLeft}
-      />
-
-      <Image
-        src={corner_orange_clair}
-        width={250}
-        height={220}
-        alt="corner orange clair"
-        priority
-        className={styles.bottomRight}
-      />
-
-      <Image
-        src={plante}
-        width={196}
-        height={172}
-        alt="plante"
-        priority
-        className={styles.topRight}
-      />
-
-      <Image
-        src={plante}
-        width={196}
-        height={172}
-        alt="plante"
-        priority
-        className={styles.bottomLeft}
-      />
-
+    <AuthLayout>
       <h1 className={amarante.className} id={styles.welcomeLogin}>
         Welcome to
       </h1>
@@ -104,8 +69,6 @@ const LoginPage: React.FC = () => {
         />
       </div>
       <div className={styles.formContainer}>
-        {" "}
-        {/* new className to center form */}
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -134,7 +97,6 @@ const LoginPage: React.FC = () => {
               placeholder="Mot de passe"
               onChange={(e) => setPassword(e.target.value)}
               className={styles.input}
-              //  ${!showPassword ? spellweaver.className : ""}`}
             />
             <span onClick={handlePasswordToggle} id={styles.spanEye}>
               <Image
@@ -146,16 +108,26 @@ const LoginPage: React.FC = () => {
               />
             </span>
           </div>
-          <a href="#" id={styles.lienMdpForgotten}>Mot de passe oublié ?</a>
+
+          <div className={styles.containerLienMdpForgotten}>
+            <a href="#" id={styles.lienMdpForgotten}>
+              Forgot password ?
+            </a>
+          </div>
+          <div className={styles.errorAuth}>
+            {loginError && (
+              <div className={styles.errorMessage}>{loginError}</div>
+            )}
+          </div>
           <div className={styles.buttonContainer}>
             <Button text="Log In" />
           </div>
         </form>
-        <p>
-          New here ? click <Link href="/auth/signup">here</Link> to sign up
+        <p id={styles.newHere}>
+          New here ? <Link href="/auth/signup">Sign up</Link>
         </p>
       </div>
-    </div>
+    </AuthLayout>
   );
 };
 

@@ -32,9 +32,13 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       throw new Error("JWT_SECRET is not defined");
     }
 
-    const token = jwt.sign({ id: newUser.id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
+    const token = jwt.sign(
+      { id: newUser.id, username: newUser.username },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1h",
+      }
+    );
 
     return new NextResponse(JSON.stringify({ user: newUser, token }), {
       status: 201,

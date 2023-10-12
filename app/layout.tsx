@@ -6,7 +6,7 @@ import localFont from "@next/font/local";
 const lucioleRegular = localFont({ src: "../fonts/Luciole-Regular.ttf" });
 const lucioleBold = localFont({ src: "../fonts/Luciole-Bold.ttf" });
 const amarante = Amarante({ subsets: ["latin"], weight: "400" });
-const jost = Jost({ subsets: ["latin"], weight: "400" });
+const jost = Jost({ subsets: ["latin"], weight: ["300","400"] });
 const spellweaver = localFont({ src: "../fonts/Spellweaver_Nodes.otf" });
 
 export const metadata: Metadata = {

@@ -1,22 +1,29 @@
 "use client";
-
 import { useState } from "react";
 import Image from "next/image";
 import bo_logo_icon from "../../../public/Logo_BO_Icon.svg";
-import corner_orange from "../../../public/Corner_Orange.svg";
-import corner_orange_clair from "../../../public/corner_orange_clair.svg";
-import plante from "../../../public/plante.svg";
 import Link from "next/link";
 import { amarante } from "../../../utils/fonts";
 import styles from "../../styles/signup.module.css";
 import Button from "../../../components/btn";
+import eye_open from "../../../public/eye_open.svg";
+import eye_close from "../../../public/eye_close.svg";
+import { useRouter } from "next/navigation";
+import AuthLayout from "../layout";
 
 const SignupPage: React.FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [validationError, setValidationError] = useState("");
+  const router = useRouter();
 
   const handleSignup = async () => {
+    if (!username || !password || !email) {
+      setValidationError("All fields must be filled in.");
+      return;
+    }
     try {
       const payload = {
         username,
@@ -33,7 +40,10 @@ const SignupPage: React.FC = () => {
       });
 
       if (response.status === 201) {
-        console.log("Signup successful! allleeeeez 🔥");
+        const data = await response.json();
+        console.log("Signup successful! Token received:", data.token);
+        localStorage.setItem("token", data.token); // Store token in local storage
+        router.push("/auth/success");
       } else {
         const data = await response.json();
         console.error("Signup failed:", data);
@@ -42,43 +52,12 @@ const SignupPage: React.FC = () => {
       console.error("Signup failed:", error);
     }
   };
+
+  const handlePasswordToggle = () => {
+    setShowPassword(!showPassword);
+  };
   return (
-    <div className={styles.signup}>
-      <Image
-        src={corner_orange}
-        width={250}
-        height={220}
-        alt="corner orange"
-        priority
-        className={styles.topLeft}
-      />
-
-      <Image
-        src={corner_orange_clair}
-        width={250}
-        height={220}
-        alt="corner orange clair"
-        priority
-        className={styles.bottomRight}
-      />
-
-      <Image
-        src={plante}
-        width={196}
-        height={172}
-        alt="plante"
-        priority
-        className={styles.topRight}
-      />
-
-      <Image
-        src={plante}
-        width={196}
-        height={172}
-        alt="plante"
-        priority
-        className={styles.bottomLeft}
-      />
+    <AuthLayout>
 
       <div className={styles.centerLogo}>
         <Image
@@ -91,54 +70,77 @@ const SignupPage: React.FC = () => {
       </div>
 
       <h1 className={amarante.className}>Sign up</h1>
-      <p id={styles.welcome}>
-        Welcome to the Burned Ones experience sharing platform. To complete your
-        registration, please fill out the fields below.
-      </p>
+      <div className={styles.formContainer}>
+        <p id={styles.welcome}>
+          Welcome to the Burned Ones sharing platform. <br /> To register,
+          please fill out the fields below.
+        </p>
 
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSignup();
-        }}
-      >
-        <div>
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            autoComplete="username"
-            placeholder="username"
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            placeholder="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            autoComplete="email"
-            placeholder="email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <Button text="Sign Up" />
-      </form>
-      <p>
-        Already have an account? click <Link href="/auth/login">here</Link> to
-        log in
-      </p>
-    </div>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSignup();
+          }}
+        >
+          <div>
+            <label htmlFor="username" id={styles.labelHidden}>
+              Username
+            </label>
+            <input
+              type="text"
+              id="username"
+              autoComplete="username"
+              placeholder="Username"
+              onChange={(e) => setUsername(e.target.value)}
+              className={styles.input}
+            />
+          </div>
+          <div className={styles.inputContainer}>
+            <label id={styles.labelHidden} htmlFor="password">
+              Password
+            </label>
+            <input
+              type={showPassword ? "text" : "password"}
+              id="password"
+              placeholder="Mot de passe"
+              onChange={(e) => setPassword(e.target.value)}
+              className={styles.input}
+            />
+            <span onClick={handlePasswordToggle} id={styles.spanEye}>
+              <Image
+                src={showPassword ? eye_open : eye_close}
+                alt="eye icon"
+                width={20}
+                height={20}
+                id={styles.eyeIconInput}
+              />
+            </span>
+          </div>
+          <div>
+            <label htmlFor="email" id={styles.labelHidden}>
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              autoComplete="email"
+              placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
+              className={styles.input}
+            />
+          </div>
+          <div className={styles.errorAuth}>
+            {validationError && (
+              <div className={styles.errorMessage}>{validationError}</div>
+            )}
+          </div>
+          <Button text="Sign Up" />
+        </form>
+        <p id={styles.newHere}>
+          Already have an account? <Link href="/auth/login">Log in</Link>
+        </p>
+      </div>
+    </AuthLayout>
   );
 };
 
