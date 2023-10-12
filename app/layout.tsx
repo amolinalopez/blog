@@ -1,7 +1,7 @@
 import "./styles/globals.css";
 import type { Metadata } from "next";
-import { Amarante, Jost } from "@next/font/google";
-import localFont from "@next/font/local";
+import { Amarante, Jost } from "next/font/google";
+import localFont from "next/font/local";
 
 const lucioleRegular = localFont({ src: "../fonts/Luciole-Regular.ttf" });
 const lucioleBold = localFont({ src: "../fonts/Luciole-Bold.ttf" });
