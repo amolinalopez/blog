@@ -25,6 +25,10 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       });
     }
 
+    if (!process.env.JWT_SECRET) {
+      throw new Error("JWT_SECRET is not defined");
+    }
+
     const token = jwt.sign(
       { id: user.id, username: user.username },
       process.env.JWT_SECRET!,
@@ -35,6 +39,9 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
     return new NextResponse(JSON.stringify({ token }), { status: 200 });
   } catch (error) {
-    return new NextResponse(`An error occurred: ${error}`, { status: 500 });
+    return new NextResponse(
+      JSON.stringify({ error: `An error occurred: ${error}` }),
+      { status: 500 }
+    );
   }
 }

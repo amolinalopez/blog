@@ -13,7 +13,9 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const userData = await request.json();
     const validationError = validateUserData(userData);
     if (validationError) {
-      return new NextResponse(validationError, { status: 400 });
+      return new NextResponse(JSON.stringify({ error: validationError }), {
+        status: 400,
+      });
     }
     const { username, email, password } = userData;
 

@@ -37,7 +37,7 @@ const LoginPage: React.FC = () => {
         const data = await response.json();
         console.log("Login successful! Token received: ", data.token);
         localStorage.setItem("token", data.token);
-        router.push("/auth/success");
+        router.push("/grimoire");
       } else {
         const data = await response.json();
         console.error("Login failed:", data);
