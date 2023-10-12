@@ -58,7 +58,6 @@ const SignupPage: React.FC = () => {
   };
   return (
     <AuthLayout>
-
       <div className={styles.centerLogo}>
         <Image
           src={bo_logo_icon}
@@ -103,6 +102,7 @@ const SignupPage: React.FC = () => {
               type={showPassword ? "text" : "password"}
               id="password"
               placeholder="Mot de passe"
+              autoComplete="password"
               onChange={(e) => setPassword(e.target.value)}
               className={styles.input}
             />

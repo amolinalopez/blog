@@ -85,6 +85,7 @@ const LoginPage: React.FC = () => {
               placeholder="Identifiant"
               onChange={(e) => setUsername(e.target.value)}
               className={styles.input}
+              autoComplete="username"
             />
           </div>
           <div className={styles.inputContainer}>
@@ -97,6 +98,7 @@ const LoginPage: React.FC = () => {
               placeholder="Mot de passe"
               onChange={(e) => setPassword(e.target.value)}
               className={styles.input}
+              autoComplete="current-password"
             />
             <span onClick={handlePasswordToggle} id={styles.spanEye}>
               <Image
