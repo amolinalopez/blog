@@ -1,0 +1,150 @@
+/* Sign Up */
+
+#welcome {
+  color: var(--Violet-Sombre, #3c0f6d);
+  text-align: center;
+}
+
+.signup {
+  position: relative;
+  z-index: 1;
+}
+
+.topLeft {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.bottomRight {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.topRight {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.bottomLeft {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  transform: rotate(150deg);
+}
+
+.centerLogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 7rem;
+}
+
+/* Log In */
+#welcomeLogin {
+  margin-top: 9rem;
+}
+
+.Logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  border: none;
+  border-bottom: 1px solid #ffb77b;
+  outline: none;
+  width: 15rem;
+  margin-bottom: 1rem;
+  margin-top: 2.5rem;
+  background-color: #fff9f2;
+  color: #ffb77b;
+  font-size: 1rem;
+}
+
+.input::placeholder {
+  color: #ffb77b;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+/* Hide labels */
+#labelHidden {
+  display: none;
+}
+
+#eyeIconInput {
+  margin-left: 8px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.inputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#spanEye {
+  position: absolute;
+  right: 1px;
+  bottom: 0.1rem;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+#lienMdpForgotten,
+#newHere {
+  color: #3c0f6d;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.containerLienMdpForgotten {
+  text-align: right;
+}
+
+.errorAuth {
+  color: #df3160;
+  margin-top: 1.5rem;
+  text-align: center;
+  min-height: 1.5rem;
+}
+
+/* Success page */
+#welcomeMessage {
+  color: #3c0f6d;
+  text-align: center;
+  margin-top: 2rem;
+  margin-inline: 2rem;
+}
+
+#successCongrats {
+  text-align: center;
+  margin-top: 3rem;
+  margin-inline: 2rem;
+  text-transform: none;
+}
+
+.successBtnContainer {
+  margin-inline: 2rem;
+  margin-top: 2rem;
+}
