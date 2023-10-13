@@ -78,3 +78,7 @@ p {
   background-position: 0% 0;
   cursor: pointer;
 }
+
+.page {
+  padding: 0.5rem;
+}

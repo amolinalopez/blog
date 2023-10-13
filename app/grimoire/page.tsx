@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import LogoutBtn from "../../components/LogoutBtn";
 import { useRouter } from "next/navigation";
+import NavbarTop from "@/components/navbarTop";
 
 type User = {
   id: number;
@@ -65,10 +66,12 @@ const Feed: React.FC = () => {
   }
 
   return (
-    <div>
-      <h1>Feed</h1>
+    <div className="page">
+      <NavbarTop />
+      <h3>Nouveau contenu pour vous</h3>
       {posts.map((post) => (
         <div key={post.id}>
+          <hr />
           <p>{post.content}</p>
           <p>{post.createdAt}</p>
           <p>@{post.user.username}</p>
