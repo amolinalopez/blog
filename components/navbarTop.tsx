@@ -1,5 +1,5 @@
 import Image from "next/image";
-import bo_logo_icon from "../public/Logo_bo_Icon.svg";
+import bo_logo_icon from "../public/Logo_BO_Icon.svg";
 import icon_notif from "../public/icon_notification.svg";
 import icon_hamburger_menu from "../public/icon_hamburger_menu.svg";
 import styles from "../app/styles/navbar.module.css";
