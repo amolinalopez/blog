@@ -1,0 +1,31 @@
+.navbarBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff9f2;
+  height: 2.5rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 0;
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+}
+
+.profileImage {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.label {
+  margin-top: 5px;
+  font-size: 14px;
+}

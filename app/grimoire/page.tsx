@@ -1,8 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
-import LogoutBtn from "../../components/LogoutBtn";
 import { useRouter } from "next/navigation";
 import NavbarTop from "@/components/navbarTop";
+import NavbarBottom from "@/components/navbarBottom";
+import { useUser } from "@/contexts/UserContext";
 
 type User = {
   id: number;
@@ -16,7 +17,9 @@ type Post = {
   user: User;
 };
 
-const Feed: React.FC = () => {
+export default function Feed() {
+  const contextValue = useUser();
+  const user = contextValue ? contextValue.user : null;
   const [username, setUsername] = useState("");
   const router = useRouter();
   const [posts, setPosts] = useState<Post[]>([]);
@@ -77,8 +80,7 @@ const Feed: React.FC = () => {
           <p>@{post.user.username}</p>
         </div>
       ))}
+      <NavbarBottom />
     </div>
   );
-};
-
-export default Feed;
+}

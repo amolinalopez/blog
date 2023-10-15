@@ -3,6 +3,7 @@ import bo_logo_icon from "../public/Logo_BO_Icon.svg";
 import icon_notif from "../public/icon_notification.svg";
 import icon_hamburger_menu from "../public/icon_hamburger_menu.svg";
 import styles from "../app/styles/navbar.module.css";
+import LogoutBtn from "./LogoutBtn";
 
 export default function NavbarTop() {
   return (
@@ -27,6 +28,8 @@ export default function NavbarTop() {
               alt="icon notifications"
             />
           </a>
+
+          <LogoutBtn />
 
           <div className={styles.menuIcon}>
             <Image

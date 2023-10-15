@@ -8,7 +8,13 @@ export default function Home() {
   return (
     <main>
       <div className={styles.homePage}>
-        <Image src={bo_logo} alt="Burned Ones Logo" width={500} height={500} />
+        <Image
+          src={bo_logo}
+          alt="Burned Ones Logo"
+          width={500}
+          height={500}
+          priority
+        />
         <p>
           Welcome to Burned Ones, a social media platform designed specifically
           for minorities.
