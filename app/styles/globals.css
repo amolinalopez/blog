@@ -79,7 +79,7 @@ p {
   cursor: pointer;
 }
 
-.page {
-  /* padding: 0.5rem; */
-  padding-top: 2.5rem;
+.profilePicture {
+  border-radius: 50%;
+  object-fit: cover;
 }

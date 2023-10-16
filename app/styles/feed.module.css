@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.feed {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  padding-inline: 1rem;
+  /* ⬇️ for scrolling !*/
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.userWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.profilePicture {
+  margin-right: 10px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff9f2;
+  box-shadow: 2px 2px 4px 0px rgba(60, 15, 109, 0.3);
+}
+
+#username {
+  margin: 0;
+  letter-spacing: 3px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 3px;
+}

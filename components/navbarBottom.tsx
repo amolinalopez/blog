@@ -1,3 +1,4 @@
+"use client";
 import styles from "../app/styles/navbarBottom.module.css";
 import React from "react";
 import icon_home from "../public/icon_home.svg";
@@ -10,8 +11,7 @@ import { useUser } from "@/contexts/UserContext";
 
 export default function NavbarBottom() {
   const { user } = useUser();
-  console.log(user);
-  console.log(user?.profilePicture);
+  // console.log(user);
 
   return (
     <div className={styles.navbarBottom}>
@@ -31,8 +31,10 @@ export default function NavbarBottom() {
         <Image
           src={user?.profilePicture || Logo_BO_Icon}
           alt="My user's profile picture"
-          width={33}
-          height={33}
+          width={35}
+          height={35}
+          className="profilePicture"
+          priority
         />
       </div>
     </div>

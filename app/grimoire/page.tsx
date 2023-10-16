@@ -1,13 +1,19 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import NavbarTop from "@/components/navbarTop";
-import NavbarBottom from "@/components/navbarBottom";
 import { useUser } from "@/contexts/UserContext";
+import Image from "next/image";
+import Logo_BO_Icon from "@/public/Logo_BO_Icon.svg";
+import styles from "@/app/styles/feed.module.css";
+import { formatDateAndTime } from "@/utils/formatTime";
+import { Tulpen_One } from "next/font/google";
+
+const tulpenOne = Tulpen_One({ subsets: ["latin"], weight: "400" });
 
 type User = {
   id: number;
   username: string;
+  profilePicture: string;
 };
 
 type Post = {
@@ -69,18 +75,28 @@ export default function Feed() {
   }
 
   return (
-    <div className="page">
-      <NavbarTop />
-      <h3>Nouveau contenu pour vous</h3>
-      {posts.map((post) => (
-        <div key={post.id}>
-          <hr />
-          <p>{post.content}</p>
-          <p>{post.createdAt}</p>
-          <p>@{post.user.username}</p>
-        </div>
-      ))}
-      <NavbarBottom />
+    <div className={styles.container}>
+      <div className={styles.feed}>
+        {posts.map((post) => (
+          <div key={post.id}>
+            <hr />
+            <p>{post.content}</p>
+            <div className={styles.userWrapper}>
+              <Image
+                src={post.user.profilePicture || Logo_BO_Icon}
+                alt="My user's profile picture"
+                width={44}
+                height={44}
+                className={styles.profilePicture}
+              />
+              <p id={styles.username} className={tulpenOne.className}>
+                @{post.user.username}{" "}
+              </p>
+               <p> on {formatDateAndTime(post.createdAt)}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

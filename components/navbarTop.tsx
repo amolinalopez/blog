@@ -9,15 +9,15 @@ export default function NavbarTop() {
   return (
     <div className={styles.navbarTopWrapper}>
       <nav className={styles.container}>
-          <a href="/grimoire" className={styles.logoContainer}>
-            <Image
-              src={bo_logo_icon}
-              width={30}
-              height={40}
-              alt="icon logo of burned ones"
-              priority
-            />
-          </a>
+        <a href="/grimoire" className={styles.logoContainer}>
+          <Image
+            src={bo_logo_icon}
+            width={30}
+            height={40}
+            alt="icon logo of burned ones"
+            priority
+          />
+        </a>
 
         <div className={styles.iconsContainer}>
           <a href="/grimoire" className={styles.bellIcon}>

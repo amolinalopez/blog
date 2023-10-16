@@ -1,12 +1,19 @@
-"use client";
-import { ReactNode } from "react";
+import NavbarBottom from "@/components/navbarBottom";
+import NavbarTop from "@/components/navbarTop";
+import { Jost } from "next/font/google";
 
-interface FeedLayoutProps {
-  children: ReactNode;
+const jost = Jost({ subsets: ["latin"], weight: ["300", "400"] });
+
+export default function GrimoireLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <div className={jost.className}>
+      <NavbarTop />
+      {children}
+      <NavbarBottom />
+    </div>
+  );
 }
-
-const AuthLayout: React.FC<FeedLayoutProps> = ({ children }) => {
-  return <div>{children}</div>;
-};
-
-export default AuthLayout;
