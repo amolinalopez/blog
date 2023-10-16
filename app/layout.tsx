@@ -16,12 +16,9 @@ export const metadata: Metadata = {
   applicationName: "Burned Ones",
   keywords: ["burned", "ones", "feminism", "lgbtq", "queer", "minorities"],
   creator: "Adriana Molina Lopez",
-  icons: [
-    {
-      rel: "icon",
-      url: "https://res.cloudinary.com/dsbxyd6o2/image/upload/v1697447950/burnedOnes/logo_bo.svg",
-    },
-  ],
+  icons: {
+    icon: ["/favicon.svg"],
+  },
   authors: [
     { name: "Adriana Molina Lopez", url: "https://github.com/amolinalopez" },
   ],
