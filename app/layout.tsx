@@ -10,9 +10,24 @@ const jost = Jost({ subsets: ["latin"], weight: ["300", "400"] });
 const spellweaver = localFont({ src: "../fonts/Spellweaver_Nodes.otf" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://burnedones.vercel.app/"),
   title: "Burned Ones",
   description: "For all the burned witches out there",
   applicationName: "Burned Ones",
+  keywords: ["burned", "ones", "feminism", "lgbtq", "queer", "minorities"],
+  creator: "Adriana Molina Lopez",
+  authors: [
+    { name: "Adriana Molina Lopez", url: "https://github.com/amolinalopez" },
+  ],
+  generator: "Next.js",
+  verification: {
+    google: "aDASsejnfIdU5hynwGxEpXNHcJJl_8lxvRaTuYVq1cY",
+  },
+  themeColor: "#FFF9F2",
+  colorScheme: "light",
+  twitter: {
+    site: "@burnedones",
+  },
 };
 
 export default function RootLayout({
