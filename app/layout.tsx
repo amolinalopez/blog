@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   icons: [
     {
       rel: "icon",
-      url: "/favicon.ico",
+      url: "https://res.cloudinary.com/dsbxyd6o2/image/upload/v1697447950/burnedOnes/logo_bo.svg",
     },
   ],
   authors: [
