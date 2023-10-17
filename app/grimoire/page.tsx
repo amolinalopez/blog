@@ -61,17 +61,6 @@ export default function Feed() {
     fetchPosts();
   }, []);
 
-  // console.log("the token is", token);
-  // useEffect(() => {
-  //   if (!token) {
-  //     router.push("/auth/login");
-  //     return;
-  //   }
-  //   // Assuming the token is already parsed
-  //   const payload = JSON.parse(atob(token.value));
-  //   setUsername(payload.username);
-  // }, [router]);
-
   if (!posts.length) {
     return <div>Loading...😭</div>;
   }

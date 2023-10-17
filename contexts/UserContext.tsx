@@ -7,8 +7,6 @@ import {
   ReactNode,
   useEffect,
 } from "react";
-import { decodeToken } from "../utils/token";
-import { getCookie } from "../utils/cookies";
 
 interface User {
   id: number;
@@ -32,56 +30,21 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    console.log("User state has changed ✨:", user);
-  }, [user]);
-
-  const handleStorageChange = async () => {
-    console.log("Storage event triggered");
-    const token = getCookie("token");
-    if (!token) {
-      console.error("No token found -----😭");
-      return;
-    }
-
-    const payload = decodeToken(token);
-    if (!payload) {
-      console.error("Failed to decode token");
-      return;
-    }
-
-    const expirationDate = new Date(payload.exp * 1000);
-    if (expirationDate < new Date()) {
-      console.error("Token has expired");
-      return;
-    }
-
-    try {
-      const response = await fetch(`/api/users/${payload.id}`);
-      console.log("API Response: ", response);
-      if (!response.ok) {
-        console.error("Failed to fetch user data:", response.statusText);
-        return;
+    const fetchUser = async () => {
+      try {
+        const response = await fetch("/api/users/me");
+        if (!response.ok) {
+          console.error("Failed to fetch user data:", response.statusText);
+          return;
+        }
+        const userData = await response.json();
+        setUser(userData);
+      } catch (error: unknown) {
+        console.error((error as Error).message);
       }
-      const userData = await response.json();
-      console.log("Received User Data: ", userData);
-      setUser(userData);
-      console.log("Setting user:", userData);
-    } catch (error) {
-      console.error("Failed to fetch user data:", error);
-    }
-  };
-
-  useEffect(() => {
-    // Initial fetch
-    handleStorageChange();
-
-    // Add event listener for future storage changes
-    window.addEventListener("storage", handleStorageChange);
-
-    // Cleanup
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
     };
+
+    fetchUser();
   }, []);
 
   return (

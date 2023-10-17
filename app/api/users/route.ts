@@ -55,23 +55,26 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       }
     );
 
-    // const token = cookieStore.get('token')
+    // console.log('Generated token:', token);
+    // Directly setting the Set-Cookie header:
+    return new NextResponse(JSON.stringify({ user: newUser, token }), {
+      status: 201,
+      headers: {
+        "Set-Cookie": `token=${token}; HttpOnly; Path=/; ${
+          process.env.NODE_ENV === "production" ? "Secure; " : ""
+        } Max-Age=3600; Secure; SameSite=Lax`,
+      },
+    } );
+    // old way of setting cookie
+    // Creating a string for cookie settings
+    // and setting it on the response headers:
+    // // Set the cookie directly on the response object
+    // const cookieSettings = `token=${token}; Max-Age=${60 * 60}; Path=/; ${
+    //   process.env.NODE_ENV === "production" ? "Secure; " : ""
+    // }SameSite=Lax`;
 
-    const response = new NextResponse(
-      JSON.stringify({ user: newUser, token }),
-      {
-        status: 201,
-      }
-    );
-
-    // Set the cookie directly on the response object
-    const cookieSettings = `token=${token}; Max-Age=${60 * 60}; Path=/; ${
-      process.env.NODE_ENV === "production" ? "Secure; " : ""
-    }SameSite=Lax`;
-
-    response.headers.set("Set-Cookie", cookieSettings);
-
-    return response;
+    // response.headers.set("Set-Cookie", cookieSettings);
+    // return response;
   } catch (error) {
     return handleErrors(error);
   }

@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
+import { handleErrors } from "../../utils/errorHandler";
 
 const prisma = new PrismaClient();
 
@@ -13,6 +14,12 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
   try {
     const { username, password } = await request.json();
+    if (!username || !password) {
+      return new NextResponse(
+        JSON.stringify({ error: "Missing username or password" }),
+        { status: 400 }
+      );
+    }
     const user = await prisma.user.findUnique({ where: { username } });
 
     if (!user) {
@@ -55,9 +62,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       },
     });
   } catch (error) {
-    return new NextResponse(
-      JSON.stringify({ error: `An error occurred: ${error}` }),
-      { status: 500 }
-    );
+    console.error(error);
+    return handleErrors(error);
   }
 }

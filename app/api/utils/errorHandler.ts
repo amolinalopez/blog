@@ -6,6 +6,7 @@ export function handleErrors(error: any): NextResponse {
       status: 500,
     });
   } else {
+    console.error(error.stack);
     return new NextResponse(
       JSON.stringify({ error: `An error occurred: ${error}` }),
       { status: 500 }
