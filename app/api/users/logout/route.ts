@@ -7,10 +7,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const existingToken = cookieStore.get("token");
 
     if (!existingToken) {
-      return new NextResponse(
-        JSON.stringify({ error: "You are not logged in" }),
-        { status: 400 }
-      );
+      console.error("You are not logged iiiiiiin");
+      return NextResponse.redirect("/auth/login", { status: 302 });
     }
 
     return new NextResponse(
