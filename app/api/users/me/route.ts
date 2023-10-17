@@ -9,8 +9,8 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
+  const cookieStore = cookies();
   try {
-    const cookieStore = cookies();
     const tokenCookie = cookieStore.get("token");
 
     if (!tokenCookie) {
