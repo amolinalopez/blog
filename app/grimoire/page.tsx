@@ -7,6 +7,8 @@ import Logo_BO_Icon from "@/public/Logo_BO_Icon.svg";
 import styles from "@/app/styles/feed.module.css";
 import { formatDateAndTime } from "@/utils/formatTime";
 import { Tulpen_One } from "next/font/google";
+import NavbarTop from "@/components/navbarTop";
+import NavbarBottom from "@/components/navbarBottom";
 
 const tulpenOne = Tulpen_One({ subsets: ["latin"], weight: "400" });
 
@@ -59,16 +61,16 @@ export default function Feed() {
     fetchPosts();
   }, []);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      router.push("/auth/login");
-      return;
-    }
-
-    const payload = JSON.parse(atob(token.split(".")[1]));
-    setUsername(payload.username);
-  }, [router]);
+  // console.log("the token is", token);
+  // useEffect(() => {
+  //   if (!token) {
+  //     router.push("/auth/login");
+  //     return;
+  //   }
+  //   // Assuming the token is already parsed
+  //   const payload = JSON.parse(atob(token.value));
+  //   setUsername(payload.username);
+  // }, [router]);
 
   if (!posts.length) {
     return <div>Loading...😭</div>;
@@ -76,6 +78,7 @@ export default function Feed() {
 
   return (
     <div className={styles.container}>
+      <NavbarTop />
       <div className={styles.feed}>
         {posts.map((post) => (
           <div key={post.id}>
@@ -97,6 +100,7 @@ export default function Feed() {
           </div>
         ))}
       </div>
+      <NavbarBottom />
     </div>
   );
 }

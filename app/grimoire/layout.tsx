@@ -11,9 +11,7 @@ export default function GrimoireLayout({
 }) {
   return (
     <div className={jost.className}>
-      <NavbarTop />
       {children}
-      <NavbarBottom />
     </div>
   );
 }

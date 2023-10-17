@@ -10,6 +10,7 @@ import eye_open from "../../../public/eye_open.svg";
 import eye_close from "../../../public/eye_close.svg";
 import { useRouter } from "next/navigation";
 import AuthLayout from "../layout";
+import { useUser } from "@/contexts/UserContext";
 
 const SignupPage: React.FC = () => {
   const [username, setUsername] = useState("");
@@ -18,6 +19,7 @@ const SignupPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [validationError, setValidationError] = useState("");
   const router = useRouter();
+  const { user, setUser } = useUser();
 
   const handleSignup = async () => {
     if (!username || !password || !email) {
@@ -42,7 +44,7 @@ const SignupPage: React.FC = () => {
       if (response.status === 201) {
         const data = await response.json();
         console.log("Signup successful! Token received:", data.token);
-        localStorage.setItem("token", data.token); // Store token in local storage
+        setUser(data.user);
         router.push("/auth/success");
       } else {
         const data = await response.json();

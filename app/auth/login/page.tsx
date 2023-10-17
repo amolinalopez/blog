@@ -1,4 +1,5 @@
 "use client";
+import { useUser } from "@/contexts/UserContext";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -17,6 +18,7 @@ const LoginPage: React.FC = () => {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState<string | null>(null);
+  const { setUser } = useUser();
 
   const handleLogin = async () => {
     try {
@@ -35,8 +37,10 @@ const LoginPage: React.FC = () => {
 
       if (response.status === 200) {
         const data = await response.json();
+        // console.log("the daataa", data);
+        // console.log("Received user data: ", data.user);
         console.log("Login successful! Token received: ", data.token);
-        localStorage.setItem("token", data.token);
+        setUser(data.user);
         router.push("/grimoire");
       } else {
         const data = await response.json();

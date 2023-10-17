@@ -6,7 +6,11 @@ import { cookies } from "next/headers";
 
 const prisma = new PrismaClient();
 
+// POST /api/users/login
 export async function POST(request: NextRequest): Promise<NextResponse> {
+  const cookieStore = cookies();
+  const existingToken = cookieStore.get("token");
+
   try {
     const { username, password } = await request.json();
     const user = await prisma.user.findUnique({ where: { username } });
@@ -35,9 +39,21 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       { expiresIn: "1h" }
     );
 
-    cookies().set("jwtToken", token, { httpOnly: true, secure: true });
+    const sanitizedUser = {
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      profilePicture: user.profilePicture,
+    };
 
-    return new NextResponse(JSON.stringify({ token }), { status: 200 });
+    // // Include the user data along with the token
+    // return new NextResponse(JSON.stringify({ token, user }), {
+    return new NextResponse(JSON.stringify({ token, user: sanitizedUser }), {
+      status: 200,
+      headers: {
+        "Set-Cookie": `token=${token}; HttpOnly; Path=/; Max-Age=3600; Secure; SameSite=Lax`,
+      },
+    });
   } catch (error) {
     return new NextResponse(
       JSON.stringify({ error: `An error occurred: ${error}` }),

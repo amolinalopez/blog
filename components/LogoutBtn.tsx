@@ -1,20 +1,23 @@
-"use client"
 import { useUser } from "@/contexts/UserContext";
 import { useRouter } from "next/navigation";
+import { removeCookie } from "@/utils/cookies";
 
 const LogoutBtn: React.FC = () => {
+  console.log("LogoutBtn rendered");
   const router = useRouter();
   const { setUser } = useUser();
 
   const handleLogout = async () => {
+    console.log("Button clicked");
     try {
+      console.log("Attempting logout...");
       const response = await fetch("/api/users/logout", {
         method: "POST",
       });
 
       if (response.status === 200) {
         console.log("Successfully logged out");
-        localStorage.removeItem("token");
+        removeCookie("token");
         router.push("/auth/login");
         setUser(null);
       } else {

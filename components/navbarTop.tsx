@@ -18,7 +18,7 @@ export default function NavbarTop() {
             priority
           />
         </a>
-
+        <LogoutBtn />
         <div className={styles.iconsContainer}>
           <a href="/grimoire" className={styles.bellIcon}>
             <Image
@@ -28,8 +28,6 @@ export default function NavbarTop() {
               alt="icon notifications"
             />
           </a>
-
-          <LogoutBtn />
 
           <div className={styles.menuIcon}>
             <Image

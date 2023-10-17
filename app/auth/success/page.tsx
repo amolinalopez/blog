@@ -10,13 +10,14 @@ import Button from "../../../components/btn";
 import Link from "next/link";
 import { useUser } from "@/contexts/UserContext";
 import { decodeToken } from "@/utils/token";
+import { getCookie } from "@/utils/cookies";
 
 const SuccessSignUpPage: React.FC = () => {
   const { user, setUser } = useUser();
   const router = useRouter();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = getCookie("token");
     if (!token) {
       router.push("/auth/login");
       return;

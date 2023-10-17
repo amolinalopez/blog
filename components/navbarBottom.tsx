@@ -1,6 +1,5 @@
-"use client";
 import styles from "../app/styles/navbarBottom.module.css";
-import React from "react";
+import React, { useEffect } from "react";
 import icon_home from "../public/icon_home.svg";
 import icon_search from "../public/icon_search.svg";
 import icon_add from "../public/icon_add.svg";
@@ -11,7 +10,11 @@ import { useUser } from "@/contexts/UserContext";
 
 export default function NavbarBottom() {
   const { user } = useUser();
-  // console.log(user);
+  console.log(user);
+
+  useEffect(() => {
+    console.log("User state has changed:", user);
+  }, [user]);
 
   return (
     <div className={styles.navbarBottom}>

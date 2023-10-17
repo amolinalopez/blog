@@ -14,7 +14,7 @@ export function middleware(request: NextRequest) {
     throw new Error("JWT_SECRET is not defined");
   }
   // List des routes that don't require authentication
-  const openRoutes = ["/auth/signup", "/auth/login"];
+  const openRoutes = ["/", "/auth/signup", "/auth/login"];
   if (openRoutes.includes(pathname)) {
     return NextResponse.next();
   }
