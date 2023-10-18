@@ -3,12 +3,10 @@ import { useRouter } from "next/navigation";
 import { removeCookie } from "@/utils/cookies";
 
 const LogoutBtn: React.FC = () => {
-  console.log("LogoutBtn rendered");
   const router = useRouter();
   const { setUser } = useUser();
 
   const handleLogout = async () => {
-    console.log("Button clicked");
     try {
       console.log("Attempting logout...");
       const response = await fetch("/api/users/logout", {

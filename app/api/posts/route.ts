@@ -23,6 +23,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     const posts = await prisma.post.findMany({
       include: {
         user: true,
+        likes: true,
       },
     });
     return new NextResponse(JSON.stringify(posts), { status: 200 });

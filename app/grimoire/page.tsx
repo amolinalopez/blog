@@ -9,6 +9,9 @@ import { formatDateAndTime } from "@/utils/formatTime";
 import { Tulpen_One } from "next/font/google";
 import NavbarTop from "@/components/navbarTop";
 import NavbarBottom from "@/components/navbarBottom";
+import { Like } from "@prisma/client";
+import icon_like from "@/public/icon_like.svg";
+import icon_like_full from "@/public/icon_like_full.svg";
 
 const tulpenOne = Tulpen_One({ subsets: ["latin"], weight: "400" });
 
@@ -23,6 +26,7 @@ type Post = {
   content: string;
   createdAt: string;
   user: User;
+  likes?: Like[];
 };
 
 export default function Feed() {
@@ -31,6 +35,72 @@ export default function Feed() {
   const [username, setUsername] = useState("");
   const router = useRouter();
   const [posts, setPosts] = useState<Post[]>([]);
+
+  const handleLike = async (postId: number) => {
+    // Determine if the post is already liked by the current user
+    const post = posts.find((post) => post.id === postId);
+    if (!post) {
+      console.error("Post not found");
+      return;
+    }
+    const userLike = post.likes?.find((like) => like.userId === user?.id);
+
+    if (userLike) {
+      // If a like exists, delete it
+      try {
+        const response = await fetch(`/api/likes/${userLike.id}`, {
+          method: "DELETE",
+        });
+        if (!response.ok) {
+          throw new Error("Failed to delete like");
+        }
+        // Update the state to reflect the deleted like
+        setPosts((prevPosts) => {
+          return prevPosts.map((post) =>
+            post.id === postId
+              ? {
+                  ...post,
+                  likes: post.likes?.filter((like) => like.id !== userLike.id),
+                }
+              : post
+          );
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      // If a like does not exist, create it
+      try {
+        const response = await fetch("/api/likes", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: user?.id,
+            postId: postId,
+          }),
+        });
+        if (!response.ok) {
+          throw new Error("Failed to create like");
+        }
+        const newLike = await response.json();
+        // Update the state to reflect the new like
+        setPosts((prevPosts) => {
+          return prevPosts.map((post) =>
+            post.id === postId
+              ? {
+                  ...post,
+                  likes: [...(post.likes || []), newLike],
+                }
+              : post
+          );
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -85,6 +155,23 @@ export default function Feed() {
                 @{post.user.username}{" "}
               </p>
                <p> on {formatDateAndTime(post.createdAt)}</p>
+            </div>
+            <div onClick={() => handleLike(post.id)}>
+              <Image
+                src={
+                  post.likes?.some((like) => like.userId === user?.id)
+                    ? icon_like_full
+                    : icon_like
+                }
+                alt="Like icon"
+                width={44}
+                height={44}
+              />
+              <p>
+                {post.likes && post.likes.length > 0
+                  ? `likes ${post.likes.length}`
+                  : null}
+              </p>
             </div>
           </div>
         ))}

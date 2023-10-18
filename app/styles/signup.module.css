@@ -89,6 +89,10 @@
   margin-left: 8px;
 }
 
+#eyeIconInput:hover {
+  cursor: pointer;
+}
+
 .buttonContainer {
   display: flex;
   justify-content: center;
