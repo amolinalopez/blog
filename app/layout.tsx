@@ -4,10 +4,8 @@ import { Amarante, Jost } from "next/font/google";
 import localFont from "next/font/local";
 import { UserProvider } from "../contexts/UserContext";
 
-const lucioleRegular = localFont({ src: "../fonts/Luciole-Regular.ttf" });
-const lucioleBold = localFont({ src: "../fonts/Luciole-Bold.ttf" });
 const amarante = Amarante({ subsets: ["latin"], weight: "400" });
-const jost = Jost({ subsets: ["latin"], weight: ["300", "400"] });
+const jost = Jost({ subsets: ["latin"], weight: ["300"] });
 const spellweaver = localFont({ src: "../fonts/Spellweaver_Nodes.otf" });
 
 export const metadata: Metadata = {

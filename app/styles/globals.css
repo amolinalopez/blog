@@ -83,3 +83,7 @@ p {
   border-radius: 50%;
   object-fit: cover;
 }
+
+.textOrange {
+  color: var(--orange);
+}

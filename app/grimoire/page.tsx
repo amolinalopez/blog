@@ -5,13 +5,15 @@ import { useUser } from "@/contexts/UserContext";
 import Image from "next/image";
 import Logo_BO_Icon from "@/public/Logo_BO_Icon.svg";
 import styles from "@/app/styles/feed.module.css";
-import { formatDateAndTime } from "@/utils/formatTime";
+// import { formatDateAndTime } from "@/utils/formatTime";
 import { Tulpen_One } from "next/font/google";
 import NavbarTop from "@/components/navbarTop";
 import NavbarBottom from "@/components/navbarBottom";
 import { Like } from "@prisma/client";
 import icon_like from "@/public/icon_like.svg";
 import icon_like_full from "@/public/icon_like_full.svg";
+import icon_share from "@/public/icon_share.svg";
+import icon_favorite from "@/public/icon_favorite.svg";
 
 const tulpenOne = Tulpen_One({ subsets: ["latin"], weight: "400" });
 
@@ -140,39 +142,61 @@ export default function Feed() {
       <NavbarTop />
       <div className={styles.feed}>
         {posts.map((post) => (
-          <div key={post.id}>
-            <hr />
-            <p>{post.content}</p>
-            <div className={styles.userWrapper}>
-              <Image
-                src={post.user.profilePicture || Logo_BO_Icon}
-                alt="My user's profile picture"
-                width={44}
-                height={44}
-                className={styles.profilePicture}
-              />
-              <p id={styles.username} className={tulpenOne.className}>
-                @{post.user.username}{" "}
-              </p>
-               <p> on {formatDateAndTime(post.createdAt)}</p>
-            </div>
-            <div onClick={() => handleLike(post.id)}>
-              <Image
-                src={
-                  post.likes?.some((like) => like.userId === user?.id)
-                    ? icon_like_full
-                    : icon_like
-                }
-                alt="Like icon"
-                width={23}
-                height={21}
-              />
-              <p>
-                {post.likes && post.likes.length > 0
-                  ? `likes ${post.likes.length}`
-                  : null}
-              </p>
-            </div>
+          <div key={post.id} className={styles.onePost}>
+            <section className={styles.postGradient}>
+              <br />
+              <p className={styles.postWhite}>{post.content}</p>
+              <div className={styles.userWrapper}>
+                <Image
+                  src={post.user.profilePicture || Logo_BO_Icon}
+                  alt="My user's profile picture"
+                  width={44}
+                  height={44}
+                  className={styles.profilePicture}
+                />
+                <p id={styles.username} className={tulpenOne.className}>
+                  @{post.user.username}{" "}
+                </p>
+                {/*  <p> on {formatDateAndTime(post.createdAt)}</p> */}
+              </div>
+            </section>
+            <section id={styles.sectionUnderPost}>
+              <div onClick={() => handleLike(post.id)}>
+                <Image
+                  src={
+                    post.likes?.some((like) => like.userId === user?.id)
+                      ? icon_like_full
+                      : icon_like
+                  }
+                  alt="Like icon"
+                  width={23}
+                  height={21}
+                />{" "}
+                <span className="textOrange">
+                  {post.likes && post.likes.length > 0
+                    ? `${post.likes.length}`
+                    : null}{" "}
+                  likes
+                </span>
+              </div>
+              <div>
+                <Image
+                  src={icon_share}
+                  alt="Like icon"
+                  width={23}
+                  height={21}
+                />
+                <Image
+                  src={icon_favorite}
+                  alt="Like icon"
+                  width={23}
+                  height={21}
+                />
+              </div>
+            </section>
+            <section>
+              <input type="text" name="" id="" />
+            </section>
           </div>
         ))}
       </div>
