@@ -164,8 +164,8 @@ export default function Feed() {
                     : icon_like
                 }
                 alt="Like icon"
-                width={44}
-                height={44}
+                width={23}
+                height={21}
               />
               <p>
                 {post.likes && post.likes.length > 0

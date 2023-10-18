@@ -6,7 +6,7 @@
 
 .feed {
   padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
+  padding-bottom: 3rem;
   padding-inline: 1rem;
   /* ⬇️ for scrolling !*/
   overflow-y: auto;

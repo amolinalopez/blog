@@ -30,13 +30,12 @@ export default function NavbarBottom() {
       <div className={styles.navItem}>
         <Image src={icon_chat} alt="Chat" />
       </div>
-      <p>{user?.username}</p>
       <div className={styles.navItem}>
         <Image
           src={user?.profilePicture || Logo_BO_Icon}
           alt="My user's profile picture"
-          width={35}
-          height={35}
+          width={40}
+          height={40}
           className="profilePicture"
           priority
         />
