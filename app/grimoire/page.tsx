@@ -5,8 +5,6 @@ import { useUser } from "@/contexts/UserContext";
 import Image from "next/image";
 import Logo_BO_Icon from "@/public/Logo_BO_Icon.svg";
 import styles from "@/app/styles/feed.module.css";
-// import { formatDateAndTime } from "@/utils/formatTime";
-import { Tulpen_One } from "next/font/google";
 import NavbarTop from "@/components/navbarTop";
 import NavbarBottom from "@/components/navbarBottom";
 import { Like } from "@prisma/client";
@@ -14,8 +12,8 @@ import icon_like from "@/public/icon_like.svg";
 import icon_like_full from "@/public/icon_like_full.svg";
 import icon_share from "@/public/icon_share.svg";
 import icon_favorite from "@/public/icon_favorite.svg";
-
-const tulpenOne = Tulpen_One({ subsets: ["latin"], weight: "400" });
+import icon_comment from "@/public/icon_comment.svg";
+import { tulpenOne } from "@/utils/fonts";
 
 type User = {
   id: number;
@@ -194,8 +192,24 @@ export default function Feed() {
                 />
               </div>
             </section>
-            <section>
-              <input type="text" name="" id="" />
+            <section id={styles.sectionUnderPost}>
+              <label id={styles.labelHidden} htmlFor="comment">
+                Comment
+              </label>
+              <input
+                type="text"
+                name="comment"
+                id="comment"
+                className={styles.input}
+                placeholder="Ajouter un commentaire"
+              />
+              <Image
+                src={icon_comment}
+                alt="eye icon"
+                width={40}
+                height={40}
+                id={styles.IconInput}
+              />
             </section>
           </div>
         ))}

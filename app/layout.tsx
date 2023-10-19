@@ -1,12 +1,7 @@
 import "./styles/globals.css";
 import type { Metadata } from "next";
-import { Amarante, Jost } from "next/font/google";
-import localFont from "next/font/local";
+import { jost } from "@/utils/fonts";
 import { UserProvider } from "../contexts/UserContext";
-
-const amarante = Amarante({ subsets: ["latin"], weight: "400" });
-const jost = Jost({ subsets: ["latin"], weight: ["300"] });
-const spellweaver = localFont({ src: "../fonts/Spellweaver_Nodes.otf" });
 
 export const metadata: Metadata = {
   title: "Burned Ones",

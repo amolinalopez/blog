@@ -36,11 +36,11 @@ body {
 h1 {
   color: var(--Orange, #ff8b76);
   text-align: center;
-  font-size: 1.875rem; /* 30px */
+  font-size: 1.875rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  letter-spacing: 0.1875rem; /* 3px */
+  letter-spacing: 0.1875rem;
   text-transform: uppercase;
 }
 

@@ -1,8 +1,4 @@
-import NavbarBottom from "@/components/navbarBottom";
-import NavbarTop from "@/components/navbarTop";
-import { Jost } from "next/font/google";
-
-const jost = Jost({ subsets: ["latin"], weight: ["300", "400"] });
+import { jost } from "@/utils/fonts";
 
 export default function GrimoireLayout({
   children,
