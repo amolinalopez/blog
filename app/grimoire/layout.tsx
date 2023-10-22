@@ -1,4 +1,6 @@
 import { jost } from "@/utils/fonts";
+import { Suspense } from "react";
+import Loading from "../loading";
 
 export default function GrimoireLayout({
   children,
@@ -6,8 +8,8 @@ export default function GrimoireLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className={jost.className}>
-      {children}
-    </div>
+    <Suspense fallback={<Loading />}>
+      <div className={jost.className}>{children}</div>
+    </Suspense>
   );
 }

@@ -87,3 +87,40 @@ p {
 .textOrange {
   color: var(--orange);
 }
+
+@keyframes rotate-animation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.logo-path {
+  animation: rotate-animation 5s infinite linear;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#loading_page {
+  position: fixed;
+  z-index: 999;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--fond-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

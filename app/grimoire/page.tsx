@@ -13,7 +13,7 @@ import icon_share from "@/public/icon_share.svg";
 import icon_favorite from "@/public/icon_favorite.svg";
 import icon_comment from "@/public/icon_comment.svg";
 import { tulpenOne, jost } from "@/utils/fonts";
-
+import Loading from "../loading";
 
 type User = {
   id: number;
@@ -52,7 +52,6 @@ export default function Feed() {
     const userLike = post.likes?.find((like) => like.userId === user?.id);
 
     if (userLike) {
-      // If a like exists, delete it
       try {
         const response = await fetch(`/api/likes/${userLike.id}`, {
           method: "DELETE",
@@ -75,7 +74,6 @@ export default function Feed() {
         console.error(error);
       }
     } else {
-      // If a like does not exist, create it
       try {
         const response = await fetch("/api/likes", {
           method: "POST",
@@ -138,7 +136,7 @@ export default function Feed() {
   }, []);
 
   if (!posts.length) {
-    return <div>Loading...😭</div>;
+    return <Loading />;
   }
 
   return (
