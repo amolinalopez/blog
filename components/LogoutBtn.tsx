@@ -27,7 +27,7 @@ const LogoutBtn: React.FC = () => {
     }
   };
 
-  return <button onClick={handleLogout}>Logout</button>;
+  return <button onClick={handleLogout} className="btn">Logout</button>;
 };
 
 export default LogoutBtn;

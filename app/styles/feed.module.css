@@ -42,12 +42,6 @@
 
 /* Gradient Backgrounds for Posts */
 .postGradient {
-  background: linear-gradient(
-    149deg,
-    #ffb77b -3.99%,
-    #df3160 45.69%,
-    #3c0f6d 95.36%
-  );
   min-height: 5rem;
   padding: 1rem;
   padding-top: 3.5rem;
@@ -62,9 +56,35 @@
   );
 }
 
+.gradient2 {
+  background: linear-gradient(
+    149deg,
+    #ffb77b -3.99%,
+    #df3160 45.69%,
+    #3c0f6d 95.36%
+  );
+}
+
+.gradient3 {
+  background: linear-gradient(
+    45deg,
+    var(--fuschia) 0%,
+    var(--violet-sombre) 100%
+  );
+}
+
+.gradient4 {
+  background: linear-gradient(
+    45deg,
+    var(--jaune-orange) 0%,
+    var(--fuschia) 50%,
+    var(--violet-sombre) 100%
+  );
+}
+
 .postWhite {
   background: #ffffff;
-  margin-inline: 2rem;
+  margin-inline: 1.5rem;
   border-radius: 0px 30px 30px 30px;
   padding: 1rem;
 }

@@ -43,7 +43,7 @@ export default function Feed() {
   const [posts, setPosts] = useState<Post[]>([]);
 
   const handleLike = async (postId: number) => {
-    // Determine if the post is already liked by the current user
+    // check if le post already liked by current user
     const post = posts.find((post) => post.id === postId);
     if (!post) {
       console.error("Post not found");
@@ -139,106 +139,117 @@ export default function Feed() {
     return <Loading />;
   }
 
+  function getRandomGradient() {
+    const gradients = ["gradient1", "gradient2", "gradient3", "gradient4"];
+    return gradients[Math.floor(Math.random() * gradients.length)];
+  }
+
   return (
     <div className={styles.container}>
       <NavbarTop />
       <div className={styles.feed}>
-        {posts.map((post) => (
-          <div
-            key={post.id}
-            className={
-              post.type === "TEXT" ? styles.textPost : styles.imagePost
-            }
-          >
-            {post.type === "TEXT" ? (
-              <section className={styles.postGradient}>
-                <p className={styles.postWhite}>{post.content}</p>
-              </section>
-            ) : (
-              <section className={styles.mediaPost}>
-                <Image
-                  src={post.mediaUrl || Logo_BO_Icon}
-                  alt="Uploaded content"
-                  width={150}
-                  height={100}
-                  className={styles.mediaPost}
-                  priority
-                />
-                {/* <div>
+        {posts.map((post) => {
+          const randomGradient = getRandomGradient();
+
+          return (
+            <div
+              key={post.id}
+              className={
+                post.type === "TEXT" ? styles.textPost : styles.imagePost
+              }
+            >
+              {post.type === "TEXT" ? (
+                <section
+                  className={`${styles.postGradient} ${styles[randomGradient]}`}
+                >
+                  <p className={styles.postWhite}>{post.content}</p>
+                </section>
+              ) : (
+                <section className={styles.mediaPost}>
+                  <Image
+                    src={post.mediaUrl || Logo_BO_Icon}
+                    alt="Uploaded content"
+                    width={150}
+                    height={100}
+                    className={styles.mediaPost}
+                    priority
+                  />
+                  {/* <div>
                   <p id={styles.mediaText}>{post.content}</p>
                 </div> */}
+                </section>
+              )}
+
+              <div className={styles.userWrapper}>
+                <Image
+                  src={post.user.profilePicture || Logo_BO_Icon}
+                  alt="My user's profile picture"
+                  width={44}
+                  height={44}
+                  className={styles.profilePicture}
+                />
+                <p id={styles.username} className={tulpenOne.className}>
+                  @{post.user.username}
+                </p>
+                {/*  <p> on {formatDateAndTime(post.createdAt)}</p> */}
+              </div>
+
+              <section id={styles.sectionUnderPost}>
+                <div onClick={() => handleLike(post.id)}>
+                  <Image
+                    src={
+                      post.likes?.some((like) => like.userId === user?.id)
+                        ? icon_like_full
+                        : icon_like
+                    }
+                    alt="Like icon"
+                    width={23}
+                    height={21}
+                  />
+                  <span className="textOrange">
+                    {post.likes && post.likes.length > 0
+                      ? ` ${post.likes.length}`
+                      : null}{" "}
+                    likes
+                  </span>
+                </div>
+                <div>
+                  <Image
+                    src={icon_share}
+                    alt="Share icon"
+                    width={23}
+                    height={21}
+                  />
+                  <Image
+                    src={icon_favorite}
+                    alt="Favorite icon"
+                    width={23}
+                    height={21}
+                  />
+                </div>
               </section>
-            )}
-
-            <div className={styles.userWrapper}>
-              <Image
-                src={post.user.profilePicture || Logo_BO_Icon}
-                alt="My user's profile picture"
-                width={44}
-                height={44}
-                className={styles.profilePicture}
-              />
-              <p id={styles.username} className={tulpenOne.className}>
-                @{post.user.username}
-              </p>
-              {/*  <p> on {formatDateAndTime(post.createdAt)}</p> */}
+              <section id={styles.sectionUnderPost}>
+                <label id={styles.labelHidden} htmlFor="comment">
+                  Comment
+                </label>
+                <input
+                  type="text"
+                  name="comment"
+                  id="comment"
+                  className={styles.input + " " + jost.className}
+                  placeholder="Ajouter un commentaire"
+                />
+                <Image
+                  src={icon_comment}
+                  alt="Comment icon"
+                  width={40}
+                  height={40}
+                  id={styles.IconInput}
+                />
+              </section>
             </div>
-
-            <section id={styles.sectionUnderPost}>
-              <div onClick={() => handleLike(post.id)}>
-                <Image
-                  src={
-                    post.likes?.some((like) => like.userId === user?.id)
-                      ? icon_like_full
-                      : icon_like
-                  }
-                  alt="Like icon"
-                  width={23}
-                  height={21}
-                />
-                <span className="textOrange">
-                  {post.likes && post.likes.length > 0
-                    ? ` ${post.likes.length}`
-                    : null}{" "}
-                  likes
-                </span>
-              </div>
-              <div>
-                <Image
-                  src={icon_share}
-                  alt="Share icon"
-                  width={23}
-                  height={21}
-                />
-                <Image
-                  src={icon_favorite}
-                  alt="Favorite icon"
-                  width={23}
-                  height={21}
-                />
-              </div>
-            </section>
-            <section id={styles.sectionUnderPost}>
-              <label id={styles.labelHidden} htmlFor="comment">
-                Comment
-              </label>
-              <input
-                type="text"
-                name="comment"
-                id="comment"
-                className={styles.input + " " + jost.className}
-                placeholder="Ajouter un commentaire"
-              />
-              <Image
-                src={icon_comment}
-                alt="Comment icon"
-                width={40}
-                height={40}
-                id={styles.IconInput}
-              />
-            </section>
-          </div>
-        ))}
+          );
+        })}
       </div>
       <NavbarBottom />
     </div>
