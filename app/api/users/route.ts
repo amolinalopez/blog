@@ -1,12 +1,10 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/app/api/utils/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import { handleErrors } from "../utils/errorHandler";
 import { validateUserData } from "../utils/ValidateUserData";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
-
-const prisma = new PrismaClient();
 
 // POST /api/users create a new user
 export async function POST(request: NextRequest): Promise<NextResponse> {
@@ -64,7 +62,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           process.env.NODE_ENV === "production" ? "Secure; " : ""
         } Max-Age=3600; Secure; SameSite=Lax`,
       },
-    } );
+    });
     // old way of setting cookie
     // Creating a string for cookie settings
     // and setting it on the response headers:
@@ -83,7 +81,13 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 // GET /api/users get all users
 export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
-    const users = await prisma.user.findMany();
+    const users = await prisma.user.findMany({
+      select: {
+        id: true,
+        username: true,
+        profilePicture: true,
+      },
+    });
     return new NextResponse(JSON.stringify(users), { status: 200 });
   } catch (error) {
     return handleErrors(error);

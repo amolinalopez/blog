@@ -24,10 +24,17 @@ model User {
   followings     Follow[]  @relation("Following")
 }
 
+enum PostType {
+  IMAGE
+  VIDEO
+  TEXT
+}
+
 model Post {
   id        Int       @id @default(autoincrement())
-  title     String
   content   String
+  type      PostType  @default(TEXT)
+  mediaUrl  String?
   createdAt DateTime  @default(now())
   deletedAt DateTime?
   updatedAt DateTime  @updatedAt

@@ -1,8 +1,6 @@
-import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { handleErrors } from "../../utils/errorHandler";
-
-const prisma = new PrismaClient();
+import prisma from "@/app/api/utils/prisma";
 
 // GET /api/posts/[postId] get a post by id
 export async function GET(
@@ -14,6 +12,17 @@ export async function GET(
     const post = await prisma.post.findUnique({
       where: {
         id: parseInt(postId),
+      },
+      select: {
+        id: true,
+        content: true,
+        user: {
+          select: {
+            id: true,
+            username: true,
+            profilePicture: true,
+          },
+        },
       },
     });
 

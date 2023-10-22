@@ -1,8 +1,6 @@
-import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { handleErrors } from "../utils/errorHandler";
-
-const prisma = new PrismaClient();
+import prisma from "@/app/api/utils/prisma";
 
 // POST /api/posts create a new post
 export async function POST(request: NextRequest): Promise<NextResponse> {
@@ -21,9 +19,30 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
     const posts = await prisma.post.findMany({
-      include: {
-        user: true,
-        likes: true,
+      orderBy: {
+        createdAt: "desc",
+      },
+      select: {
+        id: true,
+        content: true,
+        type: true,
+        mediaUrl: true,
+        updatedAt: true,
+        userId: true,
+        user: {
+          select: {
+            id: true,
+            username: true,
+            profilePicture: true,
+          },
+        },
+        likes: {
+          select: {
+            id: true,
+            userId: true,
+            postId: true,
+          },
+        },
       },
     });
     return new NextResponse(JSON.stringify(posts), { status: 200 });

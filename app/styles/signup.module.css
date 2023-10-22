@@ -43,7 +43,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 7rem;
+  margin-top: 5rem;
 }
 
 /* Log In */
@@ -64,7 +64,7 @@
   width: 15rem;
   margin-bottom: 1rem;
   margin-top: 2.5rem;
-  background-color: #fff9f2;
+  background-color: transparent;
   color: #ffb77b;
   font-size: 1rem;
 }

@@ -13,7 +13,8 @@ import icon_like_full from "@/public/icon_like_full.svg";
 import icon_share from "@/public/icon_share.svg";
 import icon_favorite from "@/public/icon_favorite.svg";
 import icon_comment from "@/public/icon_comment.svg";
-import { tulpenOne } from "@/utils/fonts";
+import { tulpenOne, jost } from "@/utils/fonts";
+
 
 type User = {
   id: number;
@@ -21,9 +22,17 @@ type User = {
   profilePicture: string;
 };
 
+enum PostType {
+  TEXT = "TEXT",
+  IMAGE = "IMAGE",
+  VIDEO = "VIDEO",
+}
+
 type Post = {
   id: number;
   content: string;
+  type: PostType;
+  mediaUrl?: string;
   createdAt: string;
   user: User;
   likes?: Like[];
@@ -140,24 +149,46 @@ export default function Feed() {
       <NavbarTop />
       <div className={styles.feed}>
         {posts.map((post) => (
-          <div key={post.id} className={styles.onePost}>
-            <section className={styles.postGradient}>
-              <br />
-              <p className={styles.postWhite}>{post.content}</p>
-              <div className={styles.userWrapper}>
+          <div
+            key={post.id}
+            className={
+              post.type === "TEXT" ? styles.textPost : styles.imagePost
+            }
+          >
+            {post.type === "TEXT" ? (
+              <section className={styles.postGradient}>
+                <p className={styles.postWhite}>{post.content}</p>
+              </section>
+            ) : (
+              <section className={styles.mediaPost}>
                 <Image
-                  src={post.user.profilePicture || Logo_BO_Icon}
-                  alt="My user's profile picture"
-                  width={44}
-                  height={44}
-                  className={styles.profilePicture}
+                  src={post.mediaUrl || Logo_BO_Icon}
+                  alt="Uploaded content"
+                  width={150}
+                  height={100}
+                  className={styles.mediaPost}
+                  priority
                 />
-                <p id={styles.username} className={tulpenOne.className}>
-                  @{post.user.username}{" "}
-                </p>
-                {/*  <p> on {formatDateAndTime(post.createdAt)}</p> */}
-              </div>
-            </section>
+                {/* <div>
+                  <p id={styles.mediaText}>{post.content}</p>
+                </div> */}
+              </section>
+            )}
+
+            <div className={styles.userWrapper}>
+              <Image
+                src={post.user.profilePicture || Logo_BO_Icon}
+                alt="My user's profile picture"
+                width={44}
+                height={44}
+                className={styles.profilePicture}
+              />
+              <p id={styles.username} className={tulpenOne.className}>
+                @{post.user.username}
+              </p>
+              {/*  <p> on {formatDateAndTime(post.createdAt)}</p> */}
+            </div>
+
             <section id={styles.sectionUnderPost}>
               <div onClick={() => handleLike(post.id)}>
                 <Image
@@ -169,10 +200,10 @@ export default function Feed() {
                   alt="Like icon"
                   width={23}
                   height={21}
-                />{" "}
+                />
                 <span className="textOrange">
                   {post.likes && post.likes.length > 0
-                    ? `${post.likes.length}`
+                    ? ` ${post.likes.length}`
                     : null}{" "}
                   likes
                 </span>
@@ -180,13 +211,13 @@ export default function Feed() {
               <div>
                 <Image
                   src={icon_share}
-                  alt="Like icon"
+                  alt="Share icon"
                   width={23}
                   height={21}
                 />
                 <Image
                   src={icon_favorite}
-                  alt="Like icon"
+                  alt="Favorite icon"
                   width={23}
                   height={21}
                 />
@@ -200,12 +231,12 @@ export default function Feed() {
                 type="text"
                 name="comment"
                 id="comment"
-                className={styles.input}
+                className={styles.input + " " + jost.className}
                 placeholder="Ajouter un commentaire"
               />
               <Image
                 src={icon_comment}
-                alt="eye icon"
+                alt="Comment icon"
                 width={40}
                 height={40}
                 id={styles.IconInput}

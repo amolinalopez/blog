@@ -7,18 +7,17 @@
 .feed {
   padding-top: 2.5rem;
   padding-bottom: 3rem;
-  /* padding-inline: 1rem; */
-  /* ⬇️ for scrolling !*/
   overflow-y: auto;
   flex-grow: 1;
 }
 
 .userWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   align-items: center;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  padding-inline: 0.5rem;
+  padding: 1rem;
 }
 
 .profilePicture {
@@ -49,7 +48,9 @@
     #df3160 45.69%,
     #3c0f6d 95.36%
   );
-  min-height: 10rem;
+  min-height: 5rem;
+  padding: 1rem;
+  padding-top: 3.5rem;
 }
 
 .gradient1 {
@@ -59,26 +60,18 @@
     #ff8b76 45.69%,
     #df3160 95.36%
   );
-  min-height: 10rem;
 }
 
 .postWhite {
   background: #ffffff;
   margin-inline: 2rem;
-  border-radius: 30px 30px 30px 0px;
+  border-radius: 0px 30px 30px 30px;
   padding: 1rem;
-  margin-bottom: 0rem;
 }
 
-/* .post-gradient-2 {
-  background: linear-gradient(45deg, #b2e3ff, #e2e1ff);
-}
-
-.post-gradient-3 {
-  background: linear-gradient(45deg, #a2ffb2, #fffc9f);
-} */
-
-.onePost {
+.textPost,
+.imagePost {
+  position: relative;
   margin-bottom: 1rem;
 }
 
@@ -96,13 +89,15 @@
   outline: none;
   width: 100vw;
   margin-bottom: 1rem;
-  background-color: #fff9f2;
+  background-color: transparent;
   color: #ffb77b;
   font-size: 1rem;
 }
 
 .input::placeholder {
   color: #ffb77b;
+  font-family: sans-serif;
+  font-size: 0.8rem;
 }
 
 #labelHidden {
@@ -116,3 +111,20 @@
 #IconInput:hover {
   cursor: pointer;
 }
+
+.mediaPost {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* quand je focus sur text avec img
+#mediaText {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border: #3c0f6d solid 2px;
+  color: #fff9f2;
+  background-color: #3c0f6d;
+} */

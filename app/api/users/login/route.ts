@@ -1,11 +1,9 @@
-import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
+import prisma from "@/app/api/utils/prisma";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { handleErrors } from "../../utils/errorHandler";
-
-const prisma = new PrismaClient();
 
 // POST /api/users/login
 export async function POST(request: NextRequest): Promise<NextResponse> {

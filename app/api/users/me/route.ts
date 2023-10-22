@@ -1,12 +1,8 @@
-// File: app/api/users/me.ts
-
+import prisma from "@/app/api/utils/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { handleErrors } from "../../utils/errorHandler";
 import { cookies } from "next/headers";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
   const cookieStore = cookies();

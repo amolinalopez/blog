@@ -3,7 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import bo_logo_icon from "../../../public/Logo_BO_Icon.svg";
 import Link from "next/link";
-import { amarante } from "../../../utils/fonts";
+import { amarante, jost } from "../../../utils/fonts";
 import styles from "../../styles/signup.module.css";
 import Button from "../../../components/btn";
 import eye_open from "../../../public/eye_open.svg";
@@ -93,7 +93,7 @@ const SignupPage: React.FC = () => {
               autoComplete="username"
               placeholder="Username"
               onChange={(e) => setUsername(e.target.value)}
-              className={styles.input}
+              className={styles.input + " " + jost.className}
             />
           </div>
           <div className={styles.inputContainer}>
@@ -106,7 +106,7 @@ const SignupPage: React.FC = () => {
               placeholder="Mot de passe"
               autoComplete="password"
               onChange={(e) => setPassword(e.target.value)}
-              className={styles.input}
+              className={styles.input + " " + jost.className}
             />
             <span onClick={handlePasswordToggle} id={styles.spanEye}>
               <Image
@@ -128,7 +128,7 @@ const SignupPage: React.FC = () => {
               autoComplete="email"
               placeholder="Email"
               onChange={(e) => setEmail(e.target.value)}
-              className={styles.input}
+              className={styles.input + " " + jost.className}
             />
           </div>
           <div className={styles.errorAuth}>
