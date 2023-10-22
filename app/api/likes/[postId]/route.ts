@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { handleErrors } from "../../utils/errorHandler";
-import prisma from "@/app/api/utils/prisma";
+import prisma from "@/utils/prisma";
 
 // GET  get likes by postId
 export async function GET(

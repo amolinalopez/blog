@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { handleErrors } from "../utils/errorHandler";
-import prisma from "@/app/api/utils/prisma";
+import prisma from "@/utils/prisma";
 
 // POST /api/likes/create
 export async function POST(request: NextRequest): Promise<NextResponse> {

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { handleErrors } from "../../utils/errorHandler";
-import prisma from "@/app/api/utils/prisma";
+import prisma from "@/utils/prisma";
 
 // GET /api/comments/[commentId] - Retrieve a comment by ID
 export async function GET(

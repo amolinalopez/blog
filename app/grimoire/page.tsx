@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { useUser } from "@/contexts/UserContext";
 import Image from "next/image";
 import Logo_BO_Icon from "@/public/Logo_BO_Icon.svg";
@@ -41,8 +40,6 @@ type Post = {
 export default function Feed() {
   const contextValue = useUser();
   const user = contextValue ? contextValue.user : null;
-  const [username, setUsername] = useState("");
-  const router = useRouter();
   const [posts, setPosts] = useState<Post[]>([]);
 
   const handleLike = async (postId: number) => {

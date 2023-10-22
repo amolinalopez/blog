@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { handleErrors } from "../../utils/errorHandler";
-import prisma from "@/app/api/utils/prisma";
+import prisma from "@/utils/prisma";
 
 // GET /api/follows/[followId] get a follow by id
 export async function GET(

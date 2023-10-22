@@ -1,4 +1,4 @@
-import prisma from "@/app/api/utils/prisma";
+import prisma from "@/utils/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { handleErrors } from "../../utils/errorHandler";
