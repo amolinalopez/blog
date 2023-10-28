@@ -80,6 +80,10 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
 // GET /api/users get all users
 export async function GET(request: NextRequest): Promise<NextResponse> {
+  const origin = request.headers.get("origin");
+  if (origin !== "https://burnedones.vercel.app/") {
+    return new NextResponse("Forbidden", { status: 403 });
+  }
   try {
     const users = await prisma.user.findMany({
       select: {

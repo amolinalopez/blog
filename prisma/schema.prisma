@@ -24,21 +24,16 @@ model User {
   followings     Follow[]  @relation("Following")
 }
 
-enum PostType {
-  IMAGE
-  VIDEO
-  TEXT
-}
-
 model Post {
   id        Int       @id @default(autoincrement())
   content   String
-  type      PostType  @default(TEXT)
-  mediaUrl  String?
   createdAt DateTime  @default(now())
   deletedAt DateTime?
   updatedAt DateTime  @updatedAt
   userId    Int
+  type      PostType  @default(TEXT)
+  mediaUrl  String?
+  gradient  String?
   user      User      @relation(fields: [userId], references: [id])
   comments  Comment[]
   likes     Like[]
@@ -85,4 +80,10 @@ model Follow {
 
   @@index([followerUserId])
   @@index([followedUserId])
+}
+
+enum PostType {
+  IMAGE
+  VIDEO
+  TEXT
 }

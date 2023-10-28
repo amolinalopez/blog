@@ -1,13 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { handleErrors } from "../utils/errorHandler";
 import prisma from "@/utils/prisma";
+import { getRandomGradient } from "../utils/randomGradient";
 
 // POST /api/posts create a new post
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
     const postData = await request.json();
+    const gradient = postData.type === "TEXT" ? getRandomGradient() : null;
     const newPost = await prisma.post.create({
-      data: postData,
+      data: {
+        ...postData,
+        gradient,
+      },
     });
     return new NextResponse(JSON.stringify(newPost), { status: 201 });
   } catch (error) {
@@ -29,6 +34,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
         mediaUrl: true,
         updatedAt: true,
         userId: true,
+        gradient: true,
         user: {
           select: {
             id: true,

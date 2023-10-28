@@ -14,6 +14,7 @@ import icon_favorite from "@/public/icon_favorite.svg";
 import icon_comment from "@/public/icon_comment.svg";
 import { tulpenOne, jost } from "@/utils/fonts";
 import Loading from "../loading";
+import { getRandomGradient } from "../api/utils/randomGradient";
 
 type User = {
   id: number;
@@ -32,6 +33,7 @@ type Post = {
   content: string;
   type: PostType;
   mediaUrl?: string;
+  gradient?: string;
   createdAt: string;
   user: User;
   likes?: Like[];
@@ -139,18 +141,12 @@ export default function Feed() {
     return <Loading />;
   }
 
-  function getRandomGradient() {
-    const gradients = ["gradient1", "gradient2", "gradient3", "gradient4"];
-    return gradients[Math.floor(Math.random() * gradients.length)];
-  }
-
   return (
     <div className={styles.container}>
       <NavbarTop />
       <div className={styles.feed}>
         {posts.map((post) => {
-          const randomGradient = getRandomGradient();
-
+          const gradientForPost = post.gradient || getRandomGradient();
           return (
             <div
               key={post.id}
@@ -160,7 +156,7 @@ export default function Feed() {
             >
               {post.type === "TEXT" ? (
                 <section
-                  className={`${styles.postGradient} ${styles[randomGradient]}`}
+                  className={`${styles.postGradient} ${styles[gradientForPost]}`}
                 >
                   <p className={styles.postWhite}>{post.content}</p>
                 </section>
