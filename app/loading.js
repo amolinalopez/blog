@@ -13,6 +13,7 @@ export default function Loading() {
             width={300}
             height={300}
             className="logo-path"
+            priority
           />
         </div>
       </div>

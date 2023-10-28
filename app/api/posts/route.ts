@@ -3,11 +3,12 @@ import { handleErrors } from "../utils/errorHandler";
 import prisma from "@/utils/prisma";
 import { getRandomGradient } from "../utils/randomGradient";
 
+// TO DO : Gradients ONLY for TEXT type
 // POST /api/posts create a new post
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
     const postData = await request.json();
-    const gradient = postData.type === "TEXT" ? getRandomGradient() : null;
+    const gradient = getRandomGradient();
     const newPost = await prisma.post.create({
       data: {
         ...postData,
