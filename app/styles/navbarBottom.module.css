@@ -31,3 +31,8 @@
   font-size: 14px;
 }
 
+@media (min-width: 1024px) {
+  .navbarBottom {
+    display: none;
+  }
+}

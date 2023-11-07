@@ -7,14 +7,15 @@ import icon_chat from "../public/icon_chat.svg";
 import Image from "next/image";
 import Logo_BO_Icon from "./../public/Logo_BO_Icon.svg";
 import { useUser } from "@/contexts/UserContext";
+import Link from "next/link";
 
 export default function NavbarBottom() {
   const { user } = useUser();
-  console.log(user);
+  // console.log(user);
 
-  useEffect(() => {
-    console.log("User state has changed:", user);
-  }, [user]);
+  // useEffect(() => {
+  //   console.log("User state has changed:", user);
+  // }, [user]);
 
   return (
     <div className={styles.navbarBottom}>
@@ -25,7 +26,9 @@ export default function NavbarBottom() {
         <Image src={icon_search} alt="Search" />
       </div>
       <div className={styles.navItem}>
-        <Image src={icon_add} alt="Add" />
+        <Link href={"/create_post"}>
+          <Image src={icon_add} alt="Add" />
+        </Link>
       </div>
       <div className={styles.navItem}>
         <Image src={icon_chat} alt="Chat" />

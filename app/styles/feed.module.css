@@ -139,12 +139,58 @@
   object-fit: cover;
 }
 
-/* quand je focus sur text avec img
-#mediaText {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  border: #3c0f6d solid 2px;
-  color: #fff9f2;
-  background-color: #3c0f6d;
-} */
+#desktopHeader {
+  display: none;
+}
+
+/* Tablet */
+@media (min-width: 700px) and (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .feed {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    overflow-y: auto;
+    padding-inline: 5rem;
+    min-width: 20rem;
+  }
+
+  .userWrapper {
+    padding: 0.8rem;
+  }
+
+  #username {
+    font-size: 1.2rem;
+  }
+
+  #desktopHeader {
+    display: none;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) and (max-width: 2024px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    justify-content: center;
+  }
+
+  .feed {
+    padding-top: 2.5rem;
+    padding-bottom: 3rem;
+    flex-direction: column;
+    align-items: center;
+    padding-inline: 18rem;
+    margin-inline: 8rem;
+    min-width: 15rem;
+  }
+
+  #desktopHeader {
+    display: block;
+  }
+}

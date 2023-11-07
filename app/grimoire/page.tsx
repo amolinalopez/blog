@@ -12,8 +12,10 @@ import icon_like_full from "@/public/icon_like_full.svg";
 import icon_share from "@/public/icon_share.svg";
 import icon_favorite from "@/public/icon_favorite.svg";
 import icon_comment from "@/public/icon_comment.svg";
-import { tulpenOne, jost } from "@/utils/fonts";
+import { tulpenOne, jost, amarante } from "@/utils/fonts";
 import Loading from "../loading";
+import LeftSidebar from "@/components/leftSidebar";
+import RightSidebar from "@/components/rightSidebar";
 
 type User = {
   id: number;
@@ -143,7 +145,9 @@ export default function Feed() {
   return (
     <div className={styles.container}>
       <NavbarTop />
+      <LeftSidebar />
       <div className={styles.feed}>
+        <h3 id={styles.desktopHeader} className={amarante.className}> Home</h3>
         {posts.map((post) => {
           return (
             <div
@@ -247,6 +251,7 @@ export default function Feed() {
           );
         })}
       </div>
+      <RightSidebar />
       <NavbarBottom />
     </div>
   );

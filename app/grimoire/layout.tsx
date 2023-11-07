@@ -1,6 +1,8 @@
 import { jost } from "@/utils/fonts";
 import { Suspense } from "react";
 import Loading from "../loading";
+import LeftSidebar from "@/components/leftSidebar";
+import RightSidebar from "@/components/rightSidebar";
 
 export default function GrimoireLayout({
   children,

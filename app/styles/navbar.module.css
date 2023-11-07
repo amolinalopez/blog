@@ -63,3 +63,10 @@
   right: 10px;
   cursor: pointer;
 }
+
+@media (min-width: 1024px) {
+  .navbarTopWrapper {
+    display: none;
+  }
+
+}
