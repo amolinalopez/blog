@@ -2,20 +2,22 @@
 import Image from "next/image";
 import bo_logo_icon from "../../../public/Logo_BO_Icon.svg";
 import styles from "../../styles/signup.module.css";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import LogoutBtn from "../../../components/LogoutBtn";
 import AuthLayout from "../layout";
 import { amarante } from "../../../utils/fonts";
 import Button from "../../../components/btn";
 import Link from "next/link";
+import { useUser } from "@/contexts/UserContext";
+import { decodeToken } from "@/utils/token";
+import { getCookie } from "@/utils/cookies";
 
 const SuccessSignUpPage: React.FC = () => {
-  const [username, setUsername] = useState("");
+  const { user, setUser } = useUser();
   const router = useRouter();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = getCookie("token");
     if (!token) {
       router.push("/auth/login");
       return;
@@ -23,11 +25,17 @@ const SuccessSignUpPage: React.FC = () => {
 
     console.log("Raw Token:", token);
 
-    const payload = JSON.parse(atob(token.split(".")[1]));
-    console.log("Decoded Payload:", payload);
+    const payload = decodeToken(token);
 
-    setUsername(payload.username);
-  }, [router]);
+    if (payload) {
+      setUser({
+        id: payload.userId,
+        username: payload.username,
+        email: payload.email,
+        profilePicture: payload.profilePicture,
+      });
+    }
+  }, [router, setUser]);
 
   return (
     <AuthLayout>
@@ -41,7 +49,8 @@ const SuccessSignUpPage: React.FC = () => {
         />
       </div>
       <h1 className={amarante.className} id={styles.successCongrats}>
-        Bravo {username} ! <br /> Votre inscription a bien été prise en compte
+        Bravo {user?.username} ! <br /> Votre inscription a bien été prise en
+        compte
       </h1>
       <p id={styles.welcomeMessage}>
         Nous sommes ravies de vous compter parmi nos utilisateurs. <br /> Nous

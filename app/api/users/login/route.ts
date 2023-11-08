@@ -1,14 +1,23 @@
-import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
+import prisma from "@/utils/prisma";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
+import { handleErrors } from "../../utils/errorHandler";
 
-const prisma = new PrismaClient();
-
+// POST /api/users/login
 export async function POST(request: NextRequest): Promise<NextResponse> {
+  const cookieStore = cookies();
+  const existingToken = cookieStore.get("token");
+
   try {
     const { username, password } = await request.json();
+    if (!username || !password) {
+      return new NextResponse(
+        JSON.stringify({ error: "Missing username or password" }),
+        { status: 400 }
+      );
+    }
     const user = await prisma.user.findUnique({ where: { username } });
 
     if (!user) {
@@ -35,13 +44,23 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       { expiresIn: "1h" }
     );
 
-    cookies().set("jwtToken", token, { httpOnly: true, secure: true });
+    const sanitizedUser = {
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      profilePicture: user.profilePicture,
+    };
 
-    return new NextResponse(JSON.stringify({ token }), { status: 200 });
+    // // Include the user data along with the token
+    // return new NextResponse(JSON.stringify({ token, user }), {
+    return new NextResponse(JSON.stringify({ token, user: sanitizedUser }), {
+      status: 200,
+      headers: {
+        "Set-Cookie": `token=${token}; HttpOnly; Path=/; Max-Age=3600; Secure; SameSite=Lax`,
+      },
+    });
   } catch (error) {
-    return new NextResponse(
-      JSON.stringify({ error: `An error occurred: ${error}` }),
-      { status: 500 }
-    );
+    console.error(error);
+    return handleErrors(error);
   }
 }

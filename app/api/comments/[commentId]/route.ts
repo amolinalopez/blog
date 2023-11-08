@@ -1,8 +1,6 @@
-import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { handleErrors } from "../../utils/errorHandler";
-
-const prisma = new PrismaClient();
+import prisma from "@/utils/prisma";
 
 // GET /api/comments/[commentId] - Retrieve a comment by ID
 export async function GET(

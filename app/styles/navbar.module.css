@@ -1,0 +1,72 @@
+.navbarTopWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  background-color: #fff9f2;
+  height: 2.5rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 4px 0px 5px rgba(0, 0, 0, 0.659);
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-inline: 0.1rem;
+}
+.logoContainer {
+  display: flex;
+  margin-bottom: 0.2rem;
+}
+.iconsContainer {
+  display: flex;
+  position: absolute;
+  right: 20px;
+}
+.bellIcon,
+.menuIcon {
+  margin-top: 0.5rem;
+}
+
+.bellIcon {
+  margin-right: 1rem;
+}
+
+.sideMenu {
+  position: fixed;
+  top: 0;
+  right: -330px; /* starts en dehors ecrsn */
+  width: 300px;
+  height: 100vh;
+  background-color: #fff9f2;
+  transition: right 0.3s;
+  border-radius: 3rem 0 0 3rem;
+  padding-left: 30px;
+}
+
+.sideMenu.open {
+  right: 0;
+}
+
+.sideMenu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.closeIcon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+  .navbarTopWrapper {
+    display: none;
+  }
+
+}

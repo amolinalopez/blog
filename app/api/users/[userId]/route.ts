@@ -1,8 +1,6 @@
-import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { handleErrors } from "../../utils/errorHandler";
-
-const prisma = new PrismaClient();
+import prisma from "@/utils/prisma";
 
 // GET /api/users/[userId] get a user by id
 export async function GET(
@@ -14,6 +12,17 @@ export async function GET(
     const user = await prisma.user.findUnique({
       where: {
         id: parseInt(userId),
+      },
+      select: {
+        id: true,
+        username: true,
+        profilePicture: true,
+        posts: {
+          select: {
+            id: true,
+            content: true,
+          },
+        },
       },
     });
 

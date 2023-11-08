@@ -1,13 +1,10 @@
 import "./styles/globals.css";
 import type { Metadata } from "next";
-import { Amarante, Jost } from "next/font/google";
-import localFont from "next/font/local";
 
-const lucioleRegular = localFont({ src: "../fonts/Luciole-Regular.ttf" });
-const lucioleBold = localFont({ src: "../fonts/Luciole-Bold.ttf" });
-const amarante = Amarante({ subsets: ["latin"], weight: "400" });
-const jost = Jost({ subsets: ["latin"], weight: ["300", "400"] });
-const spellweaver = localFont({ src: "../fonts/Spellweaver_Nodes.otf" });
+import { jost } from "@/utils/fonts";
+import { UserProvider } from "../contexts/UserContext";
+import LoadingPage from "./loading";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://burnedones.vercel.app/"),
@@ -39,12 +36,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en"> 
       <meta
         name="google-site-verification"
         content="aDASsejnfIdU5hynwGxEpXNHcJJl_8lxvRaTuYVq1cY"
       />
-      <body className={jost.className}>{children}</body>
+      <Suspense fallback={<LoadingPage />}>
+        <body className={jost.className}>
+          <UserProvider>{children}</UserProvider>
+        </body>
+      </Suspense>
     </html>
   );
 }

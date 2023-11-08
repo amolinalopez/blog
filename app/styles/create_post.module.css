@@ -1,0 +1,124 @@
+.userWrapper {
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+
+#username {
+  margin: 0;
+  letter-spacing: 3px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 3px;
+  color: #ffffff;
+}
+
+.profilePicture {
+  margin-right: 10px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff9f2;
+  box-shadow: 2px 2px 4px 0px rgba(60, 15, 109, 0.3);
+}
+
+.createPostContainer {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background-color: #302635;
+}
+
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-inline: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+#pageTitle {
+  font-size: 24px;
+  margin: 0;
+  text-transform: none;
+}
+
+.closeButton,
+.goBackButton {
+  border: none;
+  cursor: pointer;
+  background: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.userWrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  color: #fff9f2;
+}
+
+.profilePicture {
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.pageFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.mediaButtons {
+  display: flex;
+  gap: 10px;
+}
+
+.mediaButton {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background-color: #d5d5d5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.textAreaWrapper {
+  position: relative;
+  border-radius: 20px;
+  background-color: var(--fond-light);
+  padding: 1rem 1rem 40px 1rem;
+  margin-inline: 2rem;
+  height: 40vh;
+}
+
+.textArea {
+  width: 100%;
+  border: none;
+  resize: none;
+  background-color: transparent;
+  overflow: hidden;
+  padding-bottom: 30px;
+  box-sizing: border-box;
+}
+
+.textAreaFooter {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

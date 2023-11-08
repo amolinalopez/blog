@@ -16,13 +16,11 @@
 // export const mockPosts = [
 //   {
 //     id: 7, // New ID
-//     title: "Test Post 1",
 //     content: "Le rer ne marche pas.",
 //     userId: 5, // Citrouille's ID
 //   },
 //   {
 //     id: 8, // New ID
-//     title: "Test Post 2",
 //     content: "Les vacances ne sont pas assez longues.",
 //     userId: 6, // Pomme's ID
 //   },
@@ -79,12 +77,10 @@ export const mockUsers = [
 
 export const mockPosts = [
   {
-    title: "Test Post 1",
     content: "Le rer ne marche pas.",
     userId: 3,
   },
   {
-    title: "Test Post 2",
     content: "Les vacances ne sont pas assez longues.",
     userId: 4,
   },

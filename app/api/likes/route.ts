@@ -1,8 +1,6 @@
-import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { handleErrors } from "../utils/errorHandler";
-
-const prisma = new PrismaClient();
+import prisma from "@/utils/prisma";
 
 // POST /api/likes/create
 export async function POST(request: NextRequest): Promise<NextResponse> {

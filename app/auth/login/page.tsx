@@ -1,11 +1,12 @@
 "use client";
+import { useUser } from "@/contexts/UserContext";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import bo_logo from "../../../public/Logo_BO.svg";
 import styles from "../../styles/signup.module.css";
-import { amarante } from "../../../utils/fonts";
+import { amarante, jost } from "../../../utils/fonts";
 import eye_open from "../../../public/eye_open.svg";
 import eye_close from "../../../public/eye_close.svg";
 import Button from "../../../components/btn";
@@ -17,6 +18,7 @@ const LoginPage: React.FC = () => {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState<string | null>(null);
+  const { setUser } = useUser();
 
   const handleLogin = async () => {
     try {
@@ -35,8 +37,10 @@ const LoginPage: React.FC = () => {
 
       if (response.status === 200) {
         const data = await response.json();
+        // console.log("the daataa", data);
+        // console.log("Received user data: ", data.user);
         console.log("Login successful! Token received: ", data.token);
-        localStorage.setItem("token", data.token);
+        setUser(data.user);
         router.push("/grimoire");
       } else {
         const data = await response.json();
@@ -84,7 +88,7 @@ const LoginPage: React.FC = () => {
               id="username"
               placeholder="Identifiant"
               onChange={(e) => setUsername(e.target.value)}
-              className={styles.input}
+              className={styles.input + " " + jost.className}
               autoComplete="username"
             />
           </div>
@@ -97,7 +101,7 @@ const LoginPage: React.FC = () => {
               id="password"
               placeholder="Mot de passe"
               onChange={(e) => setPassword(e.target.value)}
-              className={styles.input}
+              className={styles.input + " " + jost.className}
               autoComplete="current-password"
             />
             <span onClick={handlePasswordToggle} id={styles.spanEye}>

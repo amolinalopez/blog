@@ -32,7 +32,6 @@ test("should fetch all posts", async ({ request }) => {
 
 test("should create a new mock post", async ({ request }) => {
   const newPost = {
-    title: "a new test post",
     content: "Today is a good day. No TESTS!",
     userId: 4    
   };
@@ -100,7 +99,6 @@ test("should update a post by its ID", async ({ request }) => {
   console.log(`Attempting to update post with ID: ${postId}`);
 
   const updatedData = {
-    title: "Updated Test Post",
     content: "Content of the updated test post.",
   };
 

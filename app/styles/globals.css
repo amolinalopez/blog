@@ -36,11 +36,11 @@ body {
 h1 {
   color: var(--Orange, #ff8b76);
   text-align: center;
-  font-size: 1.875rem; /* 30px */
+  font-size: 1.875rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  letter-spacing: 0.1875rem; /* 3px */
+  letter-spacing: 0.1875rem;
   text-transform: uppercase;
 }
 
@@ -77,4 +77,54 @@ p {
 .btn:hover {
   background-position: 0% 0;
   cursor: pointer;
+}
+
+.profilePicture {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.textOrange {
+  color: var(--orange);
+}
+
+@keyframes rotate-animation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.logo-path {
+  animation: rotate-animation 5s infinite linear;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#loading_page {
+  position: fixed;
+  z-index: 999;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--fond-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  text-decoration: none;
 }
