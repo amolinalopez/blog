@@ -146,8 +146,10 @@ export default function Feed() {
     <div className={styles.container}>
       <NavbarTop />
       <LeftSidebar />
+      <h3 id={styles.desktopHeader} className={amarante.className}>
+        Accueil
+      </h3>
       <div className={styles.feed}>
-        <h3 id={styles.desktopHeader} className={amarante.className}> Home</h3>
         {posts.map((post) => {
           return (
             <div

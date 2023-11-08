@@ -10,6 +10,7 @@
   top: 0;
   box-sizing: border-box;
   padding-right: 5px;
+  z-index: 3;
 }
 
 .footer {

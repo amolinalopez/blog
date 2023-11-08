@@ -10,6 +10,7 @@
   border-radius: 0px 50px 50px 0px;
   box-shadow: 5px 2px 4px 0px rgba(60, 15, 109, 0.1);
   text-decoration: none;
+  z-index: 3;
 }
 
 #sidebarInside {
@@ -19,6 +20,7 @@
 
 .logo {
   margin-bottom: 2rem;
+  margin-left: 1rem;
 }
 
 .navigation ul {
