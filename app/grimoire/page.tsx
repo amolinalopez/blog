@@ -14,8 +14,6 @@ import icon_favorite from "@/public/icon_favorite.svg";
 import icon_comment from "@/public/icon_comment.svg";
 import { tulpenOne, jost, amarante } from "@/utils/fonts";
 import Loading from "../loading";
-import LeftSidebar from "@/components/leftSidebar";
-import RightSidebar from "@/components/rightSidebar";
 
 type User = {
   id: number;
@@ -144,8 +142,6 @@ export default function Feed() {
 
   return (
     <div className={styles.container}>
-      <NavbarTop />
-      <LeftSidebar />
       <h3 id={styles.desktopHeader} className={amarante.className}>
         Accueil
       </h3>
@@ -253,8 +249,6 @@ export default function Feed() {
           );
         })}
       </div>
-      <RightSidebar />
-      <NavbarBottom />
     </div>
   );
 }

@@ -101,7 +101,7 @@ export default function LeftSidebar() {
             </li>
 
             <li>
-              <Link href="/my_profile" className={styles.profile}>
+              <Link href="/profil/myProfil" className={styles.profile}>
                 <Image
                   src={user?.profilePicture || Logo_BO_Icon}
                   alt="Mon profil"
