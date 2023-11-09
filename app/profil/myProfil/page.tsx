@@ -1,8 +1,21 @@
-export default function myProfile() {
+"use client";
+import styles from "@/app/styles/userComponents.module.css";
+import {
+  ContentGrid,
+  ContentTabs,
+  ProfileActions,
+  ProfileHeader,
+} from "@/components/userComponents/profileHeader";
+import { useUser } from "@/contexts/UserContext";
+
+export default function MyProfile() {
+  const { user } = useUser();
   return (
-    <div>
-      <h1>My Profile</h1>
-      
+    <div id={styles.MyProfile}>
+      <ProfileHeader />
+      <ProfileActions />
+      <ContentTabs />
+      <ContentGrid />
     </div>
   );
 }

@@ -20,8 +20,8 @@ model User {
   posts          Post[]
   comments       Comment[]
   likes          Like[]
-  followers      Follow[]  @relation("Follower")
-  followings     Follow[]  @relation("Following")
+  following      Follow[]  @relation("UserFollows")
+  followers      Follow[]  @relation("UserFollowedBy")
 }
 
 model Post {
@@ -75,9 +75,10 @@ model Follow {
   followedUserId Int
   createdAt      DateTime  @default(now())
   deletedAt      DateTime?
-  follower       User      @relation("Follower", fields: [followerUserId], references: [id])
-  followed       User      @relation("Following", fields: [followedUserId], references: [id])
+  follower       User      @relation(name: "UserFollows", fields: [followerUserId], references: [id])
+  followed       User      @relation(name: "UserFollowedBy", fields: [followedUserId], references: [id])
 
+  @@unique([followerUserId, followedUserId], name: "uniqueUserFollow")
   @@index([followerUserId])
   @@index([followedUserId])
 }

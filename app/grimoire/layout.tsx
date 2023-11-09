@@ -15,7 +15,6 @@ export default function GrimoireLayout({
   return (
     <Suspense fallback={<Loading />}>
       <NavbarTop />
-
       <LeftSidebar />
       <div className={jost.className}>{children}</div>
       <RightSidebar />

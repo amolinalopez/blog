@@ -8,11 +8,18 @@ import {
   useEffect,
 } from "react";
 
+interface UserStats {
+  posts: number;
+  followers: number;
+  following: number;
+}
+
 interface User {
   id: number;
   username: string;
   email: string;
   profilePicture?: string;
+  stats?: UserStats;
 }
 
 interface UserContextProps {
@@ -37,8 +44,8 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
           console.error("Failed to fetch user data:", response.statusText);
           return;
         }
-        const userData = await response.json();
-        setUser(userData);
+        const responseBody = await response.json();
+        setUser({ ...responseBody.user, stats: responseBody.stats });
       } catch (error: unknown) {
         console.error((error as Error).message);
       }

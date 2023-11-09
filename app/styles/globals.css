@@ -5,6 +5,9 @@
   --fuschia: #df3160;
   --violet-sombre: #3c0f6d;
   --fond-dark-theme: #302635;
+
+  /* theme dark */
+  
 }
 
 /* Gradient for the logo */
@@ -115,7 +118,7 @@ p {
 }
 
 #loading_page {
-  position: fixed;
+  /* position: fixed; */
   z-index: 999;
   width: 100vw;
   height: 100vh;

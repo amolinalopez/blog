@@ -30,9 +30,7 @@ async function getUser() {
   }
 
   try {
-    const response = await fetch(`/api/users/${payload.id}`, {
-      credentials: "include",
-    });
+    const response = await fetch(`/api/users/${payload.id}`);
     console.log("API Response: ", response);
     if (!response.ok) {
       console.error("Failed to fetch user data:", response.statusText);
@@ -40,10 +38,11 @@ async function getUser() {
     }
     const userData = await response.json();
     console.log("Received User Data: ", userData);
-    return userData; 
+    const { stats } = userData;
+    return { user: userData.user, stats };
   } catch (error) {
     console.log("Failed to fetch user data:", error);
-    return null; 
+    return null;
   }
 }
 

@@ -1,0 +1,128 @@
+#username {
+  margin: 0;
+  letter-spacing: 3px;
+  text-align: center;
+  font-size: 1.7rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 3px;
+  color: var(--violet-sombre);
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+#MyProfile {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* margin-top: 2rem; */
+}
+
+.profilePicture {
+  border-radius: 50%;
+  object-fit: cover;
+  border-radius: 148px;
+  border: 7px solid var(--Fond_Light, #fff9f2);
+  box-shadow: 2px 2px 4px 0px rgba(60, 15, 109, 0.3);
+}
+
+.userDescription {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.statsBar {
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+  background-color: #f2f2f2;
+  margin-bottom: 1rem;
+}
+
+.profileActions {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.contentTabs {
+  display: flex;
+  justify-content: space-around;
+  background-color: #eaeaea;
+  margin-bottom: 1rem;
+}
+
+.contentTabs button {
+  padding: 0.8rem 1.2rem;
+  border: none;
+  background: none;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  padding: 1rem;
+  padding-bottom: 4rem;
+}
+
+.gridItem {
+  background-color: #ddd;
+  height: 100px;
+  border-radius: 10px;
+}
+/* 
+.profileHeaderContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: grey;
+  padding: 20px;
+  border-radius: 10px;
+} */
+
+.profilePicture {
+  object-fit: cover;
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -24px; /* Adjust as needed to overlap the profile picture over stats bar */
+}
+
+.statsBar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #ffffff; /* Adjust the background color as needed */
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* This gives a slight shadow effect */
+  margin-top: 16px; /* Space between username and stats bar */
+}
+
+.profileHeaderContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-image: url("/wave.svg");
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: cover;
+  /* Rest of your styles */
+}
+
+.profileHeaderContainer::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+}

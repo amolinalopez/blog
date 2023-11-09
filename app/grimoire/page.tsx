@@ -4,8 +4,6 @@ import { useUser } from "@/contexts/UserContext";
 import Image from "next/image";
 import Logo_BO_Icon from "@/public/Logo_BO_Icon.svg";
 import styles from "@/app/styles/feed.module.css";
-import NavbarTop from "@/components/navbarTop";
-import NavbarBottom from "@/components/navbarBottom";
 import { Like } from "@prisma/client";
 import icon_like from "@/public/icon_like.svg";
 import icon_like_full from "@/public/icon_like_full.svg";
@@ -14,6 +12,7 @@ import icon_favorite from "@/public/icon_favorite.svg";
 import icon_comment from "@/public/icon_comment.svg";
 import { tulpenOne, jost, amarante } from "@/utils/fonts";
 import Loading from "../loading";
+import Link from "next/link";
 
 type User = {
   id: number;
@@ -179,13 +178,18 @@ export default function Feed() {
               )}
 
               <div className={styles.userWrapper}>
-                <Image
-                  src={post.user.profilePicture || Logo_BO_Icon}
-                  alt="My user's profile picture"
-                  width={44}
-                  height={44}
-                  className={styles.profilePicture}
-                />
+                <Link
+                  href={`/profil/${post.user.username}`}
+                  className={styles.userLink}
+                >
+                  <Image
+                    src={post.user.profilePicture || Logo_BO_Icon}
+                    alt="user profile picture"
+                    width={44}
+                    height={44}
+                    className={styles.profilePicture}
+                  />
+                </Link>
                 <p id={styles.username} className={tulpenOne.className}>
                   @{post.user.username}
                 </p>
