@@ -14,12 +14,21 @@ interface UserStats {
   following: number;
 }
 
+interface Post {
+  id: number;
+  content: string;
+  userId: number;
+  mediaUrl?: string;
+  gradient?: string;
+  type: "TEXT" | "IMAGE" | "VIDEO";
+}
 interface User {
   id: number;
   username: string;
   email: string;
   profilePicture?: string;
   stats?: UserStats;
+  posts?: Post[];
 }
 
 interface UserContextProps {

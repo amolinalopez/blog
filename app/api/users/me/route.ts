@@ -28,6 +28,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     const user = await prisma.user.findUnique({
       where: { id: parseInt(userId) },
       include: {
+        posts: true,
         _count: {
           select: {
             posts: true,
@@ -54,11 +55,14 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     };
 
     const responseBody = {
-      user: userData,
+      user: {
+        ...userData,
+        posts: user.posts,
+      },
       stats: userStats,
     };
 
-    return new NextResponse(JSON.stringify(responseBody ));
+    return new NextResponse(JSON.stringify(responseBody));
   } catch (error) {
     console.error(error);
     return handleErrors(error);
