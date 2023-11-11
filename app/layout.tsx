@@ -2,7 +2,7 @@ import "./styles/globals.css";
 import type { Metadata } from "next";
 import { jost } from "@/utils/fonts";
 import { UserProvider } from "../contexts/UserContext";
-import LoadingPage from "./loading";
+import Loading from "@/app/loading";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Suspense fallback={<LoadingPage />}>
+      <Suspense fallback={<Loading />}>
         <body className={jost.className}>
           <UserProvider>{children}</UserProvider>
         </body>

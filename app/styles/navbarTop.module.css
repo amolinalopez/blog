@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   background-color: #fff9f2;
   height: 2.5rem;
   position: fixed;
@@ -20,6 +20,7 @@
 .logoContainer {
   display: flex;
   margin-bottom: 0.2rem;
+  margin-left: 0.5rem;
 }
 .iconsContainer {
   display: flex;
@@ -29,6 +30,11 @@
 .bellIcon,
 .menuIcon {
   margin-top: 0.5rem;
+}
+
+.bellIcon,
+.menuIcon:hover {
+  cursor: pointer;
 }
 
 .bellIcon {
@@ -68,5 +74,4 @@
   .navbarTopWrapper {
     display: none;
   }
-
 }

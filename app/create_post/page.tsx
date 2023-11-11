@@ -6,13 +6,11 @@ import { amarante, tulpenOne } from "@/utils/fonts";
 import { useUser } from "@/contexts/UserContext";
 import Button from "@/components/btn";
 import NavbarBottom from "@/components/navbarBottom";
-// import NavbarTop from "@/components/navbarTop";
 export default function CreatePost() {
   const { user } = useUser();
 
   return (
     <>
-      {/* <NavbarTop /> */}
       <NavbarBottom />
 
       <div className={styles.createPostContainer}>

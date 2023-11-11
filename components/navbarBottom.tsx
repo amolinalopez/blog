@@ -20,10 +20,14 @@ export default function NavbarBottom() {
   return (
     <div className={styles.navbarBottom}>
       <div className={styles.navItem}>
-        <Image src={icon_home} alt="Home" />
+        <Link href="/grimoire">
+          <Image src={icon_home} alt="Home" />
+        </Link>
       </div>
       <div className={styles.navItem}>
-        <Image src={icon_search} alt="Search" />
+        <Link href="/grimoire/wip" className={styles.profile}>
+          <Image src={icon_search} alt="Search" />
+        </Link>
       </div>
       <div className={styles.navItem}>
         <Link href={"/create_post"}>
@@ -31,15 +35,17 @@ export default function NavbarBottom() {
         </Link>
       </div>
       <div className={styles.navItem}>
-        <Image src={icon_chat} alt="Chat" />
+        <Link href="/grimoire/wip" className={styles.profile}>
+          <Image src={icon_chat} alt="Chat" />
+        </Link>
       </div>
       <div className={styles.navItem}>
         <Link href="/profil/myProfil" className={styles.profile}>
           <Image
             src={user?.profilePicture || Logo_BO_Icon}
             alt="My user's profile picture"
-            width={40}
-            height={40}
+            width={35}
+            height={35}
             className="profilePicture"
             priority
           />

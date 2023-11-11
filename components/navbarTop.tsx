@@ -2,7 +2,7 @@ import Image from "next/image";
 import bo_logo_icon from "../public/Logo_BO_Icon.svg";
 import icon_notif from "../public/icon_notification.svg";
 import icon_hamburger_menu from "../public/icon_hamburger_menu.svg";
-import styles from "../app/styles/navbar.module.css";
+import styles from "../app/styles/navbarTop.module.css";
 import LogoutBtn from "./LogoutBtn";
 import { useRef, useEffect, useState } from "react";
 import closeIcon from "../public/icon_cross.svg";

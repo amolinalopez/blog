@@ -11,7 +11,7 @@ import icon_share from "@/public/icon_share.svg";
 import icon_favorite from "@/public/icon_favorite.svg";
 import icon_comment from "@/public/icon_comment.svg";
 import { tulpenOne, jost, amarante } from "@/utils/fonts";
-import Loading from "../loading";
+import Loading from "@/app/loading";
 import Link from "next/link";
 
 type User = {
