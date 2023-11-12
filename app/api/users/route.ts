@@ -53,8 +53,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       }
     );
 
-    // console.log('Generated token:', token);
-    // Directly setting the Set-Cookie header:
     return new NextResponse(JSON.stringify({ user: newUser, token }), {
       status: 201,
       headers: {

@@ -33,6 +33,8 @@ const SuccessSignUpPage: React.FC = () => {
         username: payload.username,
         email: payload.email,
         profilePicture: payload.profilePicture,
+        createdAt: payload.createdAt,
+        updatedAt: payload.updatedAt,
       });
     }
   }, [router, setUser]);

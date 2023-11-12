@@ -4,7 +4,6 @@ import { useUser } from "@/contexts/UserContext";
 import Image from "next/image";
 import Logo_BO_Icon from "@/public/Logo_BO_Icon.svg";
 import styles from "@/app/styles/feed.module.css";
-import { Like } from "@prisma/client";
 import icon_like from "@/public/icon_like.svg";
 import icon_like_full from "@/public/icon_like_full.svg";
 import icon_share from "@/public/icon_share.svg";
@@ -13,29 +12,7 @@ import icon_comment from "@/public/icon_comment.svg";
 import { tulpenOne, jost, amarante } from "@/utils/fonts";
 import Loading from "@/app/loading";
 import Link from "next/link";
-
-type User = {
-  id: number;
-  username: string;
-  profilePicture: string;
-};
-
-enum PostType {
-  TEXT = "TEXT",
-  IMAGE = "IMAGE",
-  VIDEO = "VIDEO",
-}
-
-type Post = {
-  id: number;
-  content: string;
-  type: PostType;
-  mediaUrl?: string;
-  gradient?: string;
-  createdAt: string;
-  user: User;
-  likes?: Like[];
-};
+import { Post } from "@/types/userTypes";
 
 export default function Feed() {
   const contextValue = useUser();

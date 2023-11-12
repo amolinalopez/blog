@@ -1,3 +1,4 @@
+"use client";
 import styles from "@/app/styles/leftSidebar.module.css";
 import logo_with_name from "@/public/logo_with_name.svg";
 import Logo_BO_Icon from "@/public/Logo_BO_Icon.svg";

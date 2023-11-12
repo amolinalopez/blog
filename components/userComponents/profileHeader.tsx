@@ -7,8 +7,7 @@ import { useUser } from "@/contexts/UserContext";
 import { amarante, tulpenOne } from "@/utils/fonts";
 
 export const ProfileHeader = () => {
-  const { user } = useUser();
-  const userStats = user?.stats || { posts: 0, followers: 0, following: 0 };
+  const { user, stats } = useUser();
 
   return (
     <div className={styles.profileHeaderContainer}>
@@ -29,15 +28,15 @@ export const ProfileHeader = () => {
         <div className={styles.profileInfo}>
           <div id={styles.statsBar} className={amarante.className}>
             <div className={styles.statItem}>
-              <span>{userStats.posts || 0}</span>
+              <span>{stats?.posts || 0}</span>
               <span className={styles.statLabel}>posts</span>
             </div>
             <div className={styles.statItem}>
-              <span>{userStats.followers || 0}</span>
+              <span>{stats?.followers || 0}</span>
               <span className={styles.statLabel}>followers</span>
             </div>
             <div className={styles.statItem}>
-              <span>{userStats.following || 0}</span>
+              <span>{stats?.following || 0}</span>
               <span className={styles.statLabel}>following</span>{" "}
             </div>
           </div>

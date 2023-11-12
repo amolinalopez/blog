@@ -37,10 +37,13 @@ const LoginPage: React.FC = () => {
 
       if (response.status === 200) {
         const data = await response.json();
-        // console.log("the daataa", data);
-        // console.log("Received user data: ", data.user);
         console.log("Login successful! Token received: ", data.token);
-        setUser(data.user);
+        // Fetch user data just apres le login
+        const userResponse = await fetch("/api/users/me");
+        if (userResponse.ok) {
+          const userData = await userResponse.json();
+          setUser(userData.user);
+        }
         router.push("/grimoire");
       } else {
         const data = await response.json();
