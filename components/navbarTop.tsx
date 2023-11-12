@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from "next/image";
 import bo_logo_icon from "../public/Logo_BO_Icon.svg";
 import icon_notif from "../public/icon_notification.svg";
@@ -11,6 +11,7 @@ import iconSettings from "../public/icon_settings.svg";
 import iconSaved from "../public/icon_saved.svg";
 import iconCommunity from "../public/icon_community.svg";
 import iconDelete from "../public/icon_delete_account.svg";
+import Link from "next/link";
 
 export default function NavbarTop() {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -84,7 +85,7 @@ export default function NavbarTop() {
             <ul>
               {menuItems.map((item, index) => (
                 <li key={index} className={styles.menuItem}>
-                  <a href={item.link}>
+                  <Link href={item.link}>
                     <Image
                       src={item.icon}
                       alt={item.label}
@@ -92,8 +93,8 @@ export default function NavbarTop() {
                       height={30}
                       className={styles.menuIcon}
                     />
-                    {item.label}
-                  </a>
+                    <span className={styles.iconText}>{item.label}</span>
+                  </Link>
                 </li>
               ))}
               <li>

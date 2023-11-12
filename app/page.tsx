@@ -3,41 +3,90 @@ import styles from "./page.module.css";
 import Image from "next/image";
 import bo_logo from "./../public/Logo_BO.svg";
 import Button from "@/components/btn";
+import corner_orange from "@/public/corner_orange.svg";
+import corner_orange_clair from "@/public/corner_orange_clair.svg";
+import adHomePic from "@/public/adHomePic.svg";
+import plante from "@/public/plante.svg";
+import { caveat } from "@/utils/fonts";
 
 export default function Home() {
   return (
     <main>
+      <Image
+        src={corner_orange}
+        width={250}
+        height={220}
+        alt="corner orange"
+        priority
+        className={styles.topLeft}
+      />
+      <Image
+        src={corner_orange_clair}
+        width={250}
+        height={220}
+        alt="corner orange clair"
+        priority
+        className={styles.bottomRight}
+      />
+      <Image
+        src={plante}
+        width={196}
+        height={172}
+        alt="plante"
+        priority
+        className={styles.topRight}
+      />
+      <Image
+        src={plante}
+        width={196}
+        height={172}
+        alt="plante"
+        priority
+        className={styles.bottomLeft}
+      />
+
       <div className={styles.homePage}>
-        <Image
-          src={bo_logo}
-          alt="Burned Ones Logo"
-          width={500}
-          height={500}
-          priority
-        />
-        <p>
-          Welcome to Burned Ones, a social media platform designed specifically
-          for minorities.
-          <br />
-          Our platform is a space where users can share valuable resources, tell
-          their stories, and connect with others who have felt marginalized. Our
-          platform was inspired by the personal experiences of our founder, a
-          mixed-race Latina/white woman, and the stories of her peers. We
-          believe in the strength of shared narratives and the comfort of
-          collective wisdom. Our community is for minorities, women, and
-          LGBTQIA+ individuals who have felt marginalized and are seeking both a
-          voice and an ear. We offer customizable user profiles, diverse content
-          sharing, and engagement tools such as liking, commenting, and
-          following other users. While our platform is currently open to all
-          users, we plan to move towards an invite-only model in the future for
-          the safety and exclusivity of our users.
-          <br />
-          Thank you for considering Burned Ones as your social media platform.
-          We hope to provide a safe and inclusive space for all users.
-        </p>
-        <Link href="/auth/login">
-          <Button text="Enter" />
-        </Link>
+        <section className={styles.imageAd}>
+          <Image
+            src={adHomePic}
+            width={500}
+            height={500}
+            alt="picture advertisement for burned ones app"
+            className={styles.adHomePic}
+            priority
+          />
+        </section>
+
+        <section className={styles.textContent}>
+          <Image
+            src={bo_logo}
+            alt="Burned Ones Logo"
+            className={styles.homeImage}
+          />
+          <p className={styles.homeText}>
+            Welcome to Burned Ones: Where Echoes of the Past Ignite Our Future
+            Burned Ones isn&apos;t just a platform; it&apos;s a proclamation.
+            <br />
+            Here, we stand as the proud descendants of the silenced, the
+            marginalized, the &apos;witches&apos; they couldn&apos;t burn. Our
+            community is a sanctuary for minorities, women, and LGBTQIA+
+            individuals—voices seeking to rewrite their narratives in flames of
+            empowerment.
+            <br /> <br /> Connect, share, and fuel the collective wisdom that rises
+            from our shared histories. <br /> As our circle tightens, we&apos;re
+            transitioning to an invite-only haven, crafting a secure and sacred
+            space for every kindred spirit.
+            <br /> <br />
+            Embrace Burned Ones, and let&apos;s set the world ablaze with the
+            stories they once tried to extinguish.
+          </p>
+          <aside className={caveat.className}>- Burned Ones Team</aside>
+          <div id={styles.btnEnter}>
+            <Link href="/auth/login">
+              <Button text="Enter" />
+            </Link>
+          </div>
+        </section>
       </div>
     </main>
   );

@@ -2,42 +2,14 @@
 import Image from "next/image";
 import bo_logo_icon from "../../../public/Logo_BO_Icon.svg";
 import styles from "../../styles/signup.module.css";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import AuthLayout from "../layout";
 import { amarante } from "../../../utils/fonts";
 import Button from "../../../components/btn";
 import Link from "next/link";
 import { useUser } from "@/contexts/UserContext";
-import { decodeToken } from "@/utils/token";
-import { getCookie } from "@/utils/cookies";
 
 const SuccessSignUpPage: React.FC = () => {
-  const { user, setUser } = useUser();
-  const router = useRouter();
-
-  useEffect(() => {
-    const token = getCookie("token");
-    if (!token) {
-      router.push("/auth/login");
-      return;
-    }
-
-    console.log("Raw Token:", token);
-
-    const payload = decodeToken(token);
-
-    if (payload) {
-      setUser({
-        id: payload.userId,
-        username: payload.username,
-        email: payload.email,
-        profilePicture: payload.profilePicture,
-        createdAt: payload.createdAt,
-        updatedAt: payload.updatedAt,
-      });
-    }
-  }, [router, setUser]);
+  const { user } = useUser();
 
   return (
     <AuthLayout>

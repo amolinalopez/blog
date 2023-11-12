@@ -37,7 +37,7 @@ const LoginPage: React.FC = () => {
 
       if (response.status === 200) {
         const data = await response.json();
-        console.log("Login successful! Token received: ", data.token);
+        // console.log("Login successful! Token received: ", data.token);
         // Fetch user data just apres le login
         const userResponse = await fetch("/api/users/me");
         if (userResponse.ok) {
@@ -62,8 +62,12 @@ const LoginPage: React.FC = () => {
 
   return (
     <AuthLayout>
+      <h1 className={amarante.className} id={styles.welcomeLoginPhone}>
+        Welcome <br />
+        back to
+      </h1>
       <h1 className={amarante.className} id={styles.welcomeLogin}>
-        Welcome to
+        Welcome back to
       </h1>
 
       <div className={styles.Logo}>

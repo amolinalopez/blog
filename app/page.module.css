@@ -1,8 +1,151 @@
 .homePage {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+}
+
+.homeImage {
+  max-width: 10rem;
+  height: auto;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.imageAd {
+  display: none;
+}
+
+.homeText {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 1rem 0;
+  padding: 0.5rem;
+}
+
+/* fixed svgs */
+.topLeft,
+.bottomRight,
+.topRight,
+.bottomLeft {
+  position: fixed;
+  z-index: -1;
+}
+
+.topLeft {
+  top: 0;
+  left: 0;
+}
+
+.bottomRight {
+  bottom: 0;
+  right: 0;
+}
+
+.topRight {
+  top: 0;
+  right: 0;
+}
+
+.bottomLeft {
+  bottom: 0;
+  left: 0;
+  transform: rotate(150deg);
+}
+
+/* Tablette */
+@media (min-width: 650px) {
+  .homeText {
+    font-size: 16px;
+    margin-inline: 4rem;
+  }
+
+  .homeImage {
+    max-width: 400px;
+    width: 200px;
+    height: auto;
+    margin-top: 2.5rem;
+  }
+}
+
+/* desktop */
+@media (min-width: 1024px) {
+  .homePage {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
     height: 100vh;
+  }
+
+  .textContent {
+    max-width: 40%;
+    margin-right: 3rem;
+    /* border: rgb(34, 95, 90) solid 1px; */
+  }
+
+  .homeText {
+    font-size: 16px;
+    padding: 0.5rem;
+    margin: 0;
+    /* border: rgb(0, 255, 0) solid 1px; */
+  }
+
+  .imageAd {
+    display: block;
     width: 100vw;
+    /* border: red solid 1px; */
+  }
+
+  .adHomePic {
+    max-width: 90%;
+    /* height: auto; */
+  }
+
+  .homeImage {
+    align-self: center;
+    max-width: 10rem;
+    height: auto;
+    margin-top: 0.5rem;
+  }
+
+  #btnEnter {
+    margin-top: 0.5rem;
+  }
+}
+
+@media (min-width: 1074px) {
+  .homePage {
+    padding-inline: 3rem;
+  }
+
+  .imageAd {
+    margin-left: 3rem;
+    width: 100%;
+  }
+
+  .textContent {
+    max-width: 60%;
+    margin-right: 3rem;
+    /* border: rgb(34, 95, 90) solid 1px; */
+  }
+
+  .homeText {
+    font-size: 16px;
+    margin: 1rem;
+  }
+
+  .homeImage {
+    max-width: 13rem;
+    height: auto;
+    margin-bottom: 1rem;
+  }
 }
