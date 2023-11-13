@@ -12,6 +12,7 @@ import iconSaved from "../public/icon_saved.svg";
 import iconCommunity from "../public/icon_community.svg";
 import iconDelete from "../public/icon_delete_account.svg";
 import Link from "next/link";
+import ConfirmDeleteModal from "./userComponents/deleteModal";
 
 export default function NavbarTop() {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -20,7 +21,6 @@ export default function NavbarTop() {
     { icon: iconSettings, label: "Settings", link: "/comingSoon" },
     { icon: iconSaved, label: "Saved", link: "/comingSoon" },
     { icon: iconCommunity, label: "Community rules", link: "/comingSoon" },
-    { icon: iconDelete, label: "Delete my account", link: "/comingSoon" },
   ];
 
   useEffect(() => {
@@ -38,6 +38,16 @@ export default function NavbarTop() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className={styles.navbarTopWrapper}>
@@ -60,7 +70,6 @@ export default function NavbarTop() {
               alt="icon notifications"
             />
           </a>
-
           <div
             className={styles.menuIcon}
             onClick={() => setMenuOpen(!isMenuOpen)}
@@ -97,10 +106,27 @@ export default function NavbarTop() {
                   </Link>
                 </li>
               ))}
+              <li key="deleteMyAccount" className={styles.menuItem}>
+                <Image
+                  src={iconDelete}
+                  alt="Delete my account"
+                  width={30}
+                  height={30}
+                  className={styles.menuIcon}
+                />
+                <span className={styles.iconText} onClick={handleOpenModal}>
+                  Delete my account
+                </span>
+              </li>
+
               <li>
                 <LogoutBtn />
               </li>
-            </ul>
+            </ul>{" "}
+            <ConfirmDeleteModal
+              isOpen={isModalOpen}
+              onClose={handleCloseModal}
+            />
           </div>
         </div>
       </nav>

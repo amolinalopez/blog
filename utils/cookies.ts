@@ -1,4 +1,3 @@
-// utils/cookies.ts
 "use client";
 export const getCookie = (name: string) => {
   const value = `; ${document.cookie}`;
