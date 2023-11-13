@@ -14,10 +14,18 @@ import { useRouter } from "next/navigation";
 export default function CreatePost() {
   const { user } = useUser();
   const [postContent, setPostContent] = useState("");
+  // const [errorMessage, setErrorMessage] = useState("");
+  const [charCount, setCharCount] = useState(0);
+
   const router = useRouter();
 
   const handleSubmit = async () => {
     try {
+      // shouldnt neet it cuz i have maxLength on the textarea
+      // if (postContent.length > 175) {
+      //   setErrorMessage("Messages cannot be longer than 175 characters");
+      //   return;
+      // }
       const payload = {
         content: postContent,
         userId: user?.id,
@@ -48,23 +56,30 @@ export default function CreatePost() {
     }
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setPostContent(e.target.value);
+    setCharCount(e.target.value.length);
+  };
+
   return (
     <>
       <NavbarBottom />
-
       <div className={styles.createPostContainer}>
         <div className={styles.pageHeader}>
           <button className={styles.goBackButton}>
             <Link href="/grimoire">
-              <Image src={arrowLeftIcon} alt="Go Back" width={24} height={24} />
+              <Image
+                src={arrowLeftIcon}
+                alt="Go Back"
+                width={24}
+                height={24}
+                className={styles.arrow_left}
+              />
             </Link>
           </button>
           <h1 id={styles.pageTitle} className={amarante.className}>
-            Créer un post
+            Create a post
           </h1>
-          <button className={styles.closeButton}>
-            <Image src="/icon_cross.svg" alt="Close" width={24} height={24} />
-          </button>
         </div>
 
         <div className={styles.userWrapper}>
@@ -82,18 +97,28 @@ export default function CreatePost() {
 
         <div className={styles.textAreaWrapper}>
           <textarea
-            placeholder="Comment allez-vous ?"
-            maxLength={250}
+            placeholder="What do you want to share ?"
+            maxLength={175}
             className={styles.textArea}
             value={postContent}
-            onChange={(e) => setPostContent(e.target.value)}
+            onChange={handleInputChange}
           ></textarea>
           <div className={styles.textAreaFooter}>
-            <span>0/120</span>
-            <Image src="/icon_info.svg" alt="Info" width={16} height={16} />
+            <span>{charCount}/175 </span>
+            <div className={styles.tooltip}>
+              <Image src="/icon_info.svg" alt="Info" width={16} height={16} />
+              <span className={styles.tooltiptext}>
+                Messages cannot be longer than 175 characters
+              </span>
+            </div>
           </div>
+          {/* {errorMessage && (
+            <p className={styles.errorMessage}>{errorMessage}</p>
+          )} */}
         </div>
+
         <br />
+
         <footer className={styles.footer}>
           <div className={styles.mediaButtons}>
             <button className={styles.mediaButton}>📄</button>{" "}
