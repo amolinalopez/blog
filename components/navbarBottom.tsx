@@ -20,7 +20,7 @@ export default function NavbarBottom() {
         </Link>
       </div>
       <div className={styles.navItem}>
-        <Link href="/grimoire/wip" className={styles.profile}>
+        <Link href="/comingSoon" className={styles.profile}>
           <Image src={icon_search} alt="Search" />
         </Link>
       </div>
@@ -30,7 +30,7 @@ export default function NavbarBottom() {
         </Link>
       </div>
       <div className={styles.navItem}>
-        <Link href="/grimoire/wip" className={styles.profile}>
+        <Link href="/comingSoon" className={styles.profile}>
           <Image src={icon_chat} alt="Chat" />
         </Link>
       </div>

@@ -17,10 +17,10 @@ export default function NavbarTop() {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const sideMenuRef = useRef<HTMLDivElement | null>(null);
   const menuItems = [
-    { icon: iconSettings, label: "Settings", link: "/#" },
-    { icon: iconSaved, label: "Saved", link: "/#" },
-    { icon: iconCommunity, label: "Community rules", link: "/#" },
-    { icon: iconDelete, label: "Delete my account", link: "/#" },
+    { icon: iconSettings, label: "Settings", link: "/comingSoon" },
+    { icon: iconSaved, label: "Saved", link: "/comingSoon" },
+    { icon: iconCommunity, label: "Community rules", link: "/comingSoon" },
+    { icon: iconDelete, label: "Delete my account", link: "/comingSoon" },
   ];
 
   useEffect(() => {

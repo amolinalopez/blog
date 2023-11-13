@@ -37,7 +37,7 @@ export const ProfileHeader = () => {
             </div>
             <div className={styles.statItem}>
               <span>{stats?.following || 0}</span>
-              <span className={styles.statLabel}>following</span>{" "}
+              <span className={styles.statLabel}>following</span>
             </div>
           </div>
         </div>

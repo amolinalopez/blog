@@ -26,10 +26,11 @@
   display: flex;
   position: absolute;
   right: 20px;
+  margin-top: 0.5rem;
 }
 .bellIcon,
 .menuIcon {
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 }
 
 .bellIcon,

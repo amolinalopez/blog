@@ -17,7 +17,7 @@ export default function LeftSidebar() {
 
   return (
     <aside className={styles.sidebar}>
-      <div>
+      <a href="/grimoire" className={styles.logoContainer}>
         <Image
           src={logo_with_name}
           alt="Logo"
@@ -26,7 +26,7 @@ export default function LeftSidebar() {
           className={styles.logo}
           priority
         />
-      </div>
+      </a>
       <section id={styles.sidebarInside}>
         <nav className={styles.navigation}>
           <ul>
@@ -41,7 +41,7 @@ export default function LeftSidebar() {
               <Link href="/grimoire">Accueil</Link>
             </li>
             <li>
-              <Link href="/#">
+              <Link href="/comingSoon">
                 <Image
                   src={icon_search}
                   alt="Recherche"
@@ -65,7 +65,7 @@ export default function LeftSidebar() {
               </Link>
             </li>
             <li>
-              <Link href="/#">
+              <Link href="/comingSoon">
                 <Image
                   src={icon_chat}
                   alt="Messages"
@@ -77,7 +77,7 @@ export default function LeftSidebar() {
               </Link>
             </li>
             <li>
-              <Link href="/#">
+              <Link href="/comingSoon">
                 <Image
                   src={icon_saved}
                   alt="Recherche"
@@ -89,7 +89,7 @@ export default function LeftSidebar() {
               </Link>
             </li>
             <li>
-              <Link href="/#">
+              <Link href="/comingSoon">
                 <Image
                   src={icon_search}
                   alt="Recherche"

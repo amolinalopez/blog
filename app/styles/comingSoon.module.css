@@ -1,0 +1,76 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  background: linear-gradient(#090320, #11001e, #140123, #170126);
+}
+
+.comingSoonImage {
+  width: 80%; /* Adjust for mobile */
+  height: auto;
+  margin: 20px 0;
+}
+
+.backButtonContainer {
+  position: fixed;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+.backButton {
+  display: flex;
+  align-items: center; /* Center the icon and text vertically */
+  cursor: pointer;
+  color: #fff9f2;
+  border: solid 1px #fff9f2;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+
+.arrowIcon {
+  margin-right: 0.5rem;
+}
+
+#titlePageComingSoon {
+  font-size: 1.3rem;
+  text-transform: none;
+  margin-top: 5rem;
+}
+
+/* Media query for tablet and above */
+@media (min-width: 768px) {
+  .container {
+    padding-bottom: 0; /* Remove bottom padding for tablet and above */
+  }
+
+  .comingSoonImage {
+    width: 60%; /* Adjust for tablet */
+  }
+
+  .backButtonContainer {
+    bottom: auto; /* Reset bottom position */
+    top: 10px; /* Move to top */
+    left: 10px; /* Align to left */
+    transform: none; /* Remove transform */
+  }
+
+  #titlePageComingSoon {
+    font-size: 2rem; /* Adjust for tablet */
+  }
+}
+
+/* Media query for desktop */
+@media (min-width: 1024px) {
+  .comingSoonImage {
+    width: 40%; /* Adjust for desktop */
+  }
+
+  #titlePageComingSoon {
+    font-size: 2.5rem; /* Adjust for desktop */
+  }
+}

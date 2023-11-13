@@ -159,50 +159,6 @@
   right: -80px;
 }
 
-/* Content Grid Styles */
-/* .contentGridWrapper {
-  padding: 1rem;
-}
-
-.contentGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
-  padding: 1rem;
-  /* padding-bottom: 4rem; 
-}
-
-.gridItem {
-  /* width: 271px;
-  height: 271px; 
-  flex-shrink: 0;
-  border-radius: 10px;
-  box-shadow: 2px 2px 4px 0px rgba(60, 15, 109, 0.3);
-} */
-
-/* Content Grid Styles */
-/* .contentGridWrapper {
-  padding: 1rem;
-  border: 1px red solid;
-}
-
-.contentGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
-  padding: 1rem;
-}
-
-.gridItem {
-  width: calc(
-    (100% - 2 * 0.5rem - 2 * 1rem) / 3
-  ); 
-  height: auto; 
-  flex-shrink: 0;
-  border-radius: 10px;
-  box-shadow: 2px 2px 4px 0px rgba(60, 15, 109, 0.3);
-}
-*/
 /* Gradient Styles */
 .postGradient {
   /* min-height: 5rem; */
@@ -256,13 +212,6 @@
   font-size: 0.5rem;
 }
 
-/* .textPost,
-.imagePost {
-  position: relative;
-  margin-bottom: 1rem;
-}
-  */
-
 .contentGridWrapper {
   max-width: 100%;
   margin: auto;
@@ -276,16 +225,14 @@
 }
 
 .gridItem {
-  display: flex; /* Use flex to center contents of gridItem */
-  flex-direction: column; /* Stack your items vertically */
-  align-items: center; /* Center items horizontally */
-  justify-content: center; /* Center items vertically */
-  border-radius: 10px; /* Your desired border-radius */
-  box-shadow: 2px 2px 4px rgba(60, 15, 109, 0.3); /* Your desired box-shadow */
-  overflow: hidden; /* Prevents content from spilling out */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px rgba(60, 15, 109, 0.3);
+  overflow: hidden;
 }
-
-
 
 /* small phone */
 @media (max-width: 374px) {
@@ -331,7 +278,7 @@
 }
 
 /* Tablette */
-@media (min-width: 700px) and (max-width: 1024px) {
+@media (min-width: 700px) and (max-width: 1023px) {
   .profileHeaderContainer {
     flex-direction: row;
     align-items: flex-start;
@@ -339,6 +286,7 @@
   }
 }
 
+/* Destop */
 @media (min-width: 1024px) {
   #MyProfile {
     padding-left: 200px;
@@ -347,5 +295,34 @@
   .profileHeaderContainer,
   .contentGridWrapper {
     padding-left: 150px;
+  }
+
+  .profileImageAndName {
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .profilePicture {
+    width: 7rem;
+    height: auto;
+  }
+
+  #username {
+    background-color: var(--Fond_Light, #fff9f2);
+    padding: 7px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .profileInfoAndActions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 3rem;
+  }
+
+  .contentGridWrapper {
+    padding-right: 2rem;
   }
 }
