@@ -1,8 +1,8 @@
 "use client";
 import { jost } from "@/utils/fonts";
-import { Suspense } from "react";
-import Loading from "../loading";
 import LeftSidebar from "@/components/leftSidebar";
+import NavbarTop from "@/components/navbarTop";
+import NavbarBottom from "@/components/navbarBottom";
 
 export default function GrimoireLayout({
   children,
@@ -10,9 +10,11 @@ export default function GrimoireLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Suspense fallback={<Loading />}>
-        <LeftSidebar />
+    <div>
+      <LeftSidebar />
+      <NavbarTop />
       <div className={jost.className}>{children}</div>
-    </Suspense>
+      <NavbarBottom />
+    </div>
   );
 }

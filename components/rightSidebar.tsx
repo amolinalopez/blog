@@ -26,6 +26,7 @@ export default function RightSidebar() {
             width={44}
             height={44}
             className={styles.profilePicture}
+            priority
           />
           <p id={styles.username} className={tulpenOne.className}>
             @Citlali_M
@@ -38,6 +39,7 @@ export default function RightSidebar() {
             width={44}
             height={44}
             className={styles.profilePicture}
+            priority
           />
           <p id={styles.username} className={tulpenOne.className}>
             @Alissia
@@ -50,6 +52,7 @@ export default function RightSidebar() {
             width={44}
             height={44}
             className={styles.profilePicture}
+            priority
           />
           <p id={styles.username} className={tulpenOne.className}>
             @Chloe
@@ -62,6 +65,7 @@ export default function RightSidebar() {
             width={44}
             height={44}
             className={styles.profilePicture}
+            priority
           />
           <p id={styles.username} className={tulpenOne.className}>
             @Sergio

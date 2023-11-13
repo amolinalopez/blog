@@ -1,54 +1,50 @@
 "use client";
-
-import {
+import React, {
   createContext,
   useState,
   useContext,
-  ReactNode,
   useEffect,
+  ReactNode,
 } from "react";
-
-interface User {
-  id: number;
-  username: string;
-  email: string;
-  profilePicture?: string;
-}
+import { User, UserStats } from "@/types/userTypes";
 
 interface UserContextProps {
   user: User | null;
+  stats: UserStats | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  setStats: React.Dispatch<React.SetStateAction<UserStats | null>>;
 }
 
 interface UserProviderProps {
   children: ReactNode;
 }
 
-export const UserContext = createContext<UserContextProps | null>(null);
+const UserContext = createContext<UserContextProps | null>(null);
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [stats, setStats] = useState<UserStats | null>(null);
 
   useEffect(() => {
-    const fetchUser = async () => {
+    const fetchUserData = async () => {
       try {
         const response = await fetch("/api/users/me");
-        if (!response.ok) {
-          console.error("Failed to fetch user data:", response.statusText);
-          return;
+        if (response.ok) {
+          const userData = await response.json();
+          setUser(userData.user);
+          setStats(userData.stats);
+          console.log("CONTEXT: User data fetched:", userData);
         }
-        const userData = await response.json();
-        setUser(userData);
-      } catch (error: unknown) {
-        console.error((error as Error).message);
+      } catch (error) {
+        console.error("Failed to fetch user:", error);
       }
     };
 
-    fetchUser();
+    fetchUserData();
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, stats, setUser, setStats }}>
       {children}
     </UserContext.Provider>
   );

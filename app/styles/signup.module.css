@@ -43,34 +43,42 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 /* Log In */
 #welcomeLogin {
-  margin-top: 5rem;
+  display: none;
+  margin-bottom: 0rem;
+}
+
+#welcomeLoginPhone {
+  margin-top: 2rem;
+  font-size: 1rem;
+  /* margin-bottom: 0rem; */
 }
 
 .Logo {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 2rem;
 }
 
 .input {
   border: none;
-  border-bottom: 1px solid #ffb77b;
+  border-bottom: 1px solid;
   outline: none;
-  width: 15rem;
-  margin-bottom: 1rem;
-  margin-top: 2.5rem;
+  width: 14rem;
+  margin-bottom: 0.5rem;
+  margin-top: 2rem;
   background-color: transparent;
-  color: #ffb77b;
+  color: #3c0f6d;
   font-size: 1rem;
 }
 
 .input::placeholder {
-  color: #ffb77b;
+  color: #3c0f6d;
 }
 
 .formContainer {
@@ -97,7 +105,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 .inputContainer {
@@ -109,7 +117,7 @@
 #spanEye {
   position: absolute;
   right: 1px;
-  bottom: 0.1rem;
+  bottom: -0.3rem;
   transform: translateY(-50%);
   cursor: pointer;
 }
@@ -117,7 +125,7 @@
 #lienMdpForgotten,
 #newHere {
   color: #3c0f6d;
-  font-size: 12px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
 }
@@ -128,7 +136,7 @@
 
 .errorAuth {
   color: #df3160;
-  margin-top: 1.5rem;
+  margin-top: 0.3rem;
   text-align: center;
   min-height: 1.5rem;
 }
@@ -139,16 +147,94 @@
   text-align: center;
   margin-top: 2rem;
   margin-inline: 2rem;
+  font-size: 0.8rem;
 }
 
 #successCongrats {
   text-align: center;
-  margin-top: 3rem;
+  margin-top: 2rem;
   margin-inline: 2rem;
   text-transform: none;
+  font-size: 1.2rem;
 }
 
 .successBtnContainer {
   margin-inline: 2rem;
   margin-top: 2rem;
+}
+
+#logoSuccess {
+  margin-top: 2rem;
+}
+
+@media (min-width: 650px) {
+  /* Adjust layout for tablet screens */
+  .input {
+    width: 20rem;
+  }
+
+  #welcomeLogin {
+    display: block;
+    margin-top: 4rem;
+    font-size: 1.5rem;
+  }
+  #welcomeLoginPhone {
+    display: none;
+  }
+
+  /* success */
+  .successBtnContainer {
+    margin-inline: 10rem;
+  }
+
+  #welcomeMessage {
+    font-size: 1rem;
+  }
+
+  #successCongrats {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .input {
+    width: 20rem;
+  }
+
+  #welcomeLoginPhone {
+    display: none;
+  }
+
+  #welcomeLogin {
+    margin-top: 2rem;
+  }
+
+  .centerLogo,
+  .Logo {
+    justify-content: center;
+  }
+
+  /* success */
+  .successBtnContainer {
+    margin-inline: 20rem;
+  }
+}
+
+@media (min-width: 1074px) {
+  .input {
+    width: 25rem;
+  }
+
+  #welcomeLoginPhone {
+    display: none;
+  }
+
+  #welcomeLogin {
+    margin-top: 3rem;
+  }
+
+  /* success */
+  .successBtnContainer {
+    margin-inline: 30rem;
+  }
 }

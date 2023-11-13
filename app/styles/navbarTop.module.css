@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   background-color: #fff9f2;
   height: 2.5rem;
   position: fixed;
@@ -20,15 +20,22 @@
 .logoContainer {
   display: flex;
   margin-bottom: 0.2rem;
+  margin-left: 0.5rem;
 }
 .iconsContainer {
   display: flex;
   position: absolute;
   right: 20px;
+  margin-top: 0.5rem;
 }
 .bellIcon,
 .menuIcon {
-  margin-top: 0.5rem;
+  margin-top: 1rem;
+}
+
+.bellIcon,
+.menuIcon:hover {
+  cursor: pointer;
 }
 
 .bellIcon {
@@ -45,6 +52,21 @@
   transition: right 0.3s;
   border-radius: 3rem 0 0 3rem;
   padding-left: 30px;
+  box-shadow: 4px 0px 20px rgba(0, 0, 0, 0.659);
+  padding-top: 4rem;
+
+  .menuIcon {
+    margin-top: 2rem;
+    /* border: red 2px solid; */
+    margin: 0;
+    margin-right: 2rem;
+    padding-top: 0rem;
+  }
+
+  .iconText {
+    /* border: rgb(255, 0, 212) 2px solid; */
+    margin-bottom: 0.5rem;
+  }
 }
 
 .sideMenu.open {
@@ -55,6 +77,46 @@
   list-style-type: none;
   padding: 0;
   margin: 0;
+}
+
+.sideMenu li {
+  margin-bottom: 2rem;
+  /* border: rgb(0, 255, 166) 2px solid; */
+  display: flex;
+  align-items: baseline;
+  color: #040200;
+}
+
+.sideMenu li a {
+  text-decoration: none;
+  color: var(--violet-sombre);
+}
+
+.sideMenu li:hover {
+  color: #ff00d4;
+  cursor: pointer;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.menuIcon,
+.iconText {
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
+}
+
+.iconText {
+  line-height: 1;
+}
+
+.bellIcon,
+.menuIcon {
+  margin-top: 0;
 }
 
 .closeIcon {
@@ -68,5 +130,4 @@
   .navbarTopWrapper {
     display: none;
   }
-
 }

@@ -5,7 +5,6 @@ export default function Loading() {
   return (
     <div id="loading_page">
       <div className="content-wrapper">
-        <h1>Loading...</h1>
         <div className="loading-container">
           <Image
             src={logo_bo_icon}
@@ -16,6 +15,7 @@ export default function Loading() {
             priority
           />
         </div>
+        <h2 className="loading-text">Loading...</h2>
       </div>
     </div>
   );

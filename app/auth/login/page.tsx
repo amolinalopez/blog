@@ -37,10 +37,13 @@ const LoginPage: React.FC = () => {
 
       if (response.status === 200) {
         const data = await response.json();
-        // console.log("the daataa", data);
-        // console.log("Received user data: ", data.user);
-        console.log("Login successful! Token received: ", data.token);
-        setUser(data.user);
+        // console.log("Login successful! Token received: ", data.token);
+        // Fetch user data just apres le login
+        const userResponse = await fetch("/api/users/me");
+        if (userResponse.ok) {
+          const userData = await userResponse.json();
+          setUser(userData.user);
+        }
         router.push("/grimoire");
       } else {
         const data = await response.json();
@@ -59,10 +62,6 @@ const LoginPage: React.FC = () => {
 
   return (
     <AuthLayout>
-      <h1 className={amarante.className} id={styles.welcomeLogin}>
-        Welcome to
-      </h1>
-
       <div className={styles.Logo}>
         <Image
           src={bo_logo}
@@ -72,6 +71,12 @@ const LoginPage: React.FC = () => {
           priority
         />
       </div>
+      <h1 className={amarante.className} id={styles.welcomeLoginPhone}>
+        Welcome back
+      </h1>
+      <h1 className={amarante.className} id={styles.welcomeLogin}>
+        Welcome back
+      </h1>
       <div className={styles.formContainer}>
         <form
           onSubmit={(e) => {

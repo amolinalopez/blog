@@ -1,3 +1,4 @@
+"use client";
 import styles from "@/app/styles/leftSidebar.module.css";
 import logo_with_name from "@/public/logo_with_name.svg";
 import Logo_BO_Icon from "@/public/Logo_BO_Icon.svg";
@@ -6,17 +7,31 @@ import icon_search from "@/public/icon_search.svg";
 import icon_add from "@/public/icon_add.svg";
 import icon_saved from "@/public/icon_saved.svg";
 import icon_chat from "@/public/icon_chat.svg";
+import icon_settings from "@/public/icon_settings.svg";
+import iconDelete from "@/public/icon_delete_account.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { useUser } from "@/contexts/UserContext";
 import LogoutBtn from "./LogoutBtn";
+import ConfirmDeleteModal from "./userComponents/deleteModal";
+import { useState } from "react";
 
 export default function LeftSidebar() {
   const { user } = useUser();
+  const [isMenuOpen, setMenuOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <aside className={styles.sidebar}>
-      <div>
+      <a href="/grimoire" className={styles.logoContainer}>
         <Image
           src={logo_with_name}
           alt="Logo"
@@ -25,22 +40,24 @@ export default function LeftSidebar() {
           className={styles.logo}
           priority
         />
-      </div>
+      </a>
       <section id={styles.sidebarInside}>
         <nav className={styles.navigation}>
           <ul>
             <li>
-              <Image
-                src={icon_home}
-                alt="Accueil"
-                id={styles.iconSVG}
-                width={30}
-                height={30}
-              />
-              <Link href="/grimoire">Accueil</Link>
+              <Link href="/grimoire">
+                <Image
+                  src={icon_home}
+                  alt="Accueil"
+                  id={styles.iconSVG}
+                  width={30}
+                  height={30}
+                />
+                Home
+              </Link>
             </li>
             <li>
-              <Link href="/#">
+              <Link href="/comingSoon">
                 <Image
                   src={icon_search}
                   alt="Recherche"
@@ -48,7 +65,7 @@ export default function LeftSidebar() {
                   width={30}
                   height={30}
                 />
-                Recherche
+                Search
               </Link>
             </li>
             <li>
@@ -60,11 +77,11 @@ export default function LeftSidebar() {
                   width={30}
                   height={30}
                 />
-                Créer
+                Create post
               </Link>
             </li>
             <li>
-              <Link href="/#">
+              <Link href="/comingSoon">
                 <Image
                   src={icon_chat}
                   alt="Messages"
@@ -72,11 +89,11 @@ export default function LeftSidebar() {
                   width={30}
                   height={30}
                 />
-                Messages
+                Message
               </Link>
             </li>
             <li>
-              <Link href="/#">
+              <Link href="/comingSoon">
                 <Image
                   src={icon_saved}
                   alt="Recherche"
@@ -88,17 +105,31 @@ export default function LeftSidebar() {
               </Link>
             </li>
             <li>
-              <Link href="/#">
+              <Link href="/comingSoon">
                 <Image
-                  src={icon_search}
+                  src={icon_settings}
                   alt="Recherche"
                   id={styles.iconSVG}
                   width={30}
                   height={30}
                 />
-                Parametres
+                Parameters
               </Link>
             </li>
+            <li key="deleteMyAccount">
+              <Image
+                src={iconDelete}
+                alt="Delete my account"
+                width={30}
+                height={30}
+                className={styles.menuIcon}
+              />
+              <span onClick={handleOpenModal}> Delete my account</span>
+            </li>
+            <ConfirmDeleteModal
+              isOpen={isModalOpen}
+              onClose={handleCloseModal}
+            />
 
             <li>
               <Link href="/profil/myProfil" className={styles.profile}>

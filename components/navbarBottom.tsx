@@ -1,5 +1,5 @@
+"use client";
 import styles from "../app/styles/navbarBottom.module.css";
-import React, { useEffect } from "react";
 import icon_home from "../public/icon_home.svg";
 import icon_search from "../public/icon_search.svg";
 import icon_add from "../public/icon_add.svg";
@@ -11,19 +11,18 @@ import Link from "next/link";
 
 export default function NavbarBottom() {
   const { user } = useUser();
-  // console.log(user);
-
-  // useEffect(() => {
-  //   console.log("User state has changed:", user);
-  // }, [user]);
 
   return (
     <div className={styles.navbarBottom}>
       <div className={styles.navItem}>
-        <Image src={icon_home} alt="Home" />
+        <Link href="/grimoire">
+          <Image src={icon_home} alt="Home" />
+        </Link>
       </div>
       <div className={styles.navItem}>
-        <Image src={icon_search} alt="Search" />
+        <Link href="/comingSoon" className={styles.profile}>
+          <Image src={icon_search} alt="Search" />
+        </Link>
       </div>
       <div className={styles.navItem}>
         <Link href={"/create_post"}>
@@ -31,17 +30,21 @@ export default function NavbarBottom() {
         </Link>
       </div>
       <div className={styles.navItem}>
-        <Image src={icon_chat} alt="Chat" />
+        <Link href="/comingSoon" className={styles.profile}>
+          <Image src={icon_chat} alt="Chat" />
+        </Link>
       </div>
       <div className={styles.navItem}>
-        <Image
-          src={user?.profilePicture || Logo_BO_Icon}
-          alt="My user's profile picture"
-          width={40}
-          height={40}
-          className="profilePicture"
-          priority
-        />
+        <Link href="/profil/myProfil" className={styles.profile}>
+          <Image
+            src={user?.profilePicture || Logo_BO_Icon}
+            alt="My user's profile picture"
+            width={35}
+            height={35}
+            className="profilePicture"
+            priority
+          />
+        </Link>
       </div>
     </div>
   );

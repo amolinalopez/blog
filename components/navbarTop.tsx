@@ -1,8 +1,9 @@
+"use client";
 import Image from "next/image";
 import bo_logo_icon from "../public/Logo_BO_Icon.svg";
 import icon_notif from "../public/icon_notification.svg";
 import icon_hamburger_menu from "../public/icon_hamburger_menu.svg";
-import styles from "../app/styles/navbar.module.css";
+import styles from "../app/styles/navbarTop.module.css";
 import LogoutBtn from "./LogoutBtn";
 import { useRef, useEffect, useState } from "react";
 import closeIcon from "../public/icon_cross.svg";
@@ -10,15 +11,16 @@ import iconSettings from "../public/icon_settings.svg";
 import iconSaved from "../public/icon_saved.svg";
 import iconCommunity from "../public/icon_community.svg";
 import iconDelete from "../public/icon_delete_account.svg";
+import Link from "next/link";
+import ConfirmDeleteModal from "./userComponents/deleteModal";
 
 export default function NavbarTop() {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const sideMenuRef = useRef<HTMLDivElement | null>(null);
   const menuItems = [
-    { icon: iconSettings, label: "Settings", link: "/#" },
-    { icon: iconSaved, label: "Saved", link: "/#" },
-    { icon: iconCommunity, label: "Community rules", link: "/#" },
-    { icon: iconDelete, label: "Delete my account", link: "/#" },
+    { icon: iconSettings, label: "Settings", link: "/comingSoon" },
+    { icon: iconSaved, label: "Saved", link: "/comingSoon" },
+    { icon: iconCommunity, label: "Community rules", link: "/comingSoon" },
   ];
 
   useEffect(() => {
@@ -36,6 +38,16 @@ export default function NavbarTop() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className={styles.navbarTopWrapper}>
@@ -58,7 +70,6 @@ export default function NavbarTop() {
               alt="icon notifications"
             />
           </a>
-
           <div
             className={styles.menuIcon}
             onClick={() => setMenuOpen(!isMenuOpen)}
@@ -83,7 +94,7 @@ export default function NavbarTop() {
             <ul>
               {menuItems.map((item, index) => (
                 <li key={index} className={styles.menuItem}>
-                  <a href={item.link}>
+                  <Link href={item.link}>
                     <Image
                       src={item.icon}
                       alt={item.label}
@@ -91,14 +102,31 @@ export default function NavbarTop() {
                       height={30}
                       className={styles.menuIcon}
                     />
-                    {item.label}
-                  </a>
+                    <span className={styles.iconText}>{item.label}</span>
+                  </Link>
                 </li>
               ))}
+              <li key="deleteMyAccount" className={styles.menuItem}>
+                <Image
+                  src={iconDelete}
+                  alt="Delete my account"
+                  width={30}
+                  height={30}
+                  className={styles.menuIcon}
+                />
+                <span className={styles.iconText} onClick={handleOpenModal}>
+                  Delete my account
+                </span>
+              </li>
+
               <li>
                 <LogoutBtn />
               </li>
-            </ul>
+            </ul>{" "}
+            <ConfirmDeleteModal
+              isOpen={isModalOpen}
+              onClose={handleCloseModal}
+            />
           </div>
         </div>
       </nav>

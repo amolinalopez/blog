@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 
 import { jost } from "@/utils/fonts";
 import { UserProvider } from "../contexts/UserContext";
-import LoadingPage from "./loading";
+import Loading from "@/app/loading";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
@@ -41,7 +41,7 @@ export default function RootLayout({
         name="google-site-verification"
         content="aDASsejnfIdU5hynwGxEpXNHcJJl_8lxvRaTuYVq1cY"
       />
-      <Suspense fallback={<LoadingPage />}>
+      <Suspense fallback={<Loading />}>
         <body className={jost.className}>
           <UserProvider>{children}</UserProvider>
         </body>

@@ -43,7 +43,7 @@ const SignupPage: React.FC = () => {
 
       if (response.status === 201) {
         const data = await response.json();
-        console.log("Signup successful! Token received:", data.token);
+        // console.log("Signup successful! Token received:", data.token);
         setUser(data.user);
         router.push("/auth/success");
       } else {
