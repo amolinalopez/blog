@@ -9,7 +9,7 @@
 }
 
 .comingSoonImage {
-  width: 80%; /* Adjust for mobile */
+  width: 80%;
   height: auto;
   margin: 20px 0;
 }
@@ -24,7 +24,7 @@
 
 .backButton {
   display: flex;
-  align-items: center; /* Center the icon and text vertically */
+  align-items: center;
   cursor: pointer;
   color: #fff9f2;
   border: solid 1px #fff9f2;
@@ -42,35 +42,35 @@
   margin-top: 5rem;
 }
 
-/* Media query for tablet and above */
+/* Tableette */
 @media (min-width: 768px) {
   .container {
-    padding-bottom: 0; /* Remove bottom padding for tablet and above */
+    padding-bottom: 0;
   }
 
   .comingSoonImage {
-    width: 60%; /* Adjust for tablet */
+    width: 60%;
   }
 
   .backButtonContainer {
-    bottom: auto; /* Reset bottom position */
-    top: 10px; /* Move to top */
-    left: 10px; /* Align to left */
-    transform: none; /* Remove transform */
+    bottom: auto;
+    top: 10px;
+    left: 10px;
+    transform: none;
   }
 
   #titlePageComingSoon {
-    font-size: 2rem; /* Adjust for tablet */
+    font-size: 2rem;
   }
 }
 
-/* Media query for desktop */
+/*  desktop */
 @media (min-width: 1024px) {
   .comingSoonImage {
-    width: 40%; /* Adjust for desktop */
+    width: 40%;
   }
 
   #titlePageComingSoon {
-    font-size: 2.5rem; /* Adjust for desktop */
+    font-size: 2.5rem;
   }
 }
