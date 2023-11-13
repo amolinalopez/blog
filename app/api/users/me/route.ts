@@ -96,7 +96,13 @@ export async function DELETE(request: NextRequest): Promise<NextResponse> {
       },
     });
 
-    return new NextResponse("User deleted successfully", { status: 200 });
+    // Invalidate the token after successful deletion
+    cookieStore.delete("token");
+
+    return new NextResponse("User deleted successfully", {
+      status: 200,
+      headers: { "Set-Cookie": "token=; Max-Age=0; path=/;" },
+    });
   } catch (error) {
     console.error(error);
     return handleErrors(error);
