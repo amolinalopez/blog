@@ -62,14 +62,6 @@ const LoginPage: React.FC = () => {
 
   return (
     <AuthLayout>
-      <h1 className={amarante.className} id={styles.welcomeLoginPhone}>
-        Welcome <br />
-        back to
-      </h1>
-      <h1 className={amarante.className} id={styles.welcomeLogin}>
-        Welcome back to
-      </h1>
-
       <div className={styles.Logo}>
         <Image
           src={bo_logo}
@@ -79,6 +71,12 @@ const LoginPage: React.FC = () => {
           priority
         />
       </div>
+      <h1 className={amarante.className} id={styles.welcomeLoginPhone}>
+        Welcome back
+      </h1>
+      <h1 className={amarante.className} id={styles.welcomeLogin}>
+        Welcome back
+      </h1>
       <div className={styles.formContainer}>
         <form
           onSubmit={(e) => {

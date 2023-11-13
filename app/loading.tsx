@@ -15,7 +15,7 @@ export default function Loading() {
             priority
           />
         </div>
-        <h1 className="loading-text">Chargement...</h1>
+        <h2 className="loading-text">Loading...</h2>
       </div>
     </div>
   );

@@ -208,13 +208,13 @@ export default function Feed() {
                 </div>
               </section>
               <section id={styles.sectionUnderPost}>
-                <label id={styles.labelHidden} htmlFor="comment">
+                <label id={styles.labelHidden} htmlFor={"comment" + post.id}>
                   Comment
                 </label>
                 <input
                   type="text"
                   name="comment"
-                  id="comment"
+                  id={"comment" + post.id}
                   className={styles.input + " " + jost.className}
                   placeholder="Ajouter un commentaire"
                 />

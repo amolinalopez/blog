@@ -20,15 +20,15 @@ const SuccessSignUpPage: React.FC = () => {
           height={160}
           alt="icon logo of burned ones"
           priority
+          id={styles.logoSuccess}
         />
       </div>
       <h1 className={amarante.className} id={styles.successCongrats}>
-        Bravo {user?.username} ! <br /> Votre inscription a bien été prise en
-        compte
+        Congratulations, {user?.username}! <br /> Your registration is complete
       </h1>
       <p id={styles.welcomeMessage}>
-        Nous sommes ravies de vous compter parmi nos utilisateurs. <br /> Nous
-        espérons que votre expérience ici vous sera agréable et bénéfique.
+        We are delighted to have you join our community. <br /> We hope that
+        your experience here will be enjoyable and beneficial.
       </p>
       <div className={styles.successBtnContainer}>
         <Link href="/grimoire">
