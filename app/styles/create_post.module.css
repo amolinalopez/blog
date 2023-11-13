@@ -81,11 +81,14 @@
 .mediaButtons {
   display: flex;
   gap: 10px;
+  margin-bottom: 2rem;
+  /* border: solid red 1px; */
+  justify-content: space-evenly;
 }
 
 .mediaButton {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border: none;
   border-radius: 50%;
   background-color: #d5d5d5;
@@ -95,9 +98,13 @@
   cursor: pointer;
 }
 
+.publishBtnWrapper {
+  margin-inline: 2rem;
+}
+
 .textAreaWrapper {
   position: relative;
-  border-radius: 20px;
+  border-radius: 0rem 30px 30px 30px;
   background-color: var(--fond-light);
   padding: 1rem 1rem 40px 1rem;
   margin-inline: 2rem;

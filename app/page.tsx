@@ -3,31 +3,13 @@ import styles from "./page.module.css";
 import Image from "next/image";
 import bo_logo from "./../public/Logo_BO.svg";
 import Button from "@/components/btn";
-import corner_orange from "@/public/corner_orange.svg";
-import corner_orange_clair from "@/public/corner_orange_clair.svg";
 import adHomePic from "@/public/adHomePic.svg";
 import plante from "@/public/plante.svg";
 import { caveat } from "@/utils/fonts";
 
 export default function Home() {
   return (
-    <main>
-      <Image
-        src={corner_orange}
-        width={250}
-        height={220}
-        alt="corner orange"
-        priority
-        className={styles.topLeft}
-      />
-      <Image
-        src={corner_orange_clair}
-        width={250}
-        height={220}
-        alt="corner orange clair"
-        priority
-        className={styles.bottomRight}
-      />
+    <>
       <Image
         src={plante}
         width={196}
@@ -45,7 +27,7 @@ export default function Home() {
         className={styles.bottomLeft}
       />
 
-      <div className={styles.homePage}>
+      <main className={styles.homePage}>
         <section className={styles.imageAd}>
           <Image
             src={adHomePic}
@@ -72,10 +54,10 @@ export default function Home() {
             community is a sanctuary for minorities, women, and LGBTQIA+
             individuals—voices seeking to rewrite their narratives in flames of
             empowerment.
-            <br /> <br /> Connect, share, and fuel the collective wisdom that rises
-            from our shared histories. <br /> As our circle tightens, we&apos;re
-            transitioning to an invite-only haven, crafting a secure and sacred
-            space for every kindred spirit.
+            <br /> <br /> Connect, share, and fuel the collective wisdom that
+            rises from our shared histories. <br /> As our circle tightens,
+            we&apos;re transitioning to an invite-only haven, crafting a secure
+            and sacred space for every kindred spirit.
             <br /> <br />
             Embrace Burned Ones, and let&apos;s set the world ablaze with the
             stories they once tried to extinguish.
@@ -87,7 +69,7 @@ export default function Home() {
             </Link>
           </div>
         </section>
-      </div>
-    </main>
+      </main>
+    </>
   );
 }

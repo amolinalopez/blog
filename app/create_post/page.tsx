@@ -6,6 +6,8 @@ import { amarante, tulpenOne } from "@/utils/fonts";
 import { useUser } from "@/contexts/UserContext";
 import Button from "@/components/btn";
 import NavbarBottom from "@/components/navbarBottom";
+import Link from "next/link";
+import arrowLeftIcon from "@/public/arrow_left.svg";
 export default function CreatePost() {
   const { user } = useUser();
 
@@ -16,7 +18,9 @@ export default function CreatePost() {
       <div className={styles.createPostContainer}>
         <div className={styles.pageHeader}>
           <button className={styles.goBackButton}>
-            <Image src="/arrow_left.svg" alt="Go Back" width={24} height={24} />
+            <Link href="/grimoire">
+              <Image src={arrowLeftIcon} alt="Go Back" width={24} height={24} />
+            </Link>
           </button>
           <h1 id={styles.pageTitle} className={amarante.className}>
             Créer un post
@@ -60,7 +64,9 @@ export default function CreatePost() {
             <button className={styles.mediaButton}>📹</button>{" "}
             {/* Video button */}
           </div>
-          <Button text="Publish" />
+          <div className={styles.publishBtnWrapper}>
+            <Button text="Publish" />
+          </div>
         </footer>
       </div>
     </>

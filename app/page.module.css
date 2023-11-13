@@ -31,6 +31,12 @@
   margin: 1rem 0;
   padding: 0.5rem;
 }
+.copyright {
+  font-size: 12px;
+  /* margin: 0.5rem 0; */
+  padding: 0.5rem;
+  text-align: center;
+}
 
 /* fixed svgs */
 .topLeft,
@@ -41,7 +47,7 @@
   z-index: -1;
 }
 
-.topLeft {
+/* .topLeft {
   top: 0;
   left: 0;
 }
@@ -49,7 +55,7 @@
 .bottomRight {
   bottom: 0;
   right: 0;
-}
+} */
 
 .topRight {
   top: 0;
