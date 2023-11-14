@@ -18,6 +18,7 @@
   display: flex;
   align-items: center;
   padding: 1rem;
+  z-index: 1;
 }
 
 .profilePicture {
@@ -137,10 +138,36 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  z-index: 0;
 }
 
 #desktopHeader {
   display: none;
+}
+
+.popUpButton {
+  z-index: 2;
+  color: white;
+  border: var(--fond-light) 1px solid;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-inline: 0.2rem;
+  padding-bottom: 0.5rem;
+  margin: 0.5rem 0.5rem 0 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.postHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* Tablet */

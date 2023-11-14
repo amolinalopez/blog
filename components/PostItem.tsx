@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "@/app/styles/feed.module.css";
@@ -10,6 +11,7 @@ import icon_share from "@/public/icon_share.svg";
 import icon_favorite from "@/public/icon_favorite.svg";
 import icon_comment from "@/public/icon_comment.svg";
 import { tulpenOne, jost } from "@/utils/fonts";
+import PostOptionsPopup from "./PostPopUp";
 
 export interface PostItemProps {
   post: Post;
@@ -19,15 +21,22 @@ export interface PostItemProps {
 }
 
 const PostItem: React.FC<PostItemProps> = ({ post, user, posts, setPosts }) => {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
   const handleLikeClick = (postId: number) => {
     handleLike(postId, posts, setPosts, user);
   };
+
+  const togglePopup = () => {
+    setIsPopupOpen(!isPopupOpen);
+    console.log("togglePopup");
+  };
+
   return (
     <div
       key={post.id}
       className={post.type === "TEXT" ? styles.textPost : styles.imagePost}
     >
-      {/* Render the post content, user information, and interactions here */}
       {post.type === "TEXT" ? (
         <section
           className={`${styles.postGradient} ${
@@ -49,26 +58,36 @@ const PostItem: React.FC<PostItemProps> = ({ post, user, posts, setPosts }) => {
           <div>{/* <p id={styles.mediaText}>{post.content}</p> */}</div>
         </section>
       )}
-
-      <div className={styles.userWrapper}>
-        <Link
-          href={`/profil/${post.user.username}`}
-          className={styles.userLink}
-        >
-          <Image
-            src={post.user.profilePicture || Logo_BO_Icon}
-            alt="user profile picture"
-            width={44}
-            height={44}
-            className={styles.profilePicture}
-          />
-        </Link>
-        <p id={styles.username} className={tulpenOne.className}>
-          @{post.user.username}
+      {isPopupOpen && (
+        <PostOptionsPopup
+          isOwner={post.user.id === user?.id}
+          onClose={togglePopup}
+          postId={post.id}
+        />
+      )}
+      <div className={styles.postHeader}>
+        <div className={styles.userWrapper}>
+          <Link
+            href={`/profil/${post.user.username}`}
+            className={styles.userLink}
+          >
+            <Image
+              src={post.user.profilePicture || Logo_BO_Icon}
+              alt="user profile picture"
+              width={44}
+              height={44}
+              className={styles.profilePicture}
+            />
+          </Link>
+          <p id={styles.username} className={tulpenOne.className}>
+            @{post.user.username}
+          </p>
+          {/*  <p> on {formatDateAndTime(post.createdAt)}</p> */}
+        </div>
+        <p onClick={togglePopup} className={styles.popUpButton}>
+          ...
         </p>
-        {/*  <p> on {formatDateAndTime(post.createdAt)}</p> */}
       </div>
-
       <section id={styles.sectionUnderPost}>
         <div onClick={() => handleLikeClick(post.id)}>
           <Image
