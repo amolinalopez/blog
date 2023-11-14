@@ -8,7 +8,7 @@ import { Post } from "@/types/userTypes";
 import PostItem from "@/components/PostItem";
 
 export default function Feed() {
-  const { user } = useUser(); //only taking the user from the context
+  const { user } = useUser();
   const [posts, setPosts] = useState<Post[]>([]);
   const updatePostInFeed = (updatedPost: Post) => {
     setPosts((prevPosts) =>
@@ -59,8 +59,7 @@ export default function Feed() {
             key={post.id}
             post={post}
             user={user}
-            // posts={posts}
-            updatePost={updatePostInFeed} // Pass the function here
+            updatePost={updatePostInFeed}
             setPosts={setPosts}
           />
         ))}

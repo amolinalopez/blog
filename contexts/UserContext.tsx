@@ -16,7 +16,6 @@ interface UserContextProps {
   setStats: React.Dispatch<React.SetStateAction<UserStats | null>>;
   updateStats: (newStats: UserStats) => void;
   fetchUserData: () => void;
-  // handlePostLike: (postId: number, likedByUser: boolean) => void;
 }
 
 interface UserProviderProps {
@@ -34,48 +33,6 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     setStats(newStats);
   };
 
-  // const fetchUserData = async () => {
-  //   try {
-  //     const response = await fetch("/api/users/me");
-  //     if (response.ok) {
-  //       const userData = await response.json();
-  //       setUser(userData.user);
-  //       console.log("CONTEXT: User data fetched:", userData);
-  //       setStats(userData.stats);
-  //       // setPosts(userData.user.posts || []);
-  //       console.log("CONTEXT: User data fetched:", userData);
-  //     }
-  //   } catch (error) {
-  //     console.error("Failed to fetch user:", error);
-  //   }
-  // };
-
-  // In UserContext
-
-  // const handlePostLike = (postId: number, likedByUser: boolean) => {
-  //   setPosts((prevPosts) =>
-  //     prevPosts.map((post) =>
-  //       post.id === postId
-  //         ? {
-  //             ...post,
-  //             likes: likedByUser
-  //               ? post.likes?.filter((like) => like.userId !== user?.id) ?? [] // Remove the user's like
-  //               : [
-  //                   ...(post.likes ?? []),
-  //                   {
-  //                     id: Date.now(),
-  //                     userId: user?.id ?? 0,
-  //                     postId,
-  //                     createdAt: new Date(),
-  //                     deletedAt: null,
-  //                   },
-  //                 ], // Add a new like
-  //           }
-  //         : post
-  //     )
-  //   );
-  // };
-
   const fetchUserData = async () => {
     try {
       const response = await fetch("/api/users/me");
@@ -84,7 +41,6 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         setUser(userData.user);
         setStats(userData.stats);
         setPosts(userData.user.posts || []);
-        // console.log("CONTEXT: User data fetched:", userData);
       }
     } catch (error) {
       console.error("Failed to fetch user:", error);
