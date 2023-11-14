@@ -1,8 +1,7 @@
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "@/app/styles/feed.module.css";
-import { handleLike } from "@/app/grimoire/utils/likes";
+import { handleLike } from "@/utils/likes";
 import { Post, User } from "@/types/userTypes";
 import Logo_BO_Icon from "@/public/Logo_BO_Icon.svg";
 import icon_like from "@/public/icon_like.svg";
