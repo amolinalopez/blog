@@ -169,6 +169,15 @@
   justify-content: space-between;
   align-items: center;
 }
+.likeIconHeart {
+  margin-right: 4px;
+}
+
+.likeIconHeart:hover {
+  width: 22px;
+  height: 21px;
+  cursor: pointer;
+}
 
 /* Tablet */
 @media (min-width: 700px) and (max-width: 1024px) {

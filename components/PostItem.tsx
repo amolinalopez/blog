@@ -23,7 +23,7 @@ const PostItem: React.FC<PostItemProps> = ({
   post,
   user,
   updatePost,
-  setPosts
+  setPosts,
 }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const isOwner = user && post.user ? post.user.id === user.id : false;
@@ -31,6 +31,67 @@ const PostItem: React.FC<PostItemProps> = ({
 
   const togglePopup = () => {
     setIsPopupOpen(!isPopupOpen);
+  };
+
+  const handleAddLike = async (postId: number) => {
+    if (!user?.id) return;
+
+    try {
+      const response = await fetch("/api/likes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId: user.id, postId }),
+      });
+
+      if (response.ok) {
+        const newLike = await response.json();
+        setPosts((prevPosts) =>
+          prevPosts.map((post) =>
+            post.id === postId
+              ? { ...post, likes: [...(post.likes ?? []), newLike] }
+              : post
+          )
+        );
+      }
+    } catch (error) {
+      console.error("Error adding like:", error);
+    }
+  };
+
+  const handleRemoveLike = async (likeId: number, postId: number) => {
+    try {
+      const response = await fetch(`/api/likes/${likeId}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        setPosts((prevPosts) =>
+          prevPosts.map((post) =>
+            post.id === postId
+              ? {
+                  ...post,
+                  likes: post.likes?.filter((like) => like.id !== likeId) ?? [],
+                }
+              : post
+          )
+        );
+      }
+    } catch (error) {
+      console.error("Error removing like:", error);
+    }
+  };
+
+  const handleLikeClick = () => {
+    const alreadyLiked = post.likes?.some((like) => like.userId === user?.id);
+    const likeId = post.likes?.find((like) => like.userId === user?.id)?.id;
+
+    if (alreadyLiked && likeId) {
+      handleRemoveLike(likeId, post.id);
+    } else {
+      handleAddLike(post.id);
+    }
   };
 
   return (
@@ -91,9 +152,7 @@ const PostItem: React.FC<PostItemProps> = ({
         </p>
       </div>
       <section id={styles.sectionUnderPost}>
-        <div
-        // onClick={() => handleLikeClick(post.id)}
-        >
+        <div onClick={handleLikeClick}>
           <Image
             src={
               post.likes?.some((like) => like.userId === user?.id)
@@ -101,15 +160,17 @@ const PostItem: React.FC<PostItemProps> = ({
                 : icon_like
             }
             alt="Like icon"
-            width={23}
-            height={21}
+            width={20}
+            height={17}
             priority
+            className={styles.likeIconHeart}
           />
           <span className="textOrange">
             {post.likes && post.likes.length > 0
-              ? ` ${post.likes.length}`
-              : null}{" "}
-            likes
+              ? ` ${post.likes.length} ${
+                  post.likes.length === 1 ? "like" : "likes"
+                }`
+              : "like"}
           </span>
         </div>
         <div>

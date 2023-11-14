@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { handleErrors } from "../utils/errorHandler";
 import prisma from "@/utils/prisma";
 
-// POST /api/likes/create
+// POST /api/likes
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
     const { userId, postId } = await request.json();
