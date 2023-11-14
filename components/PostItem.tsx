@@ -99,6 +99,7 @@ const PostItem: React.FC<PostItemProps> = ({ post, user, posts, setPosts }) => {
             alt="Like icon"
             width={23}
             height={21}
+            priority
           />
           <span className="textOrange">
             {post.likes && post.likes.length > 0

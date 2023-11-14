@@ -16,7 +16,7 @@ interface UserContextProps {
   setStats: React.Dispatch<React.SetStateAction<UserStats | null>>;
   // addPost: (newPost: Post) => void;
   // deletePost: (postId: number) => void;
-  // updateStats: (newStats: UserStats) => void;
+  updateStats: (newStats: UserStats) => void;
   fetchUserData: () => void;
 }
 
@@ -35,9 +35,9 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   //   setPosts([...posts, newPost]);
   // };
 
-  // const updateStats = (newStats: UserStats) => {
-  //   setStats(newStats);
-  // };
+  const updateStats = (newStats: UserStats) => {
+    setStats(newStats);
+  };
 
   // const deletePost = (postId: number) => {
   //   setPosts(posts.filter((post) => post.id !== postId));
@@ -86,12 +86,11 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         setStats,
         // addPost,
         // deletePost,
-        // updateStats,
+        updateStats,
         posts,
         fetchUserData,
       }}
     >
-      {" "}
       {children}
     </UserContext.Provider>
   );
