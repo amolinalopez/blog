@@ -1,4 +1,5 @@
-import { useUser } from "@/contexts/UserContext";
+"use client";
+import { useUser } from "@/contexts/UserContext"; // Update the path as necessary
 import { getCookie, removeCookie } from "@/utils/cookies";
 import { useRouter } from "next/navigation";
 

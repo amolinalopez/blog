@@ -5,8 +5,8 @@ import styles from "@/app/styles/feed.module.css";
 import { amarante } from "@/utils/fonts";
 import Loading from "@/app/loading";
 import { Post } from "@/types/userTypes";
-import { handleLike } from "./utils/likes";
 import PostItem from "@/components/PostItem";
+import { handleLike } from "@/utils/likes";
 
 export default function Feed() {
   const { user } = useUser(); //only taking the user from the context
