@@ -1,8 +1,8 @@
 "use client";
 import { jost } from "@/utils/fonts";
-import LeftSidebar from "@/components/LeftSidebar";
-import NavbarTop from "@/components/NavbarTop";
-import NavbarBottom from "@/components/NavbarBottom";
+import LeftSidebar from "@/components/leftSidebar";
+import NavbarTop from "@/components/navbarTop";
+import NavbarBottom from "@/components/navbarBottom";
 
 export default function GrimoireLayout({
   children,

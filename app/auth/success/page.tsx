@@ -4,7 +4,7 @@ import bo_logo_icon from "../../../public/Logo_BO_Icon.svg";
 import styles from "../../styles/signup.module.css";
 import AuthLayout from "../layout";
 import { amarante } from "../../../utils/fonts";
-import Button from "../../../components/Btn";
+import Button from "../../../components/btn";
 import Link from "next/link";
 import { useUser } from "@/contexts/UserContext";
 

@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "./page.module.css";
 import Image from "next/image";
 import bo_logo from "./../public/Logo_BO.svg";
-import Button from "@/components/Btn";
+import Button from "@/components/btn";
 import adHomePic from "@/public/adHomePic.svg";
 import plante from "@/public/plante.svg";
 import { caveat } from "@/utils/fonts";
