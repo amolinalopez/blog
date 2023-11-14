@@ -12,7 +12,10 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function CreatePost() {
-  const { user } = useUser();
+  const { user, fetchUserData  } = useUser();
+  // const { user, addPost, 
+  //   // fetchUserData 
+  // } = useUser();
   const [postContent, setPostContent] = useState("");
   // const [errorMessage, setErrorMessage] = useState("");
   const [charCount, setCharCount] = useState(0);
@@ -43,7 +46,11 @@ export default function CreatePost() {
 
       if (response.ok) {
         const newPost = await response.json();
+        // addPost(newPost);
         console.log("Post created successfully:", newPost);
+        fetchUserData();
+
+
         router.push("/grimoire");
       } else {
         const errorData = await response.json();

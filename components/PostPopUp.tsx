@@ -5,18 +5,26 @@ import icon_delete from "@/public/icon_delete.svg";
 import icon_edit from "@/public/icon_edit.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { Post } from "@/types/userTypes";
+import { useUser } from "@/contexts/UserContext";
 
 interface PostOptionsPopupProps {
   isOwner: boolean;
   onClose: () => void;
   postId: number;
+  setPosts: React.Dispatch<React.SetStateAction<Post[]>>;
 }
 
 export const PostOptionsPopup: React.FC<PostOptionsPopupProps> = ({
   isOwner,
   onClose,
   postId,
+  setPosts,
 }) => {
+  const { 
+    // deletePost, 
+    fetchUserData 
+} = useUser();
   const router = useRouter();
 
   const handleDeletePost = async (postId: number) => {
@@ -30,10 +38,11 @@ export const PostOptionsPopup: React.FC<PostOptionsPopupProps> = ({
     });
 
     if (response.ok) {
-      //   const deletedPost = await response.json();
       console.log("Post deleted successfully");
-
-      router.push("/profil/myProfil");
+      setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
+    //   deletePost(postId);
+      fetchUserData();
+      router.push("/grimoire");
       // TO DO : create better UI for this
     } else {
       console.error("Failed to delete the post:", response.statusText);

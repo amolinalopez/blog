@@ -29,7 +29,6 @@ const PostItem: React.FC<PostItemProps> = ({ post, user, posts, setPosts }) => {
 
   const togglePopup = () => {
     setIsPopupOpen(!isPopupOpen);
-    console.log("togglePopup");
   };
 
   return (
@@ -63,6 +62,7 @@ const PostItem: React.FC<PostItemProps> = ({ post, user, posts, setPosts }) => {
           isOwner={post.user.id === user?.id}
           onClose={togglePopup}
           postId={post.id}
+          setPosts={setPosts}
         />
       )}
       <div className={styles.postHeader}>
