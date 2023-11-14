@@ -12,20 +12,40 @@ import icon_favorite from "@/public/icon_favorite.svg";
 import icon_comment from "@/public/icon_comment.svg";
 import { tulpenOne, jost } from "@/utils/fonts";
 import PostOptionsPopup from "./PostPopUp";
+// import { useUser } from "@/contexts/UserContext";
 
 export interface PostItemProps {
   post: Post;
   user: User | null;
-  posts: Post[];
+  updatePost: (updatedPost: Post) => void; // Use updatePost from context
+  // posts: Post[];
   setPosts: React.Dispatch<React.SetStateAction<Post[]>>;
 }
 
-const PostItem: React.FC<PostItemProps> = ({ post, user, posts, setPosts }) => {
+const PostItem: React.FC<PostItemProps> = ({
+  post,
+  user,
+  updatePost,
+  // posts, 
+  setPosts
+}) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const isOwner = user && post.user ? post.user.id === user.id : false;
+  const userLink = post.user ? `/profil/${post.user.username}` : "#";
 
-  const handleLikeClick = (postId: number) => {
-    handleLike(postId, posts, setPosts, user);
-  };
+  // const { handlePostLike } = useUser();
+  // const { user } = useUser();
+  // const handleLikeClick = (postId: number) => {
+  //   handleLike(postId,
+  //      posts, setPosts,
+  //      user);
+  // };
+
+  // const handleLikeClick = (postId: number) => {
+  //   const likedByUser =
+  //     post.likes?.some((like) => like.userId === user?.id) ?? false;
+  //   handlePostLike(postId, !likedByUser); // Use handlePostLike from context
+  // };
 
   const togglePopup = () => {
     setIsPopupOpen(!isPopupOpen);
@@ -59,20 +79,20 @@ const PostItem: React.FC<PostItemProps> = ({ post, user, posts, setPosts }) => {
       )}
       {isPopupOpen && (
         <PostOptionsPopup
-          isOwner={post.user.id === user?.id}
+          isOwner={isOwner}
           onClose={togglePopup}
           postId={post.id}
           setPosts={setPosts}
+          postUser={post.user}
+          updatePost={updatePost} // Pass updatePost to PostOptionsPopup
+          currentContent={post.content}
         />
       )}
       <div className={styles.postHeader}>
         <div className={styles.userWrapper}>
-          <Link
-            href={`/profil/${post.user.username}`}
-            className={styles.userLink}
-          >
+          <Link href={userLink} className={styles.userLink}>
             <Image
-              src={post.user.profilePicture || Logo_BO_Icon}
+              src={post.user?.profilePicture || Logo_BO_Icon}
               alt="user profile picture"
               width={44}
               height={44}
@@ -80,7 +100,7 @@ const PostItem: React.FC<PostItemProps> = ({ post, user, posts, setPosts }) => {
             />
           </Link>
           <p id={styles.username} className={tulpenOne.className}>
-            @{post.user.username}
+            @{post.user?.username}
           </p>
           {/*  <p> on {formatDateAndTime(post.createdAt)}</p> */}
         </div>
@@ -89,7 +109,9 @@ const PostItem: React.FC<PostItemProps> = ({ post, user, posts, setPosts }) => {
         </p>
       </div>
       <section id={styles.sectionUnderPost}>
-        <div onClick={() => handleLikeClick(post.id)}>
+        <div
+        // onClick={() => handleLikeClick(post.id)}
+        >
           <Image
             src={
               post.likes?.some((like) => like.userId === user?.id)

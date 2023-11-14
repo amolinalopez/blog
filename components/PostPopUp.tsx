@@ -5,30 +5,68 @@ import icon_delete from "@/public/icon_delete.svg";
 import icon_edit from "@/public/icon_edit.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Post } from "@/types/userTypes";
+import { Post, User } from "@/types/userTypes";
 import { useUser } from "@/contexts/UserContext";
+import { useState } from "react";
+import { handleErrors } from "@/app/api/utils/errorHandler";
 
 interface PostOptionsPopupProps {
   isOwner: boolean;
   onClose: () => void;
   postId: number;
-  setPosts: React.Dispatch<React.SetStateAction<Post[]>>;
+  updatePost: (updatedPost: Post) => void;
+    setPosts: React.Dispatch<React.SetStateAction<Post[]>>;
+  currentContent: string;
+  postUser: User;
 }
 
 export const PostOptionsPopup: React.FC<PostOptionsPopupProps> = ({
   isOwner,
   onClose,
   postId,
-  setPosts,
+    setPosts,
+  updatePost,
+  currentContent,
+  postUser,
 }) => {
-  const { 
-    // deletePost, 
-    fetchUserData 
-} = useUser();
+  const { fetchUserData } = useUser();
   const router = useRouter();
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleUpdatePost = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const updatedContentElement = form.elements[0] as HTMLInputElement;
+    const updatedContent = updatedContentElement.value;
+    const response = await fetch(`/api/posts/${postId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ content: updatedContent }),
+      credentials: "include",
+    });
+
+    if (response.ok) {
+      let updatedPost = await response.json();
+      updatedPost = { ...updatedPost, user: postUser };
+      updatePost(updatedPost);
+      setIsEditing(false);
+      onClose();
+      fetchUserData();
+      router.push("/grimoire");
+    } else {
+      handleErrors(response);
+    }
+  };
 
   const handleDeletePost = async (postId: number) => {
-    console.log("Deleting post with ID:", postId);
+    // console.log("Deleting post with ID:", postId);
     const response = await fetch(`/api/posts/${postId}`, {
       method: "DELETE",
       headers: {
@@ -39,8 +77,13 @@ export const PostOptionsPopup: React.FC<PostOptionsPopupProps> = ({
 
     if (response.ok) {
       console.log("Post deleted successfully");
+      //   setPosts((prevPosts) =>
+      //     prevPosts.map((post) =>
+      //       post.id === updatedPost.id ? updatedPost : post
+      //     )
+      //   );
       setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
-    //   deletePost(postId);
+
       fetchUserData();
       router.push("/grimoire");
       // TO DO : create better UI for this
@@ -56,7 +99,7 @@ export const PostOptionsPopup: React.FC<PostOptionsPopupProps> = ({
       <ul className={styles.optionsList}>
         {isOwner ? (
           <>
-            <li className={styles.optionItem}>
+            <li className={styles.optionItem} onClick={handleEditClick}>
               <Image
                 src={icon_edit}
                 alt="Update my post"
@@ -67,6 +110,13 @@ export const PostOptionsPopup: React.FC<PostOptionsPopupProps> = ({
               />
               Update
             </li>
+            {isEditing && (
+              <form onSubmit={handleUpdatePost}>
+                <input type="text" defaultValue={currentContent} />
+                <button type="submit">Save Changes</button>
+                <button onClick={() => setIsEditing(false)}>Cancel</button>
+              </form>
+            )}
             <li
               className={styles.optionItem}
               onClick={() => handleDeletePost(postId)}

@@ -13,9 +13,6 @@ import { useRouter } from "next/navigation";
 
 export default function CreatePost() {
   const { user, fetchUserData  } = useUser();
-  // const { user, addPost, 
-  //   // fetchUserData 
-  // } = useUser();
   const [postContent, setPostContent] = useState("");
   // const [errorMessage, setErrorMessage] = useState("");
   const [charCount, setCharCount] = useState(0);
@@ -24,11 +21,6 @@ export default function CreatePost() {
 
   const handleSubmit = async () => {
     try {
-      // shouldnt neet it cuz i have maxLength on the textarea
-      // if (postContent.length > 175) {
-      //   setErrorMessage("Messages cannot be longer than 175 characters");
-      //   return;
-      // }
       const payload = {
         content: postContent,
         userId: user?.id,
@@ -46,11 +38,8 @@ export default function CreatePost() {
 
       if (response.ok) {
         const newPost = await response.json();
-        // addPost(newPost);
         console.log("Post created successfully:", newPost);
         fetchUserData();
-
-
         router.push("/grimoire");
       } else {
         const errorData = await response.json();

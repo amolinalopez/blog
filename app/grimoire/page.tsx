@@ -10,7 +10,11 @@ import PostItem from "@/components/PostItem";
 export default function Feed() {
   const { user } = useUser(); //only taking the user from the context
   const [posts, setPosts] = useState<Post[]>([]);
-
+  const updatePostInFeed = (updatedPost: Post) => {
+    setPosts((prevPosts) =>
+      prevPosts.map((post) => (post.id === updatedPost.id ? updatedPost : post))
+    );
+  };
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -55,7 +59,8 @@ export default function Feed() {
             key={post.id}
             post={post}
             user={user}
-            posts={posts}
+            // posts={posts}
+            updatePost={updatePostInFeed} // Pass the function here
             setPosts={setPosts}
           />
         ))}

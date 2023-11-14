@@ -14,10 +14,9 @@ interface UserContextProps {
   posts: Post[];
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   setStats: React.Dispatch<React.SetStateAction<UserStats | null>>;
-  // addPost: (newPost: Post) => void;
-  // deletePost: (postId: number) => void;
   updateStats: (newStats: UserStats) => void;
   fetchUserData: () => void;
+  // handlePostLike: (postId: number, likedByUser: boolean) => void;
 }
 
 interface UserProviderProps {
@@ -31,17 +30,9 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const [stats, setStats] = useState<UserStats | null>(null);
   const [posts, setPosts] = useState<Post[]>([]);
 
-  // const addPost = (newPost: Post) => {
-  //   setPosts([...posts, newPost]);
-  // };
-
   const updateStats = (newStats: UserStats) => {
     setStats(newStats);
   };
-
-  // const deletePost = (postId: number) => {
-  //   setPosts(posts.filter((post) => post.id !== postId));
-  // };
 
   // const fetchUserData = async () => {
   //   try {
@@ -59,6 +50,32 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   //   }
   // };
 
+  // In UserContext
+
+  // const handlePostLike = (postId: number, likedByUser: boolean) => {
+  //   setPosts((prevPosts) =>
+  //     prevPosts.map((post) =>
+  //       post.id === postId
+  //         ? {
+  //             ...post,
+  //             likes: likedByUser
+  //               ? post.likes?.filter((like) => like.userId !== user?.id) ?? [] // Remove the user's like
+  //               : [
+  //                   ...(post.likes ?? []),
+  //                   {
+  //                     id: Date.now(),
+  //                     userId: user?.id ?? 0,
+  //                     postId,
+  //                     createdAt: new Date(),
+  //                     deletedAt: null,
+  //                   },
+  //                 ], // Add a new like
+  //           }
+  //         : post
+  //     )
+  //   );
+  // };
+
   const fetchUserData = async () => {
     try {
       const response = await fetch("/api/users/me");
@@ -66,7 +83,8 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         const userData = await response.json();
         setUser(userData.user);
         setStats(userData.stats);
-        console.log("CONTEXT: User data fetched:", userData);
+        setPosts(userData.user.posts || []);
+        // console.log("CONTEXT: User data fetched:", userData);
       }
     } catch (error) {
       console.error("Failed to fetch user:", error);
@@ -84,8 +102,6 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         stats,
         setUser,
         setStats,
-        // addPost,
-        // deletePost,
         updateStats,
         posts,
         fetchUserData,
