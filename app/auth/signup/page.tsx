@@ -5,7 +5,7 @@ import bo_logo_icon from "../../../public/Logo_BO_Icon.svg";
 import Link from "next/link";
 import { amarante, jost } from "../../../utils/fonts";
 import styles from "../../styles/signup.module.css";
-import Button from "../../../components/btn";
+import Button from "../../../components/Btn";
 import eye_open from "../../../public/eye_open.svg";
 import eye_close from "../../../public/eye_close.svg";
 import { useRouter } from "next/navigation";

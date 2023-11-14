@@ -4,7 +4,7 @@ import {
   ContentGrid,
   ContentTabs,
   ProfileHeader,
-} from "@/components/userComponents/profileHeader";
+} from "@/components/userPageComponents/profileHeader";
 
 export default function MyProfile() {
   return (

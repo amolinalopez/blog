@@ -9,7 +9,7 @@ import styles from "../../styles/signup.module.css";
 import { amarante, jost } from "../../../utils/fonts";
 import eye_open from "../../../public/eye_open.svg";
 import eye_close from "../../../public/eye_close.svg";
-import Button from "../../../components/btn";
+import Button from "../../../components/Btn";
 import AuthLayout from "../layout";
 
 const LoginPage: React.FC = () => {
