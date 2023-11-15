@@ -12,7 +12,7 @@ import iconSaved from "../public/icon_saved.svg";
 import iconCommunity from "../public/icon_community.svg";
 import iconDelete from "../public/icon_delete_account.svg";
 import Link from "next/link";
-import ConfirmDeleteModal from "./userComponents/deleteModal";
+import ConfirmDeleteModal from "./userPageComponents/deleteModal";
 
 export default function NavbarTop() {
   const [isMenuOpen, setMenuOpen] = useState(false);

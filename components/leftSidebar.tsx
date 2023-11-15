@@ -13,7 +13,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useUser } from "@/contexts/UserContext";
 import LogoutBtn from "./LogoutBtn";
-import ConfirmDeleteModal from "./userComponents/deleteModal";
+import ConfirmDeleteModal from "./userPageComponents/deleteModal";
 import { useState } from "react";
 
 export default function LeftSidebar() {

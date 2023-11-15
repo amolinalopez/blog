@@ -3,7 +3,7 @@ import { handleErrors } from "../utils/errorHandler";
 import prisma from "@/utils/prisma";
 import { getRandomGradient } from "../utils/randomGradient";
 
-// TO DO : Gradients ONLY for TEXT type
+// TO DO LATER: Gradients ONLY for TEXT type
 // POST /api/posts create a new post
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {

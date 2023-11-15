@@ -9,8 +9,8 @@ export default function Loading() {
           <Image
             src={logo_bo_icon}
             alt="Logo"
-            width={300}
-            height={300}
+            width={250}
+            height={250}
             className="logo-path"
             priority
           />

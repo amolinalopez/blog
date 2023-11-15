@@ -8,26 +8,74 @@ import Button from "@/components/btn";
 import NavbarBottom from "@/components/navbarBottom";
 import Link from "next/link";
 import arrowLeftIcon from "@/public/arrow_left.svg";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
 export default function CreatePost() {
-  const { user } = useUser();
+  const { user, fetchUserData  } = useUser();
+  const [postContent, setPostContent] = useState("");
+  // const [errorMessage, setErrorMessage] = useState("");
+  const [charCount, setCharCount] = useState(0);
+
+  const router = useRouter();
+
+  const handleSubmit = async () => {
+    try {
+      const payload = {
+        content: postContent,
+        userId: user?.id,
+        type: "TEXT",
+        // mediaUrl: "url_to_media_if_any", // Include this if your post has media
+      };
+
+      const response = await fetch("/api/posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        const newPost = await response.json();
+        console.log("Post created successfully:", newPost);
+        fetchUserData();
+        router.push("/grimoire");
+      } else {
+        const errorData = await response.json();
+        console.error("Failed to create post:", errorData);
+        // Handle error in UI
+      }
+    } catch (error) {
+      console.error("Error creating post:", error);
+      // Handle error in UI
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setPostContent(e.target.value);
+    setCharCount(e.target.value.length);
+  };
 
   return (
     <>
       <NavbarBottom />
-
       <div className={styles.createPostContainer}>
         <div className={styles.pageHeader}>
           <button className={styles.goBackButton}>
             <Link href="/grimoire">
-              <Image src={arrowLeftIcon} alt="Go Back" width={24} height={24} />
+              <Image
+                src={arrowLeftIcon}
+                alt="Go Back"
+                width={24}
+                height={24}
+                className={styles.arrow_left}
+              />
             </Link>
           </button>
           <h1 id={styles.pageTitle} className={amarante.className}>
-            Créer un post
+            Create a post
           </h1>
-          <button className={styles.closeButton}>
-            <Image src="/icon_cross.svg" alt="Close" width={24} height={24} />
-          </button>
         </div>
 
         <div className={styles.userWrapper}>
@@ -45,16 +93,28 @@ export default function CreatePost() {
 
         <div className={styles.textAreaWrapper}>
           <textarea
-            placeholder="Comment allez-vous ?"
-            maxLength={250}
+            placeholder="What do you want to share ?"
+            maxLength={175}
             className={styles.textArea}
+            value={postContent}
+            onChange={handleInputChange}
           ></textarea>
           <div className={styles.textAreaFooter}>
-            <span>0/120</span>
-            <Image src="/icon_info.svg" alt="Info" width={16} height={16} />
+            <span>{charCount}/175 </span>
+            <div className={styles.tooltip}>
+              <Image src="/icon_info.svg" alt="Info" width={16} height={16} />
+              <span className={styles.tooltiptext}>
+                Messages cannot be longer than 175 characters
+              </span>
+            </div>
           </div>
+          {/* {errorMessage && (
+            <p className={styles.errorMessage}>{errorMessage}</p>
+          )} */}
         </div>
+
         <br />
+
         <footer className={styles.footer}>
           <div className={styles.mediaButtons}>
             <button className={styles.mediaButton}>📄</button>{" "}
@@ -65,7 +125,7 @@ export default function CreatePost() {
             {/* Video button */}
           </div>
           <div className={styles.publishBtnWrapper}>
-            <Button text="Publish" />
+            <Button text="Publish" onClick={handleSubmit} />
           </div>
         </footer>
       </div>

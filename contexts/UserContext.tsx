@@ -3,16 +3,19 @@ import React, {
   createContext,
   useState,
   useContext,
-  useEffect,
   ReactNode,
+  useEffect,
 } from "react";
-import { User, UserStats } from "@/types/userTypes";
+import { Post, User, UserStats } from "@/types/userTypes";
 
 interface UserContextProps {
   user: User | null;
   stats: UserStats | null;
+  posts: Post[];
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   setStats: React.Dispatch<React.SetStateAction<UserStats | null>>;
+  updateStats: (newStats: UserStats) => void;
+  fetchUserData: () => void;
 }
 
 interface UserProviderProps {
@@ -24,27 +27,42 @@ const UserContext = createContext<UserContextProps | null>(null);
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [stats, setStats] = useState<UserStats | null>(null);
+  const [posts, setPosts] = useState<Post[]>([]);
+
+  const updateStats = (newStats: UserStats) => {
+    setStats(newStats);
+  };
+
+  const fetchUserData = async () => {
+    try {
+      const response = await fetch("/api/users/me");
+      if (response.ok) {
+        const userData = await response.json();
+        setUser(userData.user);
+        setStats(userData.stats);
+        setPosts(userData.user.posts || []);
+      }
+    } catch (error) {
+      console.error("Failed to fetch user:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await fetch("/api/users/me");
-        if (response.ok) {
-          const userData = await response.json();
-          setUser(userData.user);
-          setStats(userData.stats);
-          console.log("CONTEXT: User data fetched:", userData);
-        }
-      } catch (error) {
-        console.error("Failed to fetch user:", error);
-      }
-    };
-
     fetchUserData();
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, stats, setUser, setStats }}>
+    <UserContext.Provider
+      value={{
+        user,
+        stats,
+        setUser,
+        setStats,
+        updateStats,
+        posts,
+        fetchUserData,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );
