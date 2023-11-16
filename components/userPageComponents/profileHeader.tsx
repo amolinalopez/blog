@@ -89,6 +89,7 @@ export const ContentGrid = () => {
                   alt={post.content || "Uploaded content"}
                   width={265}
                   height={265}
+                  priority
                 />
               </section>
             )}

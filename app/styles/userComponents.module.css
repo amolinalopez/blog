@@ -259,7 +259,7 @@
   #username {
     background-color: var(--Fond_Light, #fff9f2);
     display: flex;
-    background-color: #fff9f2;
+    background-color: var(--fond-light);
     padding: 7px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);

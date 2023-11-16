@@ -26,8 +26,8 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  color: #fff9f2;
-  border: solid 1px #fff9f2;
+  color: var(--fond-light);
+  border: solid 1px var(--fond-light);
   border-radius: 1rem;
   padding: 0.5rem;
 }

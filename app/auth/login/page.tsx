@@ -117,6 +117,7 @@ const LoginPage: React.FC = () => {
                 width={20}
                 height={20}
                 id={styles.eyeIconInput}
+                priority
               />
             </span>
           </div>

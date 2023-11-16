@@ -33,6 +33,10 @@
   margin-bottom: 1rem;
 }
 
+.navigation li a {
+  color: var(--violet-sombre);
+}
+
 #iconSVG {
   margin-right: 1rem;
 }

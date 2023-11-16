@@ -85,6 +85,7 @@ export default function CreatePost() {
             width={44}
             height={44}
             className={styles.profilePicture}
+            priority
           />
           <p id={styles.username} className={tulpenOne.className}>
             @{user?.username}

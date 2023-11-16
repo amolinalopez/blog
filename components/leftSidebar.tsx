@@ -104,7 +104,7 @@ export default function LeftSidebar() {
                 Saved
               </Link>
             </li>
-            <li>
+            <li >
               <Link href="/comingSoon">
                 <Image
                   src={icon_settings}
@@ -122,9 +122,10 @@ export default function LeftSidebar() {
                 alt="Delete my account"
                 width={30}
                 height={30}
+                id={styles.iconSVG}
                 className={styles.menuIcon}
               />
-              <span onClick={handleOpenModal}> Delete my account</span>
+              <span onClick={handleOpenModal}>Delete my account</span>
             </li>
             <ConfirmDeleteModal
               isOpen={isModalOpen}
