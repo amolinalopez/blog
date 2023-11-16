@@ -28,7 +28,11 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     const user = await prisma.user.findUnique({
       where: { id: parseInt(userId) },
       include: {
-        posts: true,
+        posts: {
+          orderBy: {
+            createdAt: "desc",
+          },
+        },
         _count: {
           select: {
             posts: true,

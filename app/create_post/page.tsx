@@ -38,7 +38,7 @@ export default function CreatePost() {
 
       if (response.ok) {
         const newPost = await response.json();
-        console.log("Post created successfully:", newPost);
+        // console.log("Post created successfully:", newPost);
         fetchUserData();
         router.push("/grimoire");
       } else {
@@ -85,6 +85,7 @@ export default function CreatePost() {
             width={44}
             height={44}
             className={styles.profilePicture}
+            priority
           />
           <p id={styles.username} className={tulpenOne.className}>
             @{user?.username}
@@ -118,11 +119,8 @@ export default function CreatePost() {
         <footer className={styles.footer}>
           <div className={styles.mediaButtons}>
             <button className={styles.mediaButton}>📄</button>{" "}
-            {/* Document button */}
             <button className={styles.mediaButton}>📸</button>{" "}
-            {/* Image button */}
             <button className={styles.mediaButton}>📹</button>{" "}
-            {/* Video button */}
           </div>
           <div className={styles.publishBtnWrapper}>
             <Button text="Publish" onClick={handleSubmit} />

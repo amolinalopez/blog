@@ -45,7 +45,7 @@
   margin-right: 10px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #fff9f2;
+  border: 2px solid var(--fond-light);
   box-shadow: 2px 2px 4px 0px rgba(60, 15, 109, 0.3);
 }
 

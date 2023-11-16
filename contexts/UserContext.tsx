@@ -41,6 +41,14 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         setUser(userData.user);
         setStats(userData.stats);
         setPosts(userData.user.posts || []);
+      } else if (response.status === 401) {
+        //  when user not loggeed in
+        console.log("User is not logged in.");
+        setUser(null);
+        setStats(null);
+        setPosts([]);
+      } else {
+        console.error("An error occurred while fetching user data.");
       }
     } catch (error) {
       console.error("Failed to fetch user:", error);

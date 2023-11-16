@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   /* margin-bottom: 10px; */
-  background-color: #fff9f2;
+  background-color: var(--fond-light);
   height: 2.5rem;
   position: fixed;
   top: 0;
@@ -48,7 +48,7 @@
   right: -330px; /* starts en dehors ecrsn */
   width: 300px;
   height: 100vh;
-  background-color: #fff9f2;
+  background-color: var(--fond-light);
   transition: right 0.3s;
   border-radius: 3rem 0 0 3rem;
   padding-left: 30px;

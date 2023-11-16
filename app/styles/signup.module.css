@@ -73,12 +73,12 @@
   margin-bottom: 0.5rem;
   margin-top: 2rem;
   background-color: transparent;
-  color: #3c0f6d;
+  color: var(--violet-sombre);
   font-size: 1rem;
 }
 
 .input::placeholder {
-  color: #3c0f6d;
+  color: var(--violet-sombre);
 }
 
 .formContainer {
@@ -124,7 +124,7 @@
 
 #lienMdpForgotten,
 #newHere {
-  color: #3c0f6d;
+  color: var(--violet-sombre);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -135,7 +135,7 @@
 }
 
 .errorAuth {
-  color: #df3160;
+  color: var(--fuschia);
   margin-top: 0.3rem;
   text-align: center;
   min-height: 1.5rem;
@@ -143,7 +143,7 @@
 
 /* Success page */
 #welcomeMessage {
-  color: #3c0f6d;
+  color: var(--violet-sombre);
   text-align: center;
   margin-top: 2rem;
   margin-inline: 2rem;

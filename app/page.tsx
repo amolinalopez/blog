@@ -32,7 +32,7 @@ export default function Home() {
           <Image
             src={adHomePic}
             width={500}
-            height={500}
+            // height={500}
             alt="picture advertisement for burned ones app"
             className={styles.adHomePic}
             priority
@@ -44,6 +44,7 @@ export default function Home() {
             src={bo_logo}
             alt="Burned Ones Logo"
             className={styles.homeImage}
+            priority
           />
           <p className={styles.homeText}>
             Welcome to Burned Ones: Where Echoes of the Past Ignite Our Future

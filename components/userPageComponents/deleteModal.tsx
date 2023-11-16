@@ -13,7 +13,7 @@ const ConfirmDeleteModal: React.FC<Props> = ({ isOpen, onClose }) => {
   const router = useRouter();
 
   const handleDeleteAccount = async () => {
-    console.log("Delete account initiated...");
+    // console.log("Delete account initiated...");
 
     const token = getCookie("token");
 
@@ -26,7 +26,7 @@ const ConfirmDeleteModal: React.FC<Props> = ({ isOpen, onClose }) => {
     });
 
     if (response.ok) {
-      console.log("Account deleted successfully");
+      // console.log("Account deleted successfully");
       removeCookie("token");
       setUser(null);
       router.push("/auth/login");
