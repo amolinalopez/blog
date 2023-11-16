@@ -19,7 +19,7 @@ const SignupPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [validationError, setValidationError] = useState("");
   const router = useRouter();
-  const { user, setUser } = useUser();
+  const { user, setUser, fetchUserData } = useUser();
 
   const handleSignup = async () => {
     if (!username || !password || !email) {
@@ -45,6 +45,7 @@ const SignupPage: React.FC = () => {
         const data = await response.json();
         // console.log("Signup successful! Token received:", data.token);
         setUser(data.user);
+        fetchUserData();
         router.push("/auth/success");
       } else {
         const data = await response.json();
