@@ -24,6 +24,12 @@ export async function GET(
             profilePicture: true,
           },
         },
+        likes: {
+          select: {
+            id: true,
+            userId: true,
+          },
+        },
       },
     });
 
@@ -51,6 +57,23 @@ export async function PUT(
         id: parseInt(postId),
       },
       data: updateData,
+      select: {
+        id: true,
+        content: true,
+        gradient: true,
+        createdAt: true,
+        updatedAt: true,
+        userId: true,
+        type: true,
+        mediaUrl: true,
+        likes: {
+          select: {
+            id: true,
+            userId: true,
+            postId: true,
+          },
+        },
+      },
     });
 
     return new NextResponse(JSON.stringify(updatedPost), { status: 200 });

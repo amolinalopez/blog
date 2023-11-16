@@ -8,13 +8,13 @@ const LogoutBtn: React.FC = () => {
 
   const handleLogout = async () => {
     try {
-      console.log("Attempting logout...");
+      // console.log("Attempting logout...");
       const response = await fetch("/api/users/logout", {
         method: "POST",
       });
 
       if (response.status === 200) {
-        console.log("Successfully logged out");
+        // console.log("Successfully logged out");
         removeCookie("token");
         setUser(null);
         router.push("/auth/login");

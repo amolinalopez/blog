@@ -15,7 +15,7 @@ interface PostOptionsPopupProps {
   onClose: () => void;
   postId: number;
   updatePost: (updatedPost: Post) => void;
-    setPosts: React.Dispatch<React.SetStateAction<Post[]>>;
+  setPosts: React.Dispatch<React.SetStateAction<Post[]>>;
   currentContent: string;
   postUser: User;
 }
@@ -24,7 +24,7 @@ export const PostOptionsPopup: React.FC<PostOptionsPopupProps> = ({
   isOwner,
   onClose,
   postId,
-    setPosts,
+  setPosts,
   updatePost,
   currentContent,
   postUser,
@@ -76,7 +76,7 @@ export const PostOptionsPopup: React.FC<PostOptionsPopupProps> = ({
     });
 
     if (response.ok) {
-      console.log("Post deleted successfully");
+      // console.log("Post deleted successfully");
       //   setPosts((prevPosts) =>
       //     prevPosts.map((post) =>
       //       post.id === updatedPost.id ? updatedPost : post

@@ -1,5 +1,3 @@
-import { Like } from "@prisma/client";
-
 export type UserData = {
   username?: string;
   email?: string;
@@ -38,4 +36,12 @@ export type User = {
   updatedAt: Date;
   deletedAt?: Date;
   posts?: Post[];
+};
+
+export type Like = {
+  id: number;
+  userId: number;
+  postId: number;
+  createdAt: Date;
+  deletedAt: Date | null;
 };

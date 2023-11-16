@@ -38,7 +38,7 @@ export default function CreatePost() {
 
       if (response.ok) {
         const newPost = await response.json();
-        console.log("Post created successfully:", newPost);
+        // console.log("Post created successfully:", newPost);
         fetchUserData();
         router.push("/grimoire");
       } else {
