@@ -18,7 +18,7 @@ const LoginPage: React.FC = () => {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState<string | null>(null);
-  const { setUser } = useUser();
+  const { setUser, fetchUserData } = useUser();
 
   const handleLogin = async () => {
     try {
@@ -43,6 +43,7 @@ const LoginPage: React.FC = () => {
         if (userResponse.ok) {
           const userData = await userResponse.json();
           setUser(userData.user);
+          fetchUserData();
         }
         router.push("/grimoire");
       } else {

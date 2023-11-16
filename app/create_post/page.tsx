@@ -118,11 +118,8 @@ export default function CreatePost() {
         <footer className={styles.footer}>
           <div className={styles.mediaButtons}>
             <button className={styles.mediaButton}>📄</button>{" "}
-            {/* Document button */}
             <button className={styles.mediaButton}>📸</button>{" "}
-            {/* Image button */}
             <button className={styles.mediaButton}>📹</button>{" "}
-            {/* Video button */}
           </div>
           <div className={styles.publishBtnWrapper}>
             <Button text="Publish" onClick={handleSubmit} />

@@ -16,8 +16,8 @@ const LogoutBtn: React.FC = () => {
       if (response.status === 200) {
         console.log("Successfully logged out");
         removeCookie("token");
-        router.push("/auth/login");
         setUser(null);
+        router.push("/auth/login");
       } else {
         const data = await response.json();
         console.error("Logout failed:", data);
@@ -27,7 +27,11 @@ const LogoutBtn: React.FC = () => {
     }
   };
 
-  return <button onClick={handleLogout} className="btn">Logout</button>;
+  return (
+    <button onClick={handleLogout} className="btn">
+      Logout
+    </button>
+  );
 };
 
 export default LogoutBtn;
