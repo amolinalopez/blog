@@ -1,4 +1,5 @@
 # Burned Ones ️🧙‍♀️ 🪄🔥
+# Work in Progress
 
 ## Introduction
 
@@ -24,13 +25,15 @@ Our community is for minorities, women, and LGBTQIA+ individuals 🏳️‍🌈�
 - **User Profiles**: Customizable user profiles to represent individuality.
 - **Diverse Content Sharing**: Post images, text, gifs, and videos.
 - **Engagement Tools**: Features for liking, commenting, and following other users.
-- **Accessibility**: Prioritized for all users, including those using only keyboards, visual accessibility, and alternative texts.
-- **Dark Mode**: An eye-friendly mode for users who prefer a dimmer interface, especially useful for nighttime browsing.
+- **Accessibility**: Prioritized for all users.
 
 ### Coming Soon
 
 - **Resource Verification**: A community-driven system to verify or rate shared resources, ensuring their authenticity and value.
-  
+- **Dark Mode**: An eye-friendly mode for users who prefer a dimmer interface, especially useful for nighttime browsing.
+- **More Engagement Tools**: Features for commenting and following other users.
+
+
 #### Safety Features
 
 - **Content Filtering**: Implement mechanisms to identify and filter out potentially harmful or triggering content automatically.
@@ -56,7 +59,6 @@ Built with a modern tech stack to ensure optimal performance and user experience
 "Burned Ones" combines an aesthetic inspired by the often-misunderstood witches and minorities with a focus on accessibility. We prioritize:
 
 - **Font Accessibility**: Ensuring readability for all.
-- **Keyboard-Only Navigation**: For those who prefer or need it.
 - **Visual Accessibility**: Colors and designs that consider all forms of visibility.
   
 *Suggestions on design and accessibility principles? Let us know!*
@@ -64,5 +66,5 @@ Built with a modern tech stack to ensure optimal performance and user experience
 ## Community Guidelines
 
 - **Inclusivity is a Must**: Absolutely no tolerance for racism or any form of discrimination.
-- **Invite-Only, Eventually**: For the safety and exclusivity of our users, future iterations will move towards an invite-only model. However, SEO considerations keep the platform more open for now.
+- **Invite-Only, Eventually**: For the safety and exclusivity of our users, future iterations will move towards an invite-only model.
 - **Safety First**: Plans are in the pipeline for content moderation to ensure the platform remains a haven for its users.
